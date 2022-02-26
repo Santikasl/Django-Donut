@@ -9,3 +9,8 @@ def index(request):
 def mainl(request):
     return render(request, 'donut/main.html')
 
+def area(request):
+    return render(request, 'donut/area.html')
+
+
+

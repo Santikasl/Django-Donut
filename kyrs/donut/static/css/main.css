@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    user-select: none;
+    background-color: #0c0c0c;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 350px 350px 350px 350px;
+    position: absolute;
+    z-index: -1;
+    margin-top: 10px;
+    width: 94%;
+    margin-top: 220px;
+    margin-left: 40px;
+    height: 100%;
+    grid-row-gap: 55px;
+}
+
+.photo {
+    padding-left: 50px;
+}
+
+.day-photo {
+    color: white;
+    position: absolute;
+    z-index: -1;
+    font-size: 45px;
+    margin-top: 115px;
+    margin-left: 105px;
+    font-family: Organetto-Variable;
+}

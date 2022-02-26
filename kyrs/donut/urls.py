@@ -8,4 +8,6 @@ urlpatterns = [
 
     url(r'^main/', views.mainl, name='main'),
 
+    url(r'^area/', views.area, name='area'),
+
 ]
