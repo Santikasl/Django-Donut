@@ -1,0 +1,30 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="{% static 'css/titels.css' %}" />
+    <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="title">
+       <a href="{% url 'index' %}">  <img src="{% static 'img/icon.png' %}" width="30px" height="30px" style="margin:23px"></a>
+        <a href="{% url 'index' %}"> <h3 class="name">DONUT</h3></a>
+        <form action="">
+            <input class="search" type="search" name="" id="" placeholder="Поиск">
+        </form>
+        <a href="">
+            <img src="{% static 'img/notification.png' %}" alt="" width="55px" style="margin-top:17px; margin-left:70px">
+        </a>
+             <a href="">
+            <img src="{% static 'img/user-photo.png' %}" alt="" width="43px" style="margin-top:21px; margin-left:70px">
+        </a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+
+}
+
+img {
+    pointer-events: none;
+}
+
+.title {
+    display: flex;
+    position: fixed;
+    background-color: #0c0c0c;
+    width: 100%;
+    height: 80px;
+}
+
+.name {
+    color: white;
+    font-family: Current;
+    margin-top: 30px;
+    margin-left: -6px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.search {
+    background-image: url(icon.png);
+    background-repeat: no-repeat;
+    background-position: 4px;
+    margin-top: 15px;
+    margin-left: 140px;
+    padding-left: 50px;
+    padding-top: 6px;
+    text-decoration: none;
+    width: 930px;
+    height: 45px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+}
+
+input::-webkit-input-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+input::-moz-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+input:-moz-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+input:-ms-input-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+input:focus::-webkit-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+input:focus::-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+input:focus:-moz-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+input:focus:-ms-input-placeholder {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.search::placeholder {
+    font-family: Century Gothic;
+    font-size: 15px;
+}
