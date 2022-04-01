@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .forms import *
+
 
 def index(request):
-    return render(request, 'donut/index.html')
+    form = RegistrForm()
+    return render(request, 'donut/index.html', {'form': form})
 
 
 def mainl(request):

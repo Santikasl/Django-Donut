@@ -50,13 +50,14 @@
 
 
             <img src="{% static 'img/list3.png' %}" alt="" width="1350px" style="z-index:-4;position: absolute; left: 100px; top: 0px; top:0px">
-            <form class="registr" action="{% url 'main' %}">
+            <form class="registr" action="{% url 'main' %}" method="post">
                 <h1>Регистрация</h1>
 
-                <input type="text" class="inp" placeholder="Имя пользователя">
-                <input type="password" class="inp" name="" id="" placeholder="Пароль">
-                <input type="password" class="inp" name="" id="" placeholder="Подтвердите пароль">
-                <input type="text" class="inp" placeholder="Электронный адрес">
+                {{form.as_p}}
+<!--                <input type="text" class="inp" placeholder="Имя пользователя">-->
+<!--                <input type="password" class="inp" name="" id="" placeholder="Пароль">-->
+<!--                <input type="password" class="inp" name="" id="" placeholder="Подтвердите пароль">-->
+<!--                <input type="text" class="inp" placeholder="Электронный адрес">-->
                 <input class="btnS" type="submit" value="START">
                 <a href="" class="hav">Уже есть аккаунт</a>
             </form>
