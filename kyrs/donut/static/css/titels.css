@@ -15,6 +15,7 @@ img {
     background-color: #0c0c0c;
     width: 100%;
     height: 80px;
+        z-index: 5;
 }
 
 .name {
