@@ -8,11 +8,11 @@ body {
     text-align: left;
     padding-left: 150px;
     width: 11%;
-    top:80px;
+    top: 80px;
     left: 285px;
 }
 
-.logo{
+.logo {
     position: absolute;
     z-index: 3;
     text-align: left;
@@ -21,14 +21,13 @@ body {
     top: 120px;
 }
 
-.post{
+.post {
     position: absolute;
     display: flex;
     z-index: 3;
     padding-left: 225px;
-
     width: 50%;
-    top: 180px;
+    top: 200px;
     left: 211px;
 
 }
@@ -51,44 +50,45 @@ body {
     position: relative;
 }
 
-.photo > img{
+.photo > img {
     display: block;
     width: 100%;
     object-fit: cover;
 }
 
-.photo > .content{
+.photo > .content {
     position: absolute;
     inset: 0;
     border-radius: 30px;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 15px;
     padding: 1rem;
-       font-family: Organetto-Variable;
-    background: rgba(215, 215, 215, 0.31);
-    display: flex;
+    font-family: 'Montserrat Alternates', sans-serif;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
     left: 50px;
+    text-align: justify;
     justify-content: center;
     align-items: center;
 }
+
 .photo > img,
-.photo > .content{
-    transition:100ms ease-in-out;
+.photo > .content {
+    transition: 200ms ease-in-out;
 }
 
-.photo:hover > .content.fade{
+.photo:hover > .content.fade {
     opacity: 1;
-     transform: scale(1.1);
+
 }
 
 
-.photo > .content.fade{
+.photo > .content.fade {
     opacity: 0;
 }
 
-.photo:hover > img.zoom{
- transform: scale(1.1);
-    filter: blur(3px);
+.photo:hover > img.zoom {
+
+    filter: blur(1px);
 }
 
 
@@ -176,4 +176,183 @@ span {
 
 ::-webkit-scrollbar {
     width: 0;
+}
+
+
+
+[id='toggle-heart'] {
+  position: absolute;
+  left: -100vw;
+}
+[id='toggle-heart']:checked + label {
+  color: #e2264d;
+  -webkit-filter: none;
+          filter: none;
+  will-change: font-size;
+  -webkit-animation: heart 1s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+          animation: heart 1s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+}
+[id='toggle-heart']:checked + label:before, [id='toggle-heart']:checked + label:after {
+  -webkit-animation: inherit;
+          animation: inherit;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+}
+[id='toggle-heart']:checked + label:before {
+  will-change: transform, border-width, border-color;
+  -webkit-animation-name: bubble;
+          animation-name: bubble;
+}
+[id='toggle-heart']:checked + label:after {
+  will-change: opacity, box-shadow;
+  -webkit-animation-name: sparkles;
+          animation-name: sparkles;
+}
+
+
+[for='toggle-heart'] {
+  align-self: center;
+
+
+
+  position: relative;
+
+  color: #ffffff;
+  font-size: 1.1em;
+    font-family: 'Montserrat Alternates', sans-serif;
+  -webkit-filter: grayscale(1);
+          filter: grayscale(1);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+[for='toggle-heart']:before, [for='toggle-heart']:after {
+  position: absolute;
+  z-index: -1;
+  top: 90%;
+  left: 50%;
+  border-radius: 50%;
+  content: '';
+}
+[for='toggle-heart']:before {
+  box-sizing: border-box;
+  margin: -2.25rem;
+  border: solid 2.25rem #e2264d;
+  width: 3.5rem;
+  height: 3.5rem;
+  -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[for='toggle-heart']:after {
+  margin: -0.1875rem;
+  width: 0.375rem;
+  height: 0.375rem;
+  box-shadow: 0.32476rem -3rem 0 -0.1875rem #ff8080, -0.32476rem -2.625rem 0 -0.1875rem #ffed80, 2.54798rem -1.61656rem 0 -0.1875rem #ffed80, 1.84982rem -1.89057rem 0 -0.1875rem #a4ff80, 2.85252rem 0.98418rem 0 -0.1875rem #a4ff80, 2.63145rem 0.2675rem 0 -0.1875rem #80ffc8, 1.00905rem 2.84381rem 0 -0.1875rem #80ffc8, 1.43154rem 2.22414rem 0 -0.1875rem #80c8ff, -1.59425rem 2.562rem 0 -0.1875rem #80c8ff, -0.84635rem 2.50595rem 0 -0.1875rem #a480ff, -2.99705rem 0.35095rem 0 -0.1875rem #a480ff, -2.48692rem 0.90073rem 0 -0.1875rem #ff80ed, -2.14301rem -2.12438rem 0 -0.1875rem #ff80ed, -2.25479rem -1.38275rem 0 -0.1875rem #ff8080;
+}
+
+.edit{
+    background-color: #0c0c0c;
+    text-decoration: none;
+    outline: none;
+  font-family: Organetto-Variable;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    border: 1px solid white;
+    width: 170px;
+    padding-top: 7px;
+    height: 30px;
+    border-radius: 30px;
+    position: absolute;
+    margin-top: -55px;
+    margin-left: 180px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Lora);
+
+nav {
+  width: 200px;
+
+  margin: -12% -9% 30px;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.topmenu > li {
+  display: inline-block;
+  margin-right: 20px;
+  position: relative;
+}
+.topmenu > li:last-child {
+  margin-right: 0;
+}
+.as {
+    font-weight: bold;
+     display: block;
+     padding: 40px 10px;
+    font-size: 20px;
+    text-decoration: none;
+     outline: none;
+    width: 200px;
+    left: -100px;
+    font-family: 'Lora', serif;
+    transition: .5s linear;
+}
+
+.as2 {
+    display: block;
+    padding: 10px 10px;
+    font-family: Organetto-Variable;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    outline: none;
+    width: 200px;
+    transition: 0.1s linear;
+}
+
+.as3:hover{
+    background-color: #e2264d;
+    border-radius: 18px;
+}
+.fa {
+  font-family: "FontAwesome";
+  color: inherit;
+  padding-left: 10px;
+}
+.submenu {
+  position: absolute;
+  top: 90%;
+  left: -80px;
+
+    text-align: center;
+    background-color: #0c0c0c;
+  width: 100%;
+  z-index: 10;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+.three ul {
+
+}
+.three ul a {
+  color: white;
+}
+.three .submenu {
+  visibility: hidden;
+  opacity: 0;
+  border-radius: 20px;
+    border: 1px solid white;
+}
+.three ul li:hover .submenu {
+  visibility: visible;
+  opacity: 1;
 }
