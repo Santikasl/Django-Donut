@@ -7,7 +7,6 @@ from django.core.validators import *
 class Users(models.Model):
     name = models.CharField(max_length=30, unique=True)
     email = models.EmailField()
-    img = models.ImageField()
     password = models.CharField(max_length=60)
 
 
