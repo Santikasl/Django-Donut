@@ -43,6 +43,7 @@ def index(request):
     else:
         auth_form = AuthForm()
         context = {
+
             'form': auth_form
         }
         return render(request, 'donut/index.html', {'form': auth_form})
