@@ -5,94 +5,144 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
     <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css" integrity="sha512-4rPgyv5iG0PZw8E+oRdfN/Gq+yilzt9rQ8Yci2jJ15rAyBmF0HBE4wFjBkoB72cxBeg63uobaj1UcNt/scV93w==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css"
+          integrity="sha512-4rPgyv5iG0PZw8E+oRdfN/Gq+yilzt9rQ8Yci2jJ15rAyBmF0HBE4wFjBkoB72cxBeg63uobaj1UcNt/scV93w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"
+            integrity="sha512-gSf3NCgs6wWEdztl1e6vUqtRP884ONnCNzCpomdoQ0xXsk06lrxJsR7jX5yM/qAGkPGsps+4bLV5IEjhOZX+gg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <title>Donut</title>
 </head>
-
-
-
-
 <body>
-    <form class="form" action="#3">
-        <button class="btn" type="submit">SignIN</button>
-        <button class="btn" type="submit">signup</button>
-    </form>
-    <div id="fullpage">
 
-        <div class="section s1">
+<!--форма кнопок авторизации и регистрации-->
+<form class="form" action="#3">
+    <button id="hider" class="btn" type="submit">SignIN</button>
+    <button id="hider2" class="btn" type="submit">signup</button>
+</form>
 
-            <a href="#1"></a>
-            <img src="{% static 'img/logo.png' %}" alt="" width="700px" style="z-index: 1;position: absolute; left: 410px; top:80px">
-            <img src="{% static 'img/text.png' %}" alt="" width="800px" style="z-index: 1; position: absolute; left: 370px; top:550px">
-            <img src="{% static 'img/text.png' %}" alt="" width="800px" style="z-index: 1; position: absolute; left: 370px; top:550px">
-            <img src="{% static 'img/crystal.png' %}" alt="" width="500px" style="z-index: 1; position: absolute; left: 1px; top:40px">
-            <img src="{% static 'img/crystal3.png' %}" alt="" width="500px" style="z-index: 1; position: absolute; left: 1150px; top:300px">
+<!--фул пейдж-->
+<div id="fullpage">
 
+    <div class="section s1">
+
+        <a href="#1"></a>
+        <img src="{% static 'img/logo.png' %}" alt="" width="700px"
+             style="z-index: 1;position: absolute; left: 410px; top:80px">
+        <img src="{% static 'img/text.png' %}" alt="" width="800px"
+             style="z-index: 1; position: absolute; left: 370px; top:550px">
+        <img src="{% static 'img/text.png' %}" alt="" width="800px"
+             style="z-index: 1; position: absolute; left: 370px; top:550px">
+        <div data-relative-input="true" id="scene">
+
+            <div data-depth="0.2"><img src="{% static 'img/crystal.png' %}" alt="" width="500px"
+                                       style="z-index: 10; position: absolute; left: -50px; top:-450px"></div>
+            <div data-depth="0.2"><img src="{% static 'img/crystal3.png' %}" alt="" width="500px"
+                                       style="z-index: 1; position: absolute; left: 1150px; top:-100px"></div>
         </div>
-        <div class="section s2">
-            <a href="#2"></a>
+    </div>
 
-            <!-- <div style="z-index:-2; position:absolute;background-color: #0c0c0c;width: 400px; height: 50%; top:376px"></div> -->
+    <div class="section s2">
+        <a href="#2"></a>
+        <img src="{% static 'img/crystal4.png' %}" alt="" width="700px"
+                                       style="z-index:-1;position: absolute; left: 5px; top: 120px;">
+        <img src="{% static 'img/text2.png' %}" alt="" width="650px" style="position: absolute; left: 750px; top:150px">
+    </div>
 
-            <img src="{% static 'img/crystal4.png' %}" alt="" width="700px" style="z-index:-1;position: absolute; left: 5px; top: 120px;">
-            <img src="{% static 'img/text2.png' %}" alt="" width="650px" style="position: absolute; left: 750px; top:150px">
+    <div class="section s3">
+        <img src="{% static 'img/list3.png' %}" alt="" width="1350px"
+             style="z-index:-4;position: absolute; left: 100px; top: 0px; top:0px">
 
-        </div>
+        <!--        форма с регистрацией-->
+        <form id="text" class="registr" method="post">
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <p class="{{ message.tags }}">
+                    {{ message }}
+                </p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <h1>Регистрация</h1>
+            {% csrf_token %}
+            {{ form.name}}
+            {{ form.password}}
+            {{ form.password_check}}
+            {{ form.email}}
+            <button class="btnS" type="submit">START</button>
+        </form>
 
-        <div class="section s3">
+        <!--        форма с авторизацией-->
+        <form id="text2" class="registr" method="post">
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <p class="{{ message.tags }}">
+                    {{ message }}
+                </p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <h1>Авторизация</h1>
+            {% csrf_token %}
+            {{ form.name}}
+            {{ form.password}}
+            <button class="btnS" type="submit">START</button>
+        </form>
 
-
-            <img src="{% static 'img/list3.png' %}" alt="" width="1350px" style="z-index:-4;position: absolute; left: 100px; top: 0px; top:0px">
-            <form class="registr" action="{% url 'main' %}" method="post">
-                <h1>Регистрация</h1>
-
-                {{form.as_p}}
-<!--                <input type="text" class="inp" placeholder="Имя пользователя">-->
-<!--                <input type="password" class="inp" name="" id="" placeholder="Пароль">-->
-<!--                <input type="password" class="inp" name="" id="" placeholder="Подтвердите пароль">-->
-<!--                <input type="text" class="inp" placeholder="Электронный адрес">-->
-                <input class="btnS" type="submit" value="START">
-                <a href="" class="hav">Уже есть аккаунт</a>
-            </form>
-            <img src="{% static 'img/donut.png' %}" alt="" width="1600px" style="z-index:-3; position: absolute; left: -150px; top: -200px; top:-230px">
-            <a href="#3"></a>
-        </div>
+        <img src="{% static 'img/donut.png' %}" alt="" width="1600px"
+             style="z-index:-3; position: absolute; left: -150px; top: -200px; top:-230px">
+        <a href="#3"></a>
 
     </div>
 
+</div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js" integrity="sha512-gSf3NCgs6wWEdztl1e6vUqtRP884ONnCNzCpomdoQ0xXsk06lrxJsR7jX5yM/qAGkPGsps+4bLV5IEjhOZX+gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    new fullpage('#fullpage', {
+        // здесь параметры
+        autoScrolling: true,
+        navigation: true,
+        anchors: ['1', '2', '3'],
+        scrollHorizontally: true,
+        continuousVertical: true,
+        navigationTooltips: ['DONUT', 'INFO', 'START'],
+        showActiveTooltip: true,
+    });
 
-    <script>
-        new fullpage('#fullpage', {
-            // здесь параметры
-            autoScrolling: true,
-            navigation: true,
-            anchors: ['1', '2', '3'],
-            scrollHorizontally: true,
-            continuousVertical: true,
-            navigationTooltips: ['DONUT', 'INFO', 'START'],
-            showActiveTooltip: true,
+</script>
 
+<script>
+    document.getElementById('hider2').onclick = function () {
+        document.getElementById('text2').hidden = true;
+        document.getElementById('text').hidden = false;
+    }
+</script>
 
+<script>
+    document.getElementById('text2').hidden = true;
+    document.getElementById('hider').onclick = function () {
+        document.getElementById('text').hidden = true;
+        document.getElementById('text2').hidden = false;
+    }
+</script>
 
+<script>
+    var scene = document.getElementById('scene');
+    var parallaxInstance = new Parallax(scene);
 
-
-
-
-
-        });
-
-        // методы
-    </script>
+    var scene = document.getElementById('scene2');
+    var parallaxInstance = new Parallax(scene);
+</script>
 
 </body>
 

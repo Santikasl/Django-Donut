@@ -66,21 +66,69 @@ img {
     position: relative;
     width: 449px;
     height: 500px;
+
     border-radius: 50px;
-    margin-top: -5px;
+    margin-top: -1px;
     margin-left: 197px;
 }
 
 h1 {
-    padding-top: 25px;
+    padding-top: 20px;
     padding-left: 100px;
     font-size: 50px;
     color: #0c0c0c;
+    padding-bottom: -10px;
     font-family: Organetto-Variable;
 }
 
-.inp {
+#id_name {
+    margin-top: -90px;
+    border-radius: 20px;
+    width: 300px;
+    padding-left: 20px;
+    height: 35px;
+    border: 2px solid black;
+    margin-bottom: 35px;
+    margin-left: 65px;
+}
+
+
+#id_password{
+       margin-top: -30px;
+    border-radius: 20px;
+    width: 300px;
+    padding-left: 20px;
+    height: 35px;
+    border: 2px solid black;
+    margin-bottom: 35px;
+    margin-left: 65px;
+}
+
+#id_password_check {
     margin-top: -30px;
+    border-radius: 20px;
+    width: 300px;
+    padding-left: 20px;
+    height: 35px;
+    border: 2px solid black;
+    margin-bottom: 35px;
+    margin-left: 65px;
+}
+
+
+#id_email{
+       margin-top: -30px;
+    border-radius: 20px;
+    width: 300px;
+    padding-left: 20px;
+    height: 35px;
+    border: 2px solid black;
+    margin-bottom: 35px;
+    margin-left: 65px;
+}
+
+.inp{
+       margin-top: -30px;
     border-radius: 20px;
     width: 300px;
     padding-left: 20px;
@@ -169,3 +217,24 @@ input:focus:-ms-input-placeholder {
     margin-top: 53px;
     margin-left: -110px;
 }
+
+.messages{
+    position: absolute;
+    font-size: 16px;
+    font-family: Century Gothic;
+
+    width: 100%;
+    z-index: 10;
+    color: #e2264d;
+margin-top: 94%;
+    text-align: center;
+}
+
+#text2{
+margin-top: 10%;
+
+
+}
+
+
+
