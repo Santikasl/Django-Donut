@@ -6,8 +6,6 @@ import re
 from django.contrib import messages
 
 
-
-
 def index(request):
     # if request.method == 'POST':
     #     form = RegistrForm(request.POST)
@@ -34,18 +32,20 @@ def index(request):
             if user:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Вы успешно вощли в систему')
+                    return HttpResponse('Вы успешно вошли в систему')
                 else:
                     auth_form.add_error('__all__', 'Ошибка! Пользователь не найден')
             else:
                 auth_form.add_error('__all__', 'Ошибка! Пользователь не найден')
-
         else:
             auth_form = AuthForm()
+            return render(request, 'donut/index.html', {'form': auth_form})
+    else:
+        auth_form = AuthForm()
         context = {
-        'form': auth_form
-    }
-    return render(request, 'donut/index.html', context=context)
+            'form': auth_form
+        }
+        return render(request, 'donut/index.html', {'form': auth_form})
 
 
 def mainl(request):
