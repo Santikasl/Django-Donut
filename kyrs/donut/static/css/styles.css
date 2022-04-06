@@ -18,10 +18,10 @@ span {
 }
 
 .form {
+    position: absolute;
     z-index: 100000 !important;
-    position: fixed;
-    margin-left: 83%;
-    margin-top: 30px;
+    left: 83%;
+    top: 30px;
     padding-left: 50px;
 }
 
@@ -30,6 +30,8 @@ img {
 }
 
 .btn {
+    position: relative;
+
     z-index: 100000 !important;
     border-radius: 15px;
     width: 75px;
@@ -229,20 +231,18 @@ input:focus:-ms-input-placeholder {
 }
 
 .messages{
-    position: absolute;
-    font-size: 16px;
+position: absolute;
+    font-size: 20px;
     font-family: Century Gothic;
-
     width: 100%;
-    z-index: 10;
+    z-index: 20;
     color: #e2264d;
-margin-top: 94%;
+    margin-top: 70%;
     text-align: center;
 }
 
 #text2{
 margin-top: 10%;
-
 
 }
 

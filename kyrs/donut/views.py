@@ -32,11 +32,14 @@ def index(request):
             if user:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Вы успешно вошли в систему')
+
+                    return render(request, 'donut/main.html')
                 else:
-                    auth_form.add_error('__all__', 'Ошибка! Пользователь не найден')
+                    messages.add_message(request, messages.ERROR, 'Пользователь больше не активен')
+                    return render(request, 'donut/index.html', {'form': auth_form})
             else:
-                auth_form.add_error('__all__', 'Ошибка! Пользователь не найден')
+                messages.add_message(request, messages.ERROR, 'Проверьте правильность введённых данных')
+                return render(request, 'donut/index.html', {'form': auth_form})
         else:
             auth_form = AuthForm()
             return render(request, 'donut/index.html', {'form': auth_form})
@@ -46,7 +49,8 @@ def index(request):
 
             'form': auth_form
         }
-        return render(request, 'donut/index.html', {'form': auth_form})
+        return render(request, 'donut/index.html', context=context)
+
 
 
 def mainl(request):
