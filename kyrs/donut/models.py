@@ -14,7 +14,6 @@ class Users(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
     img = models.ImageField(upload_to='profile_pics', blank=True)
     followers = models.IntegerField(null=True, blank=True)
     likes = models.IntegerField(null=True, blank=True)
