@@ -1,17 +1,13 @@
-
-
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponse
 from django.shortcuts import render
 from .forms import *
-import re
 from django.contrib import messages
 
 
 def reg(request):
     if request.user.is_authenticated == True:
-            return render(request, 'donut/main.html')
+        return render(request, 'donut/main.html')
     else:
         if request.method == 'POST':
             form = ExtendedRegisterForm(request.POST)
@@ -30,14 +26,14 @@ def reg(request):
 def mainl(request):
     auth_form = AuthForm()
     if request.user.is_authenticated == False:
-            return render(request, 'donut/index.html', {'form': auth_form})
+        return render(request, 'donut/index.html', {'form': auth_form})
     else:
         return render(request, 'donut/main.html')
 
 
 def index(request):
     if request.user.is_authenticated == True:
-            return render(request, 'donut/main.html')
+        return render(request, 'donut/main.html')
     else:
         if request.method == 'POST':
             auth_form = AuthForm(request.POST)
@@ -70,7 +66,7 @@ def index(request):
 def area(request):
     auth_form = AuthForm()
     if request.user.is_authenticated == False:
-            return render(request, 'donut/index.html', {'form': auth_form})
+        return render(request, 'donut/index.html', {'form': auth_form})
     else:
         return render(request, 'donut/area.html')
 

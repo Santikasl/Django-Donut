@@ -1,5 +1,8 @@
 from django.db import models
 from django.core.validators import *
+from django.contrib.auth.models import User
+
+
 
 # Create your models here.
 
@@ -10,3 +13,8 @@ class Users(models.Model):
     password = models.CharField(max_length=60)
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    img = models.ImageField(upload_to='profile_pics', blank=True)
+    followers = models.IntegerField(null=True, blank=True)
+    likes = models.IntegerField(null=True, blank=True)

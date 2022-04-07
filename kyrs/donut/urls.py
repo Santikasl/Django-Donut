@@ -1,5 +1,3 @@
-from django.conf.urls import url, include
-from django.views.generic import DateDetailView
 from django.contrib.auth import views as authViews
 from django.urls import path, reverse
 from . import views
