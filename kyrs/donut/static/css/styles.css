@@ -139,6 +139,39 @@ h1 {
     margin-left: 65px;
 }
 
+#id_username{
+               margin-top: -30px;
+    border-radius: 20px;
+    width: 300px;
+    padding-left: 20px;
+    height: 35px;
+    border: 2px solid black;
+    margin-bottom: 35px;
+    margin-left: 65px;
+}
+
+#id_password1{
+                   margin-top: -30px;
+    border-radius: 20px;
+    width: 300px;
+    padding-left: 20px;
+    height: 35px;
+    border: 2px solid black;
+    margin-bottom: 35px;
+    margin-left: 65px;
+}
+
+#id_password2{
+                       margin-top: -30px;
+    border-radius: 20px;
+    width: 300px;
+    padding-left: 20px;
+    height: 35px;
+    border: 2px solid black;
+    margin-bottom: 35px;
+    margin-left: 65px;
+}
+
 .inp{
        margin-top: -30px;
     border-radius: 20px;
@@ -243,6 +276,11 @@ position: absolute;
 
 #text2{
 margin-top: 10%;
+
+}
+
+#text3{
+
 
 }
 

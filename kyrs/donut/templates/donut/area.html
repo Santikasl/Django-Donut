@@ -24,10 +24,13 @@
 
 
 {% block name %}
+{% if request.user.is_authenticated %}
 <div class="nic">
     <p style="color:white; font-family: Organetto-Variable;font-size:50px">
-        santikas</p>
+        {{ request.user.username }}</p>
 </div>
+{% endif %}
+
 <div class="logo">
     <img src="{% static 'img/ava.png' %}" alt="" width="150px">
 </div>
@@ -43,7 +46,7 @@
     <li><a  class="as" href="#">. . .<i class="fa fa-angle-down"></i></a>
       <ul class="submenu">
         <li><a class="as2" href="">Сменить пароль</a></li>
-        <li><a class="as2 as3" href="">Выйти</a></li>
+        <li><a class="as2 as3" href="{% url 'exit' %}?next=/">Выйти</a></li>
       </ul>
     </li>
 

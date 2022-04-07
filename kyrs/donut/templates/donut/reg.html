@@ -64,9 +64,7 @@
 
         <!--        форма с регистрацией-->
 
-
-        <!--        форма с авторизацией-->
-        <form id="text2" class="registr" method="post">
+        <form id="text3" class="registr" method="post">
             {% if messages %}
             <div class="messages">
                 {% for message in messages %}
@@ -76,10 +74,16 @@
                 {% endfor %}
             </div>
             {% endif %}
-            <h1>Авторизация</h1>
+            <h1>Регистрация</h1>
             {% csrf_token %}
-            {{ form.name}}
-            {{ form.password}}
+            {{ form.username}}
+            {{ form.email}}
+            {{ form.password1 }}
+             {{ form.password2 }}
+
+
+
+
             <button class="btnS" type="submit">START</button>
         </form>
 

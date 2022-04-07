@@ -1,13 +1,18 @@
 from django.conf.urls import url, include
 from django.views.generic import DateDetailView
-from django.urls import path
+from django.contrib.auth import views as authViews
+from django.urls import path, reverse
 from . import views
 urlpatterns = [
 
     path('', views.index, name='index'),
 
-    url(r'^main/', views.mainl, name='main'),
+    path('reg/', views.reg, name='reg'),
 
-    url(r'^area/', views.area, name='area'),
+    path('main/', views.mainl, name='main'),
+
+    path('area/', views.area, name='area'),
+
+    path('exit/', authViews.LogoutView.as_view(), name='exit'),
 
 ]
