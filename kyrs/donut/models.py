@@ -4,12 +4,15 @@ from django.contrib.auth.models import User
 
 
 class CustomUsers(models.Model):
-    name = models.CharField(max_length=30, unique=True)
-    email = models.EmailField()
-    password = models.CharField(max_length=60)
+    name = models.CharField(max_length=100)
     count_posts = models.IntegerField(default=0)
-    img = models.ImageField(upload_to='images/', default='static/img/default.png')
+    likes = models.IntegerField(default=0)
+    followers = models.IntegerField(default=0)
+    img = models.ImageField(upload_to='images/', default='images/default.png')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 

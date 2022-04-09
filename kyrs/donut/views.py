@@ -22,6 +22,7 @@ def reg(request):
                 cUser.user = form.save()
 
                 cUser.save()
+
                 username = form.cleaned_data.get('username')
                 raw_password = form.cleaned_data.get('password1')
                 user = authenticate(username=username, password=raw_password)
@@ -74,10 +75,13 @@ def index(request):
 
 def area(request):
     auth_form = AuthForm()
+    cUser = CustomUsers.objects.filter(name=request.user.username)
+
+
     if request.user.is_authenticated == False:
         return render(request, 'donut/index.html', {'form': auth_form})
     else:
-        return render(request, 'donut/area.html')
+        return render(request, 'donut/area.html', {'cUser': cUser})
 
 
 

@@ -11,13 +11,15 @@
     <link rel="stylesheet" href="{% static 'css/titels.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/area.css' %}"/>
     <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
     <title>Document</title>
 </head>
 {% endblock %}
@@ -33,116 +35,158 @@
 
 <div class="logo">
 
-    <img src="{ MEDIA_URL}{{ cUser.img.url }}" alt="" width="150px">
+    {% for name in cUser %}
+
+    <img src="{{ name.img.url }}" alt="" width="150px">
+
+    {% endfor %}
 </div>
+<div class="file-upload ">
+    <form action="" enctype="multipart/form-data" method="post">
+        <div class="example-1">
+            <div class="form-group">
+                <label class="label">
+                    <svg class="svg" style="width:100px;height:100px" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                              d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+
+                    <input type="file" accept="image/jpeg,image/png">
+                </label>
+            </div>
+        </div>
+    </form>
+</div>
+
 <div class="post">
-    <p style="color: white; font-family: Organetto-Variable; font-size: 30px">12 фото</p>
-    <p style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">184 отслеживают</p>
-        <p style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">184 лайков</p>
+    {% for name in cUser %}
+    <p style="color: white; font-family: Organetto-Variable; font-size: 30px">{{ name.count_posts }} постов</p>
+    <p style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ name.followers }} отслеживают</p>
+    <p style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ name.likes }} лайков</p>
     <a class="edit" href="edit.html">Редактировать</a>
+    {% endfor %}
     <nav class="three">
 
-  <ul class="topmenu">
 
-    <li><a  class="as" href="#">. . .<i class="fa fa-angle-down"></i></a>
-      <ul class="submenu">
-        <li><a class="as2" href="">Сменить пароль</a></li>
-        <li><a class="as2 as3" href="{% url 'exit' %}?next=/">Выйти</a></li>
-      </ul>
-    </li>
+        <ul class="topmenu">
 
-  </ul>
-</nav>
+            <li><a class="as" href="#">. . .<i class="fa fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a class="as2" href="">Сменить пароль</a></li>
+                    <li><a class="as2 as3" href="{% url 'exit' %}?next=/">Выйти</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </nav>
 
 </div>
 
-         <div class="main-content2">
-<div class="photo">
-            <img class="zoom" src="{% static 'img/26.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-    <div class="content fade">
-        <p>Описание:</p>
-        <p>Будем честны, идеальных людей не существует. У каждого есть свои дефекты и недостатки. Но зачастую эти недостатки видим лишь мы сами, тем самым будим у себя разные комплексы. Нужно научится не обращать на них внимания и жить спокойно, ведь жизнь всего одна. И куда интереснее будет провести её гуляя с друзьями, а не сидя дома замазывая свои прыщи...</p>
-        <input id="toggle-heart" type="checkbox"/>
-<label for="toggle-heart" aria-label="like">❤ 199</label>
-    </div>
-</div>
-<div class="photo">
-            <img class="zoom" src="{% static 'img/29.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+<div class="main-content2">
+    <div class="photo">
+        <img class="zoom" src="{% static 'img/26.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
         <div class="content fade">
-               <p>Описание:</p>
-Каналы для изучения фотографии. </br>
-Freemax: на данном канале много различных роликов про фотографии. Каждый понедельник (почти) у Максима выходит рубрика "Как делают такие фотографии". В этой рубрике Максим разбирает необычные фотографии которые ему скидывают его подписчики и объясняет как он устроены. </div>
-</div>
-<div class="photo">
-            <img class="zoom"  src="{% static 'img/38.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-            <div class="content fade">
-                   <p>Описание:</p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
+            <p>Описание:</p>
+            <p>Будем честны, идеальных людей не существует. У каждого есть свои дефекты и недостатки. Но зачастую эти
+                недостатки видим лишь мы сами, тем самым будим у себя разные комплексы. Нужно научится не обращать на
+                них внимания и жить спокойно, ведь жизнь всего одна. И куда интереснее будет провести её гуляя с
+                друзьями, а не сидя дома замазывая свои прыщи...</p>
+            <input id="toggle-heart" type="checkbox"/>
+            <label for="toggle-heart" aria-label="like">❤ 199</label>
+        </div>
+    </div>
+    <div class="photo">
+        <img class="zoom" src="{% static 'img/29.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+        <div class="content fade">
+            <p>Описание:</p>
+            Каналы для изучения фотографии. </br>
+            Freemax: на данном канале много различных роликов про фотографии. Каждый понедельник (почти) у Максима
+            выходит рубрика "Как делают такие фотографии". В этой рубрике Максим разбирает необычные фотографии которые
+            ему скидывают его подписчики и объясняет как он устроены.
+        </div>
+    </div>
+    <div class="photo">
+        <img class="zoom" src="{% static 'img/38.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+        <div class="content fade">
+            <p>Описание:</p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
+            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
+        </div>
+    </div>
+    <div class="photo">
+        <img class="zoom" src="{% static 'img/41.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+        <div class="content fade">
+            <p>Описание:</p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
+            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
+        </div>
+    </div>
+    <div class="photo">
+        <img class="zoom" src="{% static 'img/11.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+        <div class="content fade">
+            <p>Описание:</p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
+            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
+        </div>
+    </div>
+    <div class="photo">
+        <img class="zoom" src="{% static 'img/9.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+        <div class="content fade">
+            <p>Описание:</p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
+            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
+        </div>
+    </div>
+    <div class="photo">
+        <img class="zoom" src="{% static 'img/13.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+        <div class="content fade">
+            <p>Описание:</p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
+            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
+        </div>
+    </div>
+    <div class="photo">
+        <img class="zoom" src="{% static 'img/22.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+        <div class="content fade">
+            <p>Описание:</p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
+            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
+        </div>
+    </div>
+    <div class="photo">
+        <img class="zoom" src="{% static 'img/15.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+        <div class="content fade">
+            <p>Описание:</p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
+            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
+        </div>
+    </div>
+    <div class="photo">
+        <img class="zoom" src="{% static 'img/18.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+        <div class="content fade">
+            <p>Описание:</p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
+            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
+        </div>
+    </div>
+    <div class="photo">
+        <img class="zoom" src="{% static 'img/25.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+        <div class="content fade">
+            <p>Описание:</p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
+            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
+        </div>
+    </div>
+    <div class="photo">
+        <img class="zoom" src="{% static 'img/44.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+        <div class="content fade">
+            <p>Описание:</p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
+            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
+        </div>
     </div>
 </div>
-<div class="photo">
-            <img class="zoom"  src="{% static 'img/41.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-            <div class="content fade">
-                   <p>Описание:</p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-    </div>
-</div>
-<div class="photo">
-             <img  class="zoom" src="{% static 'img/11.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-            <div class="content fade">
-                   <p>Описание:</p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-    </div>
-</div>
-<div class="photo">
-             <img class="zoom"  src="{% static 'img/9.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-            <div class="content fade">
-                   <p>Описание:</p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-    </div>
-</div>
-<div class="photo">
-             <img class="zoom"  src="{% static 'img/13.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-            <div class="content fade">
-                   <p>Описание:</p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-    </div>
-</div>
-<div class="photo">
-             <img class="zoom"  src="{% static 'img/22.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-            <div class="content fade">
-                   <p>Описание:</p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-    </div>
-</div>
-<div class="photo">
-             <img class="zoom"  src="{% static 'img/15.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-            <div class="content fade">
-                   <p>Описание:</p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-    </div>
-</div>
-<div class="photo">
-             <img class="zoom"  src="{% static 'img/18.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-            <div class="content fade">
-                   <p>Описание:</p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-    </div>
-</div>
-<div class="photo">
-             <img class="zoom"  src="{% static 'img/25.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-            <div class="content fade">
-                   <p>Описание:</p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-    </div>
-</div>
-<div class="photo">
-             <img class="zoom"  src="{% static 'img/44.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-            <div class="content fade">
-                   <p>Описание:</p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-    </div>
-</div>
-    </div>
+<!--<div class="file-upload">-->
 
+<!--</div>-->
 {% endblock %}
