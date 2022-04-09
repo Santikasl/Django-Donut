@@ -32,7 +32,8 @@
 {% endif %}
 
 <div class="logo">
-    <img src="{% static 'img/ava.png' %}" alt="" width="150px">
+
+    <img src="{ MEDIA_URL}{{ cUser.img.url }}" alt="" width="150px">
 </div>
 <div class="post">
     <p style="color: white; font-family: Organetto-Variable; font-size: 30px">12 фото</p>

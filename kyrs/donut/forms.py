@@ -14,8 +14,6 @@ class ExtendedRegisterForm(UserCreationForm):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Подтвердите пароль'}), max_length=60)
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Логин'}), max_length=60)
 
-
-
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')

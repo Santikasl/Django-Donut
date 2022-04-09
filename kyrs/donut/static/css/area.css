@@ -15,9 +15,15 @@ body {
 .logo {
     position: absolute;
     z-index: 3;
-    text-align: left;
-    padding-left: 150px;
-    width: 10%;
+    width: 150px;
+    overflow: hidden;
+    border-radius: 80px;
+    height: 150px;
+    background-color: #e2264d;
+    align-items: center;
+    justify-items: center;
+margin-left: 150px;
+
     top: 120px;
 }
 

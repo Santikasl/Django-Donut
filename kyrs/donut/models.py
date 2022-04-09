@@ -3,17 +3,14 @@ from django.core.validators import *
 from django.contrib.auth.models import User
 
 
-
-# Create your models here.
-
-
-class Users(models.Model):
+class CustomUsers(models.Model):
     name = models.CharField(max_length=30, unique=True)
     email = models.EmailField()
     password = models.CharField(max_length=60)
+    count_posts = models.IntegerField(default=0)
+    img = models.ImageField(upload_to='images/', default='static/img/default.png')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
-class Profile(models.Model):
-    img = models.ImageField(upload_to='profile_pics', blank=True)
-    followers = models.IntegerField(null=True, blank=True)
-    likes = models.IntegerField(null=True, blank=True)
+
+

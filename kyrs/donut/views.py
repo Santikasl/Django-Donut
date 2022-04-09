@@ -4,6 +4,8 @@ from django.shortcuts import render
 from .forms import *
 from django.contrib import messages
 
+from .models import CustomUsers
+
 
 def reg(request):
     if request.user.is_authenticated == True:
@@ -11,8 +13,15 @@ def reg(request):
     else:
         if request.method == 'POST':
             form = ExtendedRegisterForm(request.POST)
+
             if form.is_valid():
-                form.save()
+                cUser = CustomUsers()
+                cUser.name = request.POST.get("username")
+                cUser.email = request.POST.get("email")
+                cUser.password = request.POST.get("password1")
+                cUser.user = form.save()
+
+                cUser.save()
                 username = form.cleaned_data.get('username')
                 raw_password = form.cleaned_data.get('password1')
                 user = authenticate(username=username, password=raw_password)
