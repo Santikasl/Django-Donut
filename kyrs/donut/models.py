@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class CustomUsers(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default='none')
     count_posts = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     followers = models.IntegerField(default=0)
