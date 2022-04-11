@@ -23,8 +23,13 @@ body {
     align-items: center;
     justify-items: center;
     margin-left: 150px;
-
     top: 120px;
+}
+
+.logo img{
+    width: 100%;
+    height: 100%;
+     object-fit: cover;
 }
 
 .post {
@@ -404,11 +409,8 @@ ul {
 .example-1 .label {
     width: 150px;
     height: 150px;
-    border: 2px dashed #0c0c0c;
     display: block;
-
     border-radius: 80px;
-    transition: border 300ms ease;
     cursor: pointer;
     text-align: center
 }
@@ -416,29 +418,23 @@ ul {
 .example-1 .label i {
     display: block;
     font-size: 42px;
-    padding-bottom: 16px
-}
-
-.example-1 .label i, .example-1 .label .title {
-    color: grey;
-    transition: 200ms color
+    padding-bottom: 16px;
+    opacity: 1;
 }
 
 .example-1  .label:hover{
     border: 3px solid #ffffff;
     background-color: #0c0c0c;
-    opacity: 0.9;
 }
 .example-1 .svg:hover {
-
     opacity: 1;
 }
 
-.example-1 .label:hover i, .example-1 .label:hover .title {
-    color: #ffffff
-}
-
 .svg{
+    z-index: 10;
     margin-top:15px;
     opacity: 0;
 }
+
+
+

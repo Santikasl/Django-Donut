@@ -35,14 +35,15 @@
 
 <div class="logo">
 
-    {% for name in cUser %}
 
-    <img src="{{ name.img.url }}" alt="" width="150px">
 
-    {% endfor %}
+    <img src="{{ cUser.img.url }}" alt="" width="150px">
+
+
 </div>
 <div class="file-upload ">
     <form action="" enctype="multipart/form-data" method="post">
+ {% csrf_token %}
         <div class="example-1">
             <div class="form-group">
                 <label class="label">
@@ -51,7 +52,11 @@
                               d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                     </svg>
 
-                    <input type="file" accept="image/jpeg,image/png">
+<!--                    <img class="svg" src="{% static 'img/logo-icon.png' %}" alt="">-->
+
+<!--                    <input name="img" type="file" accept="image/jpeg,image/png" onchange="this.form.submit()">-->
+                    {{ form.img }}
+
                 </label>
             </div>
         </div>
@@ -59,12 +64,13 @@
 </div>
 
 <div class="post">
-    {% for name in cUser %}
-    <p style="color: white; font-family: Organetto-Variable; font-size: 30px">{{ name.count_posts }} постов</p>
-    <p style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ name.followers }} отслеживают</p>
-    <p style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ name.likes }} лайков</p>
+
+
+    <p style="color: white; font-family: Organetto-Variable; font-size: 30px">{{ cUser.count_posts }} постов</p>
+    <p style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ cUser.followers }} отслеживают</p>
+    <p style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ cUser.likes }} лайков</p>
     <a class="edit" href="edit.html">Редактировать</a>
-    {% endfor %}
+
     <nav class="three">
 
 

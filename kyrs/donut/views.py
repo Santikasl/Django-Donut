@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render
 from .forms import *
+from .forms import Imgform
 from django.contrib import messages
 
 from .models import CustomUsers
@@ -75,13 +76,22 @@ def index(request):
 
 def area(request):
     auth_form = AuthForm()
-    cUser = CustomUsers.objects.filter(name=request.user.username)
-
 
     if request.user.is_authenticated == False:
         return render(request, 'donut/index.html', {'form': auth_form})
     else:
-        return render(request, 'donut/area.html', {'cUser': cUser})
+        cUser = CustomUsers.objects.get(user = request.user)
+
+        if request.method == 'POST':
+            imgForm = Imgform(request.POST, request.FILES)
+            if imgForm.is_valid():
+                cUser.img = imgForm.cleaned_data['img']
+                cUser.save()
+                return render(request, 'donut/area.html', {'form': imgForm , 'cUser': cUser})
+        else:
+            imgForm = Imgform()
+
+        return render(request, 'donut/area.html', {'form': imgForm, 'cUser': cUser})
 
 
 
