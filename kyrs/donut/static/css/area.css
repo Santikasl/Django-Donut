@@ -19,7 +19,7 @@ body {
     overflow: hidden;
     border-radius: 80px;
     height: 150px;
-    background-color: #e2264d;
+    background-color: #ffffff;
     align-items: center;
     justify-items: center;
     margin-left: 150px;
@@ -435,6 +435,7 @@ ul {
     margin-top:15px;
     opacity: 0;
 }
+
 
 
 
