@@ -15,7 +15,7 @@ img {
     background-color: #0c0c0c;
     width: 100%;
     height: 80px;
-        z-index: 5;
+    z-index: 5;
 }
 
 .name {
@@ -90,6 +90,259 @@ input:focus:-ms-input-placeholder {
     font-size: 15px;
 }
 
+#myModal {
+    width: 500px;
+    height: 600px;
+    margin: 0 auto;
+    padding: 18px 9px;
+    border-radius: 20px;
+    background: #fafafa;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: none;
+    font-family: Century Gothic;
+    color: #0c0c0c;
+
+    opacity: 0;
+    z-index: 38;
+    text-align: center;
+}
+
+#myModal #myModal__close {
+    width: 21px;
+    height: 21px;
+    position: absolute;
+    top: 1px;
+    right: 11px;
+    cursor: pointer;
+    display: block;
+    font-size: 29px;
+}
+
+#myOverlay {
+    z-index: 37;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .7);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    display: none;
+}
+
+#id_postImg {
+    position: absolute;
+
+
+}
+
+#id_description {
+
+    border: 2px solid #1e1e1e;
+    border-radius: 20px;
+    resize: none;
+    width: 350px;
+    height: 50px;
+    padding-top: 120px;
+    padding-bottom: 100px;
+    margin-top: 13%;
+    background-color: #fafafa;
+    text-align: center;
+    font-family: Century Gothic;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#form {
+
+    z-index: 10;
+}
+
+.b-container {
+
+    width: 200px;
+    height: 150px;
+    background-color: #ccc;
+    margin: 0px auto;
+    padding: 10px;
+    font-size: 30px;
+
+    color: #fff;
+}
+
+.b-popup {
+    width: 100%;
+    min-height: 100%;
+    background-color: rgba(16, 13, 13, 0.74);
+    overflow: hidden;
+    position: fixed;
+    top: 0px;
+    transition: 3s;
+    animation: fadeIn 1s
+}
+
+.b-popup .b-popup-content {
+    margin: 40px auto 0px auto;
+    width: 500px;
+    height: 600px;
+    text-align: center;
+    padding: 10px;
+    transition: 3s;
+    background-color: #fafafa;
+    border-radius: 30px;
+    animation: fadeIn 1s
+
+}
+
+#close {
+    position: fixed;
+    text-decoration: none;
+    overflow: hidden;
+    outline: none;
+    color: #0c0c0c;
+    font-family: Century Gothic;
+    font-size: 20px;
+    margin-left: -50%;
+    margin-top: -40%;
+    position: absolute;
+    opacity: 0;
+
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #e2264d;
+
+}
+.fa-angle-down:before {
+    content: "";
+}
+h2 {
+    margin-top: -2%;
+    font-family: Century Gothic;
+}
+
+#btn {
+    background-color: #0c0c0c;
+    border-radius: 20px;
+    color: white;
+    font-family: Century Gothic;
+    font-size: 16px;
+    margin-top: -5%;
+    width: 35%;
+    height: 35px;
+    margin-top: 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.example-2 .btn-tertiary {
+    color: #0c0c0c;
+    padding: 0;
+    line-height: 40px;
+    width: 300px;
+     font-family: Century Gothic;
+    margin: auto;
+    display: block;
+    border: 2px solid #0c0c0c;
+    border-radius: 10px;
+}
+
+.example-2 .btn-tertiary:hover, .example-2 .btn-tertiary:focus {
+    color: #0c0c0c;
+    border-color: #0c0c0c;
+}
+
+.example-2 .input-file {
+    width: .1px;
+    height: .1px;
+    opacity: 0;
+
+
+
+}
+
+.example-2 .input-file + .js-labelFile {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 10px;
+    cursor: pointer
+}
+
+.example-2 .input-file + .js-labelFile .icon:before {
+    content: "\f093"
+}
+
+.example-2 .input-file + .js-labelFile.has-file .icon:before {
+    content: "\f00c";
+    color: #5AAC7B
+}
+
+.button {
+cursor: pointer;
+}
+
+.overlay {
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	display: none;
+	background-color: rgba(0, 0, 0, .8);
+}
+.popup {
+	position: absolute;
+	   width: 500px;
+    height: 600px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	padding: 40px;
+  border-radius: 30px;
+	box-sizing: border-box;
+	background: #fafafa;
+	color: #0c0c0c;
+    text-align: center;
+}
+
+.close-popup {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 23px;
+	height: 23px;
+	cursor: pointer;
+}
+
+.close-popup:before {
+	content: '';
+	background-color: #fff;
+	position: absolute;
+	height: 1px;
+	width: 20px;
+	top: 11px;
+	left: -4px;
+	transform: rotate(-45deg);
+}
+
+.close-popup:after {
+	content: '';
+	background-color: #fff;
+	position: absolute;
+	height: 1px;
+	width: 20px;
+	top: 11px;
+	transform: rotate(45deg);
+	left: -4px;
+}
 
 
 

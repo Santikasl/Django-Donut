@@ -10,7 +10,7 @@ from .models import CustomUsers
 
 def reg(request):
     if request.user.is_authenticated == True:
-        return render(request, 'donut/main.html')
+        return render(request, 'donut/main.html', {'post': NewPosts})
     else:
         if request.method == 'POST':
             form = ExtendedRegisterForm(request.POST)
@@ -28,23 +28,24 @@ def reg(request):
                 raw_password = form.cleaned_data.get('password1')
                 user = authenticate(username=username, password=raw_password)
                 login(request, user)
-                return render(request, 'donut/main.html')
+                return render(request, 'donut/main.html', { 'post': NewPosts})
         else:
             form = ExtendedRegisterForm()
-        return render(request, 'donut/reg.html', {'form': form})
+        return render(request, 'donut/reg.html', {'form': form, 'post': NewPosts})
 
 
 def mainl(request):
+    pos = Posts.objects.all()
     auth_form = AuthForm()
     if request.user.is_authenticated == False:
-        return render(request, 'donut/index.html', {'form': auth_form})
+        return render(request, 'donut/index.html', {'form': auth_form, 'post': NewPosts, 'pos': pos})
     else:
-        return render(request, 'donut/main.html')
+        return render(request, 'donut/main.html', {'post': NewPosts, 'pos': pos})
 
 
 def index(request):
     if request.user.is_authenticated == True:
-        return render(request, 'donut/main.html')
+        return render(request, 'donut/main.html',{ 'post': NewPosts})
     else:
         if request.method == 'POST':
             auth_form = AuthForm(request.POST)
@@ -55,21 +56,22 @@ def index(request):
                 if user:
                     if user.is_active:
                         login(request, user)
-                        return render(request, 'donut/main.html')
+                        return render(request, 'donut/main.html',{ 'post': NewPosts})
                     else:
                         messages.add_message(request, messages.ERROR, 'Пользователь больше не активен')
-                        return render(request, 'donut/index.html', {'form': auth_form})
+                        return render(request, 'donut/index.html', {'form': auth_form,  'post': NewPosts})
                 else:
                     messages.add_message(request, messages.ERROR, 'Проверьте правильность введённых данных')
-                    return render(request, 'donut/index.html', {'form': auth_form})
+                    return render(request, 'donut/index.html', {'form': auth_form, 'post': NewPosts})
             else:
                 auth_form = AuthForm()
-                return render(request, 'donut/index.html', {'form': auth_form})
+                return render(request, 'donut/index.html', {'form': auth_form, 'post': NewPosts})
         else:
             auth_form = AuthForm()
             context = {
 
-                'form': auth_form
+                'form': auth_form,
+                'post': NewPosts
             }
             return render(request, 'donut/index.html', context=context)
 
@@ -78,20 +80,27 @@ def area(request):
     auth_form = AuthForm()
 
     if request.user.is_authenticated == False:
-        return render(request, 'donut/index.html', {'form': auth_form})
+        return render(request, 'donut/index.html', {'form': auth_form, 'post': NewPosts})
     else:
-        cUser = CustomUsers.objects.get(user = request.user)
-
+        cUser = CustomUsers.objects.get(user=request.user)
+        postt = Posts(user=request.user)
+        ppp = Posts.objects.filter(user=request.user)
         if request.method == 'POST':
             imgForm = Imgform(request.POST, request.FILES)
+            newPost = NewPosts(request.POST, request.FILES)
+            if newPost.is_valid():
+                postt.img = newPost.cleaned_data['postImg']
+                postt.description = newPost.cleaned_data['description']
+                postt.save()
+                return render(request, 'donut/area.html', {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'ppp': ppp})
             if imgForm.is_valid():
                 cUser.img = imgForm.cleaned_data['img']
                 cUser.save()
-                return render(request, 'donut/area.html', {'form': imgForm , 'cUser': cUser})
+                return render(request, 'donut/area.html', {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'ppp': ppp})
         else:
             imgForm = Imgform()
 
-        return render(request, 'donut/area.html', {'form': imgForm, 'cUser': cUser})
+        return render(request, 'donut/area.html', {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'ppp': ppp})
 
 
 

@@ -77,7 +77,7 @@
 
         <ul class="topmenu">
 
-            <li><a class="as" href="#">. . .<i class="fa fa-angle-down"></i></a>
+            <li><a class="as" href="#">. . .<i class=""></i></a>
                 <ul class="submenu">
                     <li><a class="as2" href="">Сменить пароль</a></li>
                     <li><a class="as2 as3" href="{% url 'exit' %}?next=/">Выйти</a></li>
@@ -91,109 +91,124 @@
 </div>
 
 <div class="main-content2">
+
+    {% for posts in ppp %}
+
+
     <div class="photo">
-        <img class="zoom" src="{% static 'img/26.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-        <div class="content fade">
+        <img class="zoom" src="{{ posts.img.url }}" alt="" width="300px" height="380px" style=" border-radius: 30px;">
+
+        <div class="content fade button">
             <p>Описание:</p>
-            <p>Будем честны, идеальных людей не существует. У каждого есть свои дефекты и недостатки. Но зачастую эти
-                недостатки видим лишь мы сами, тем самым будим у себя разные комплексы. Нужно научится не обращать на
-                них внимания и жить спокойно, ведь жизнь всего одна. И куда интереснее будет провести её гуляя с
-                друзьями, а не сидя дома замазывая свои прыщи...</p>
+            <p>{{ posts.description }}</p>
             <input id="toggle-heart" type="checkbox"/>
             <label for="toggle-heart" aria-label="like">❤ 199</label>
         </div>
+
     </div>
-    <div class="photo">
-        <img class="zoom" src="{% static 'img/29.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-        <div class="content fade">
-            <p>Описание:</p>
-            Каналы для изучения фотографии. </br>
-            Freemax: на данном канале много различных роликов про фотографии. Каждый понедельник (почти) у Максима
-            выходит рубрика "Как делают такие фотографии". В этой рубрике Максим разбирает необычные фотографии которые
-            ему скидывают его подписчики и объясняет как он устроены.
-        </div>
-    </div>
-    <div class="photo">
-        <img class="zoom" src="{% static 'img/38.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-        <div class="content fade">
-            <p>Описание:</p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
-            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-        </div>
-    </div>
-    <div class="photo">
-        <img class="zoom" src="{% static 'img/41.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-        <div class="content fade">
-            <p>Описание:</p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
-            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-        </div>
-    </div>
-    <div class="photo">
-        <img class="zoom" src="{% static 'img/11.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-        <div class="content fade">
-            <p>Описание:</p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
-            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-        </div>
-    </div>
-    <div class="photo">
-        <img class="zoom" src="{% static 'img/9.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-        <div class="content fade">
-            <p>Описание:</p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
-            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-        </div>
-    </div>
-    <div class="photo">
-        <img class="zoom" src="{% static 'img/13.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-        <div class="content fade">
-            <p>Описание:</p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
-            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-        </div>
-    </div>
-    <div class="photo">
-        <img class="zoom" src="{% static 'img/22.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-        <div class="content fade">
-            <p>Описание:</p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
-            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-        </div>
-    </div>
-    <div class="photo">
-        <img class="zoom" src="{% static 'img/15.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-        <div class="content fade">
-            <p>Описание:</p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
-            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-        </div>
-    </div>
-    <div class="photo">
-        <img class="zoom" src="{% static 'img/18.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-        <div class="content fade">
-            <p>Описание:</p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
-            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-        </div>
-    </div>
-    <div class="photo">
-        <img class="zoom" src="{% static 'img/25.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-        <div class="content fade">
-            <p>Описание:</p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
-            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-        </div>
-    </div>
-    <div class="photo">
-        <img class="zoom" src="{% static 'img/44.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-        <div class="content fade">
-            <p>Описание:</p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam assumenda at, eos error eveniet iusto
-            molestiae mollitia numquam odit officiis quia, sapiente similique totam vero! Iusto laborum magni ut?
-        </div>
-    </div>
+
+    {% endfor %}
+	<div class="overlay">
+		<div class="popup">
+			<h2>Добавление поста</h2>
+            <form id="form" action="" enctype="multipart/form-data" method="post">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+                {% csrf_token %}
+                <div class="example-2">
+                    <div class="form-group">
+
+                        {{ post.postImg }}
+                        <label for="file" class="btn btn-tertiary js-labelFile">
+                            <i class="icon fa fa-check"></i>
+                            <span class="js-fileName">Загрузить файл</span>
+                        </label>
+                    </div>
+                </div>
+
+                {{ post.description }}
+                <input type="submit" id="btn" value="Добавить">
+            </form>
+		</div>
+	</div>
 </div>
+<script>
+    $('.button').click( function() {
+	$('.overlay').fadeIn();
+});
+
+// Закрытие окна на крестик
+$('.close-popup').click( function() {
+	$('.overlay').fadeOut();
+});
+
+// Закрытие окна на поле
+$(document).mouseup( function (e) {
+	var popup = $('.popup');
+	if (e.target != popup[0] && popup.has(e.target).length === 0){
+		$('.overlay').fadeOut();
+	}
+});
+
+</script>
+<script>
+    (function() {
+
+  'use strict';
+
+  $('.input-file').each(function() {
+    var $input = $(this),
+        $label = $input.next('.js-labelFile'),
+        labelVal = $label.html();
+
+   $input.on('change', function(element) {
+      var fileName = '';
+      if (element.target.value) fileName = element.target.value.split('\\').pop();
+      fileName ? $label.addClass('has-file').find('.js-fileName').html(fileName) : $label.removeClass('has-file').html(labelVal);
+   });
+  });
+
+})();
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('a.myLinkModal').click(function (event) {
+            event.preventDefault();
+            $('#myOverlay').fadeIn(297, function () {
+                $('#myModal')
+                    .css('display', 'block')
+                    .animate({opacity: 1}, 198);
+            });
+        });
+
+        $('#myModal__close, #myOverlay').click(function () {
+            $('#myModal').animate({opacity: 0}, 198,
+                function () {
+                    $(this).css('display', 'none');
+                    $('#myOverlay').fadeOut(297);
+                });
+        });
+    });
+</script>
+
+<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //Скрыть PopUp при загрузке страницы
+        PopUpHide();
+    });
+
+    //Функция отображения PopUp
+    function PopUpShow() {
+        $("#popup1").show();
+
+    }
+
+    //Функция скрытия PopUp
+    function PopUpHide() {
+        $("#popup1").hide();
+    }
+</script>
 <!--<div class="file-upload">-->
 
 <!--</div>-->

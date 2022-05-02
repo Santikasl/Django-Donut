@@ -43,7 +43,9 @@ body {
 
 }
 
-
+.fa-angle-down:before {
+    content: "";
+}
 .main-content {
     display: grid;
     grid-template-columns: 350px 350px 350px 350px;
@@ -423,7 +425,7 @@ ul {
 }
 
 .example-1  .label:hover{
-    border: 3px solid #ffffff;
+    border: 2px solid #ffffff;
     background-color: #0c0c0c;
 }
 .example-1 .svg:hover {
@@ -434,6 +436,71 @@ ul {
     z-index: 10;
     margin-top:15px;
     opacity: 0;
+}
+
+.gerg{
+    font-size: 50px;
+    z-index: 2;
+    position: absolute;
+    color: #e2264d;
+}
+.button {
+cursor: pointer;
+}
+
+.overlay {
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	display: none;
+	background-color: rgba(0, 0, 0, .8);
+}
+.popup {
+	position: absolute;
+	   width: 500px;
+    height: 600px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	padding: 40px;
+  border-radius: 30px;
+	box-sizing: border-box;
+	background: #fafafa;
+	color: #0c0c0c;
+    text-align: center;
+}
+
+.close-popup {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 23px;
+	height: 23px;
+	cursor: pointer;
+}
+
+.close-popup:before {
+	content: '';
+	background-color: #fff;
+	position: absolute;
+	height: 1px;
+	width: 20px;
+	top: 11px;
+	left: -4px;
+	transform: rotate(-45deg);
+}
+
+.close-popup:after {
+	content: '';
+	background-color: #fff;
+	position: absolute;
+	height: 1px;
+	width: 20px;
+	top: 11px;
+	transform: rotate(45deg);
+	left: -4px;
 }
 
 

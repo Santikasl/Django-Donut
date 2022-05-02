@@ -1,41 +1,160 @@
 <!doctype html>
 {% load static %}
-<html lang="en">
+<html lang="en" xmlns:input="http://www.w3.org/1999/html">
 {% block head %}
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/titels.css' %}"/>
     <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
+
     <title>Document</title>
 </head>
-{% endblock  %}
+{% endblock %}
 
 <body>
 {% block title %}
 <div class="title">
 
-    <a href="{% url 'main' %}"> <img src="{% static 'img/icon.png' %}" width="30px" height="30px" style="margin:23px"></a>
+    <a href="{% url 'main' %}"> <img src="{% static 'img/icon.png' %}" width="30px" height="30px"
+                                     style="margin:23px"></a>
     <a href="{% url 'main' %}"><h3 class="name">DONUT</h3></a>
 
     <form action="">
         <input class="search" type="search" name="" id="" placeholder="Поиск">
     </form>
-    <a href="">
-                <img src="{% static 'img/notification1.png' %}" alt="" width="55px" style="   position: absolute;margin-top:17px; margin-left:73px">
-        <img src="{% static 'img/notification.png' %}" alt="" width="55px" style="margin-top:17px; margin-left:70px">
 
-    </a>
+
+
+    	<div class="button">
+			 <img src="{% static 'img/notification.png' %}" alt="" width="55px"
+                                          style="margin-top:17px; margin-left:70px">
+			</div>
     <a href="{% url 'area' %}">
-        <img src="{% static 'img/user-photo.png' %}" alt="" width="43px" style="position:absolutle; margin-top:21px; margin-left:70px">
+        <img src="{% static 'img/user-photo.png' %}" alt="" width="43px"
+             style="position:absolutely; margin-top:21px; margin-left:70px">
     </a>
+
+	<div class="overlay">
+		<div class="popup">
+			<h2>Добавление поста</h2>
+            <form id="form" action="" enctype="multipart/form-data" method="post">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+                {% csrf_token %}
+                <div class="example-2">
+                    <div class="form-group">
+
+                        {{ post.postImg }}
+                        <label for="file" class="btn btn-tertiary js-labelFile">
+                            <i class="icon fa fa-check"></i>
+                            <span class="js-fileName">Загрузить файл</span>
+                        </label>
+                    </div>
+                </div>
+
+                {{ post.description }}
+                <input type="submit" id="btn" value="Добавить">
+            </form>
+		</div>
+	</div>
+
+<!--    <div class="b-popup" id="popup1">-->
+<!--        <div class="b-popup-content">-->
+
+<!--  <a id="close" href="javascript:PopUpHide()">X</a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
 </div>
+
+<script>
+    $('.button').click( function() {
+	$('.overlay').fadeIn();
+});
+
+// Закрытие окна на крестик
+$('.close-popup').click( function() {
+	$('.overlay').fadeOut();
+});
+
+// Закрытие окна на поле
+$(document).mouseup( function (e) {
+	var popup = $('.popup');
+	if (e.target != popup[0] && popup.has(e.target).length === 0){
+		$('.overlay').fadeOut();
+	}
+});
+
+</script>
+<script>
+    (function() {
+
+  'use strict';
+
+  $('.input-file').each(function() {
+    var $input = $(this),
+        $label = $input.next('.js-labelFile'),
+        labelVal = $label.html();
+
+   $input.on('change', function(element) {
+      var fileName = '';
+      if (element.target.value) fileName = element.target.value.split('\\').pop();
+      fileName ? $label.addClass('has-file').find('.js-fileName').html(fileName) : $label.removeClass('has-file').html(labelVal);
+   });
+  });
+
+})();
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('a.myLinkModal').click(function (event) {
+            event.preventDefault();
+            $('#myOverlay').fadeIn(297, function () {
+                $('#myModal')
+                    .css('display', 'block')
+                    .animate({opacity: 1}, 198);
+            });
+        });
+
+        $('#myModal__close, #myOverlay').click(function () {
+            $('#myModal').animate({opacity: 0}, 198,
+                function () {
+                    $(this).css('display', 'none');
+                    $('#myOverlay').fadeOut(297);
+                });
+        });
+    });
+</script>
+
+<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //Скрыть PopUp при загрузке страницы
+        PopUpHide();
+    });
+
+    //Функция отображения PopUp
+    function PopUpShow() {
+        $("#popup1").show();
+
+    }
+
+    //Функция скрытия PopUp
+    function PopUpHide() {
+        $("#popup1").hide();
+    }
+</script>
+
 {% endblock %}
 {% block name %}
-{% endblock  %}
+{% endblock %}
 </body>
 
 

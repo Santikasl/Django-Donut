@@ -15,6 +15,14 @@ class CustomUsers(models.Model):
         return self.name
 
 
+class Posts(models.Model):
+    img = models.ImageField(upload_to='posts/')
+    description = models.TextField(max_length=2000)
+    date = models.DateTimeField(auto_now_add=True)
+    likes = models.IntegerField(default=0)
+    user = models.ForeignKey(User, null=True, blank=True,on_delete=models.CASCADE)
+
+
 
 
 
