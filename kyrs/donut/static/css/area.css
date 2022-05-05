@@ -29,15 +29,7 @@ h3{
 *, ::after, ::before {
     box-sizing: inherit;
 }
-.nic {
-    position: absolute;
-    z-index: 3;
-    text-align: left;
-    padding-left: 150px;
-    width: 11%;
-    top: 80px;
-    left: 285px;
-}
+
 
 .logo {
     position: absolute;
@@ -65,9 +57,24 @@ h3{
     z-index: 3;
     padding-left: 225px;
     width: 50%;
+
+
     top: 200px;
     left: 211px;
 
+}
+
+.con{
+    display: flex;
+    padding-left: 10px;
+    position: absolute;
+    z-index: 3;
+    padding-right: 200px;
+    width: 50%;
+    top: 100px;
+    left: 420px;
+    height: 50px;
+    /*background-color: #e2264d;*/
 }
 
 .fa-angle-down:before {
@@ -87,6 +94,7 @@ h3{
 }
 
 .photo {
+    z-index: -1;
     padding-left: 50px;
     position: relative;
 }
@@ -100,6 +108,7 @@ h3{
 .photo > .content {
     position: absolute;
     inset: 0;
+
     border-radius: 30px;
     font-size: 15px;
     padding: 1rem;
@@ -195,11 +204,10 @@ span {
 }
 
 .main-content2 {
-    z-index: -1;
+    z-index: 3;
     display: grid;
     grid-template-columns: 350px 350px 350px 350px;
     position: absolute;
-
     width: 94%;
     margin-top: 340px;
     margin-left: 40px;
@@ -295,21 +303,21 @@ span {
 
 .edit {
     background-color: #0c0c0c;
-    text-decoration: none;
-    outline: none;
+    text-decoration: none !important;
+    outline: none !important;
     font-family: Organetto-Variable;
     text-align: center;
     color: white;
+    margin-top: 18px;
+    margin-left: 100px;
     font-size: 20px;
-    z-index: -5;
+    color: white;
     border: 1px solid white;
     width: 170px;
-    padding-top: 7px;
     height: 30px;
     border-radius: 30px;
-    position: absolute;
-    margin-top: -55px;
-    margin-left: 180px;
+
+
 }
 
 @import url(https://fonts.googleapis.com/css?family=Lora);
@@ -319,8 +327,13 @@ nav {
 
     margin: -12% -9% 30px;
 }
+.three{
+    position: absolute;
+    margin-left: 320px;
 
+}
 ul {
+
     list-style: none;
     margin: 0;
     padding: 0;
@@ -408,6 +421,7 @@ ul {
     opacity: 1;
 }
 
+
 .file-upload {
     position: absolute;
 
@@ -458,7 +472,25 @@ ul {
 }
 .modal-backdrop.show {
     opacity: 0.5;
-    z-index: -2;
+    z-index: 3 !important;
+}
+
+.modal{
+    z-index: 5 !important;
+}
+
+
+.modal-content{
+    z-index: 5 !important;
+}
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5 !important;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
 }
 .svg {
     z-index: 10;
