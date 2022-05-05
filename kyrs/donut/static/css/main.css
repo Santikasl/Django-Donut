@@ -1,9 +1,9 @@
-body {
+body {!important;
     margin: 0;
     padding: 0;
     text-decoration: none;
     user-select: none;
-    background-color: #0c0c0c;
+    background-color: #0c0c0c !important;
 }
 
 @font-face {
@@ -103,6 +103,7 @@ span {
 }
 
 .main-content2 {
+    background-color: #0c0c0c !important;
     display: grid;
     grid-template-columns: 350px 350px 350px 350px;
     position: absolute;

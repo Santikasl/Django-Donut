@@ -31,8 +31,10 @@
     <div class="section s1">
 
         <a href="#1"></a>
-        <img src="{% static 'img/logo.png' %}" alt="" width="700px"
-             style="z-index: 1;position: absolute; left: 410px; top:80px">
+         <div data-relative-input="true" id="scene3">
+              <div data-depth="0.2"><img  src="{% static 'img/logo.png' %}" alt="" width="700px"
+             style="z-index: 1;position: absolute; left: 410px; top:80px"> </div>
+         </div>
         <img src="{% static 'img/text.png' %}" alt="" width="800px"
              style="z-index: 1; position: absolute; left: 370px; top:550px">
         <img src="{% static 'img/text.png' %}" alt="" width="800px"
@@ -109,11 +111,14 @@
 
 
 <script>
+
     var scene = document.getElementById('scene');
     var parallaxInstance = new Parallax(scene);
 
     var scene = document.getElementById('scene2');
     var parallaxInstance = new Parallax(scene);
+
+
 </script>
 
 </body>

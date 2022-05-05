@@ -1,7 +1,34 @@
 body {
     background-color: #0c0c0c;
+    text-decoration: none;
+    outline: none;
 }
-
+a {
+    text-decoration: none;
+}
+a:link {
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;
+}
+a:hover {
+text-decoration: none;
+}
+a:active {
+text-decoration: none;
+}
+h3{
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+*, ::after, ::before {
+    box-sizing: inherit;
+}
 .nic {
     position: absolute;
     z-index: 3;
@@ -26,10 +53,10 @@ body {
     top: 120px;
 }
 
-.logo img{
+.logo img {
     width: 100%;
     height: 100%;
-     object-fit: cover;
+    object-fit: cover;
 }
 
 .post {
@@ -46,6 +73,7 @@ body {
 .fa-angle-down:before {
     content: "";
 }
+
 .main-content {
     display: grid;
     grid-template-columns: 350px 350px 350px 350px;
@@ -83,6 +111,21 @@ body {
     justify-content: center;
     align-items: center;
 }
+.search {
+    background-image: url(icon.png);
+    background-repeat: no-repeat;
+    background-position: 4px;
+    margin-top: 15px;
+    margin-left: 140px;
+    padding-left: 50px;
+    padding-top: 2px;
+    text-decoration: none;
+    width: 876px;
+    height: 40px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+}
 
 .photo > img,
 .photo > .content {
@@ -97,6 +140,12 @@ body {
 
 .photo > .content.fade {
     opacity: 0;
+
+
+}
+
+.content {
+    height: 350px;
 }
 
 .photo:hover > img.zoom {
@@ -104,36 +153,6 @@ body {
     filter: blur(1px);
 }
 
-
-.day-photo {
-    color: white;
-    position: absolute;
-    z-index: -1;
-    font-size: 45px;
-    margin-top: 115px;
-    margin-left: 40%;
-    font-family: Organetto-Variable;
-}
-
-.new-photo {
-    color: white;
-    position: absolute;
-    z-index: -1;
-    font-size: 45px;
-    margin-top: 115px;
-    margin-left: 31%;
-    font-family: Organetto-Variable;
-}
-
-.best-photo {
-    color: white;
-    position: absolute;
-    z-index: -1;
-    font-size: 45px;
-    margin-top: 115px;
-    margin-left: 34%;
-    font-family: Organetto-Variable;
-}
 
 h1 {
     position: absolute;
@@ -176,21 +195,25 @@ span {
 }
 
 .main-content2 {
+    z-index: -1;
     display: grid;
     grid-template-columns: 350px 350px 350px 350px;
     position: absolute;
-    z-index: -1;
+
     width: 94%;
     margin-top: 340px;
     margin-left: 40px;
     height: 100%;
     grid-row-gap: 55px;
+
 }
 
 ::-webkit-scrollbar {
     width: 0;
 }
-
+.h{
+    color: #0c0c0c;
+}
 
 [id='toggle-heart'] {
     position: absolute;
@@ -278,6 +301,7 @@ span {
     text-align: center;
     color: white;
     font-size: 20px;
+    z-index: -5;
     border: 1px solid white;
     width: 170px;
     padding-top: 7px;
@@ -390,7 +414,7 @@ ul {
     width: 100px;
     height: 100px;
     color: white;
-    top:86px;
+    top: 86px;
     left: 116px;
     z-index: 100;
 }
@@ -424,84 +448,36 @@ ul {
     opacity: 1;
 }
 
-.example-1  .label:hover{
+.example-1 .label:hover {
     border: 2px solid #ffffff;
     background-color: #0c0c0c;
 }
+
 .example-1 .svg:hover {
     opacity: 1;
 }
-
-.svg{
+.modal-backdrop.show {
+    opacity: 0.5;
+    z-index: -2;
+}
+.svg {
     z-index: 10;
-    margin-top:15px;
+    margin-top: 15px;
     opacity: 0;
 }
 
-.gerg{
+.gerg {
     font-size: 50px;
     z-index: 2;
     position: absolute;
     color: #e2264d;
 }
-.button {
-cursor: pointer;
+
+.button2 {
+    cursor: pointer;
 }
 
-.overlay {
-	position: fixed;
-	width: 100%;
-	height: 100vh;
-	top: 0;
-	left: 0;
-	display: none;
-	background-color: rgba(0, 0, 0, .8);
-}
-.popup {
-	position: absolute;
-	   width: 500px;
-    height: 600px;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	padding: 40px;
-  border-radius: 30px;
-	box-sizing: border-box;
-	background: #fafafa;
-	color: #0c0c0c;
-    text-align: center;
-}
 
-.close-popup {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	width: 23px;
-	height: 23px;
-	cursor: pointer;
-}
-
-.close-popup:before {
-	content: '';
-	background-color: #fff;
-	position: absolute;
-	height: 1px;
-	width: 20px;
-	top: 11px;
-	left: -4px;
-	transform: rotate(-45deg);
-}
-
-.close-popup:after {
-	content: '';
-	background-color: #fff;
-	position: absolute;
-	height: 1px;
-	width: 20px;
-	top: 11px;
-	transform: rotate(45deg);
-	left: -4px;
-}
 
 
 

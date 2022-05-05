@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static 'css/titels.css' %}"/>
+
     <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
 
     <title>Document</title>
+        <link rel="stylesheet" href="{% static 'css/titels.css' %}"/>
 </head>
 {% endblock %}
 
@@ -23,7 +24,7 @@
 
     <a href="{% url 'main' %}"> <img src="{% static 'img/icon.png' %}" width="30px" height="30px"
                                      style="margin:23px"></a>
-    <a href="{% url 'main' %}"><h3 class="name">DONUT</h3></a>
+    <a href="{% url 'main' %}"><h3 class="name no-bootstrap">DONUT</h3></a>
 
     <form action="">
         <input class="search" type="search" name="" id="" placeholder="Поиск">
@@ -37,7 +38,7 @@
 			</div>
     <a href="{% url 'area' %}">
         <img src="{% static 'img/user-photo.png' %}" alt="" width="43px"
-             style="position:absolutely; margin-top:21px; margin-left:70px">
+             style="margin-top:21px; margin-left:70px">
     </a>
 
 	<div class="overlay">
@@ -63,12 +64,7 @@
 		</div>
 	</div>
 
-<!--    <div class="b-popup" id="popup1">-->
-<!--        <div class="b-popup-content">-->
 
-<!--  <a id="close" href="javascript:PopUpHide()">X</a>-->
-<!--        </div>-->
-<!--    </div>-->
 
 
 </div>
