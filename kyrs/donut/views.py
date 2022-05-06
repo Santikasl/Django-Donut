@@ -1,6 +1,9 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
+
 from .forms import *
 from .forms import Imgform
 from django.contrib import messages
@@ -92,7 +95,7 @@ def area(request):
                 postt.img = newPost.cleaned_data['postImg']
                 postt.description = newPost.cleaned_data['description']
                 postt.save()
-                return render(request, 'donut/area.html', {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'ppp': ppp})
+                return HttpResponseRedirect(reverse('area'))
             if imgForm.is_valid():
                 cUser.img = imgForm.cleaned_data['img']
                 cUser.save()
