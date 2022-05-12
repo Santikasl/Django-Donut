@@ -330,7 +330,8 @@ nav {
 }
 .three{
     position: absolute;
-    margin-left: 360px;
+    margin-left: 400px;
+    margin-top: -70px;
 
 }
 ul {
