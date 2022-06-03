@@ -434,4 +434,12 @@ span {
 	left: -4px;
 }
 
+.posts{
+    z-index: 11;
+    position: absolute;
+    width: 80%;
+    height: 20%;
+    border-radius: 30px;
+    background-color: white;
+}
 

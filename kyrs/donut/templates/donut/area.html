@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Профиль</title>
+    <title>Профиль</title>
 
     <link rel="stylesheet" href="{% static 'css/titels.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/area.css' %}"/>
@@ -23,6 +23,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+     {% block scripts %}
+    <script src="{% static 'js/search.js' %}" defer></script>
+    {% endblock scripts %}
 
 </head>
 {% endblock %}
@@ -31,14 +34,12 @@
 {% block name %}
 
 
-
-
 <div class="logo">
     <img src="{{ cUser.img.url }}" alt="" width="150px">
 
 </div>
 <div class="file-upload ">
-    <form action="" enctype="multipart/form-data" method="post">
+    <form action="" enctype="multipart/form-data" method="post" >
         {% csrf_token %}
         <div class="example-1">
             <div class="form-group">
@@ -56,13 +57,13 @@
 <div class="con">
     {% if request.user.is_authenticated %}
     <div>
-    <p style="color:white; font-family: Organetto-Variable;font-size:50px;">
-        {{ request.user.username }}
-         <img src="{% static 'img/gaochka.png' %}" alt="" width="30px" style="margin-top: -5px">
-    </p>
+        <p style="color:white; font-family: Organetto-Variable;font-size:50px;">
+            {{ request.user.username }}
+            <img src="{% static 'img/gaochka.png' %}" alt="" width="30px" style="margin-top: -5px">
+        </p>
 
     </div>
-{% endif %}
+    {% endif %}
 </div>
 
 <div class="post">
@@ -89,68 +90,53 @@
 </div>
 
 <div class="main-content2">
-
     {% for posts in ppp %}
     <div class="photo">
-        <img class="zoom" src="{{ posts.img.url }}" alt="" width="300px" height="380px" style=" border-radius: 30px;">
-        <div  class="content fade button2" id="postbtn{{ posts.id}}}">
+        <img class="zoom" src="{{ posts.img.url }}" alt="" width="300px" height="380px" style="border-radius: 30px;">
+        <div class="button2 content fade" id="{{posts.id}}">
             <p>Описание:</p>
             <p>{{ posts.description }}</p>
-            <input id="toggle-heart" type="checkbox"/>
-            <label for="toggle-heart" aria-label="like">❤ 199</label>
+
         </div>
     </div>
-
-	<div class="overlay2">
-		<div class="popup2">
-			<h2>Добавление поста</h2>
-            <form id="form" action="" enctype="multipart/form-data" method="post">
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-                {% csrf_token %}
-                <div class="example-2">
-                    <div class="form-group">
-
-                        {{ post.postImg }}
-                        <label for="file" class="btn btn-tertiary js-labelFile">
-                            <i class="icon fa fa-check"></i>
-                            <span class="js-fileName">Загрузить файл</span>
-                        </label>
-                    </div>
-                </div>
-
-                {{ posts.description }}
-                <input type="submit" id="btn" value="Добавить">
-            </form>
-		</div>
-	</div>
-
-
+    <div class="overlay2" id="myOverlay{{posts.id}}">
+        <div class="popup2">
+            <div class="photo-post">
+                <img src="{{ posts.img.url }}" alt="" width="100%"  height="100%" style=" object-fit: cover;	">
+            </div>
+            <h1 class="title-post">ОПИСАНИЕ</h1>
+            <div class="description">
+            <p>{{ posts.description }}</p>
+            </div>
+        </div>
+    </div>
     {% endfor %}
-
 </div>
 
 <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
 <script>
-    $('.button2').click( function(e) {
-        $('.overlay2').fadeIn();
-        console.log(e);
-});
 
-// Закрытие окна на крестикe
-$('.close-popup2').click( function() {
-	$('.overlay2').fadeOut();
-});
+    $(document).on('click', '.button2', function (e) {
+        let id = e.target.id;
+        $('#myOverlay' + id).fadeIn();
+        console.log(id)
+    });
 
-// Закрытие окна на поле
-$(document).mouseup( function (e) {
-	var popup = $('.popup2');
-	if (e.target != popup[0] && popup.has(e.target).length === 0){
-		$('.overlay2').fadeOut();
-	}
-});
+
+    // Закрытие окна на крестикe
+    $('.close-popup2').click(function () {
+        $('.overlay2').fadeOut();
+    });
+
+    // Закрытие окна на поле
+    $(document).mouseup(function (e) {
+        var popup = $('.popup2');
+        if (e.target != popup[0] && popup.has(e.target).length === 0) {
+            $('.overlay2').fadeOut();
+        }
+    });
 
 </script>
-
 
 
 <script>

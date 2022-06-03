@@ -13,6 +13,8 @@ urlpatterns = [
 
     path('area/', views.area, name='area'),
 
+    path('area/search/', views.search_results, name='search'),
+
     path('exit/', authViews.LogoutView.as_view(), name='exit'),
 
 ]

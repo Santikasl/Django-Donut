@@ -51,7 +51,9 @@ img {
 a {
     text-decoration: none;
 }
-
+#results-block{
+    height: 100%;
+}
 .search {
     background-image: url(icon.png);
     background-repeat: no-repeat;
@@ -68,6 +70,47 @@ a {
     border: none;
 }
 
+.results-card{
+   width: 896px;
+    position: absolute;
+    z-index: -999;
+    height: 100%;
+    max-height: 200px;
+    margin-left: 141px;
+    background-color: white;
+    box-shadow: 0 8px 8px 0 black;
+    transition: 0.5s;
+    border-radius: 0px 0px 20px 20px;
+    margin-top: -15px;
+    padding: 15px 15px;
+    display: inline-block;
+}
+
+.not-visible{
+    display: none;
+}
+.searchItems{
+   top: 20px;
+
+}
+.img-profile{
+    width: 70px;
+    height: 70px;
+    background-color: black;
+    border-radius: 999px;
+     overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+.nameSearch{
+    position: absolute;
+    margin-left: 110px;
+    margin-top: -47px;
+    color: black;
+
+}
 input::-webkit-input-placeholder {
     opacity: 1;
     transition: opacity 0.3s ease;

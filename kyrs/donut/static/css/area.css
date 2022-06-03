@@ -3,22 +3,28 @@ body {
     text-decoration: none;
     outline: none;
 }
+
 a {
     text-decoration: none;
 }
+
 a:link {
-text-decoration: none;
+    text-decoration: none;
 }
+
 a:visited {
-text-decoration: none;
+    text-decoration: none;
 }
+
 a:hover {
-text-decoration: none;
+    text-decoration: none;
 }
+
 a:active {
-text-decoration: none;
+    text-decoration: none;
 }
-h3{
+
+h3 {
     color: #fff;
     font-size: 1.2em;
     font-weight: bold;
@@ -26,6 +32,7 @@ h3{
     margin-top: 0;
     margin-bottom: 0;
 }
+
 *, ::after, ::before {
     box-sizing: inherit;
 }
@@ -64,7 +71,7 @@ h3{
 
 }
 
-.con{
+.con {
     display: flex;
     padding-left: 10px;
     position: absolute;
@@ -95,6 +102,7 @@ h3{
 
 .photo {
     z-index: -1;
+
     padding-left: 50px;
     position: relative;
 }
@@ -106,9 +114,12 @@ h3{
 }
 
 .photo > .content {
+
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    background: #fc0; /* Цвет фона */
+    text-overflow: ellipsis; /* Добавляем многоточие */
     position: absolute;
     inset: 0;
-
     border-radius: 30px;
     font-size: 15px;
     padding: 1rem;
@@ -119,7 +130,9 @@ h3{
     text-align: justify;
     justify-content: center;
     align-items: center;
+     overflow-wrap: break-word;
 }
+
 .search {
     background-image: url(icon.png);
     background-repeat: no-repeat;
@@ -220,7 +233,8 @@ span {
 ::-webkit-scrollbar {
     width: 0;
 }
-.h{
+
+.h {
     color: #0c0c0c;
 }
 
@@ -328,12 +342,14 @@ nav {
 
     margin: -12% -9% 30px;
 }
-.three{
+
+.three {
     position: absolute;
     margin-left: 400px;
     margin-top: -70px;
 
 }
+
 ul {
 
     list-style: none;
@@ -472,19 +488,21 @@ ul {
 .example-1 .svg:hover {
     opacity: 1;
 }
+
 .modal-backdrop.show {
     opacity: 0.5;
     z-index: 3 !important;
 }
 
-.modal{
+.modal {
     z-index: 5 !important;
 }
 
 
-.modal-content{
+.modal-content {
     z-index: 5 !important;
 }
+
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -494,6 +512,7 @@ ul {
     height: 100vh;
     background-color: #000;
 }
+
 .svg {
     z-index: 10;
     margin-top: 15px;
@@ -510,62 +529,94 @@ ul {
 .button2 {
     cursor: pointer;
 }
+
 .overlay2 {
-	position: fixed;
-	width: 100%;
-	height: 100vh;
-	top: 0;
-	left: 0;
-	display: none;
-	background-color: rgba(0, 0, 0, .8);
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+
 }
+
 .popup2 {
-	position: absolute;
-	   width: 500px;
+    position: absolute;
+    width: 1000px;
     height: 600px;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	padding: 40px;
-  border-radius: 30px;
-	box-sizing: border-box;
-	background: #fafafa;
-	color: #0c0c0c;
+    left: 50%;
+    top: 53%;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+
+    border-radius: 30px;
+    box-sizing: border-box;
+    background: #fafafa;
+    color: #0c0c0c;
     text-align: center;
 }
 
 .close-popup2 {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	width: 23px;
-	height: 23px;
-	cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
 }
 
 .close-popup2:before {
-	content: '';
-	background-color: #fff;
-	position: absolute;
-	height: 1px;
-	width: 20px;
-	top: 11px;
-	left: -4px;
-	transform: rotate(-45deg);
+    content: '';
+    background-color: #fff;
+    position: absolute;
+    height: 1px;
+    width: 20px;
+    top: 11px;
+    left: -4px;
+    transform: rotate(-45deg);
 }
 
 .close-popup2:after {
-	content: '';
-	background-color: #fff;
-	position: absolute;
-	height: 1px;
-	width: 20px;
-	top: 11px;
-	transform: rotate(45deg);
-	left: -4px;
+    content: '';
+    background-color: #fff;
+    position: absolute;
+    height: 1px;
+    width: 20px;
+    top: 11px;
+    transform: rotate(45deg);
+    left: -4px;
 }
 
+.description {
+    font-size: 20px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    margin-top: 8%;
+    width: 400px;
+    margin-left: 53%;
+    text-align: justify;
+    height: 400px;
+    padding: 30px;
+    padding-top: 0px;
+    overflow-wrap: break-word;
 
+}
+
+.photo-post {
+    position: absolute;
+    width: 480px;
+    height: 600px;
+    border-radius:30px 0 0 30px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title-post{
+    color: #0c0c0c;
+    margin-left: 67%;
+    font-family: Organetto-Variable;
+}
 
 
 
