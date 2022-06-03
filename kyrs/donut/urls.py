@@ -15,6 +15,9 @@ urlpatterns = [
 
     path('area/search/', views.search_results, name='search'),
 
+    path('main/search/', views.search_results, name='search'),
+    path('main/search/', views.search_results, name='search'),
+
     path('exit/', authViews.LogoutView.as_view(), name='exit'),
 
 ]

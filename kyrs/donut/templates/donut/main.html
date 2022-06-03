@@ -18,6 +18,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
+        <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+     {% block scripts %}
+    <script src="{% static 'js/search.js' %}" defer></script>
+    {% endblock scripts %}
+
 
 
     <title>Главная</title>
@@ -28,12 +33,27 @@
 {% block name %}
 
 
-
+<div class="blur-search" id="overlay-blur">
 <div id="fullpage">
 
 
 
 <div class="section s1">
+<div class="container-welcom">
+     <img class="welcome" src="{% static 'img/welcome.png' %}" alt="" width="400px">
+    <img class="welcome2" src="{% static 'img/back.png' %}" alt="" width="300px">
+    <div class="avatar">
+    <img class="main-logo" src="{{ cUser.img.url }}" alt="" width="150px">
+    </div>
+</div>
+
+    <img src="{% static 'img/like.png' %}" alt="" width="200px" class="likes">
+    <img src="{% static 'img/profile-icon.png' %}" alt="" width="210px" class="profile-icon">
+
+<!--    <img src="{% static 'img/profile.png' %}" alt="" style="position: absolute; width: 300px; margin-left: 79%; margin-top: -25%">-->
+<!--    <img src="{% static 'img/best-area.png' %}" alt="" style="position: absolute; width: 350px; margin-left: 65%; margin-top: 5%">-->
+</div>
+<div class="section s2">
 <h1 class="day-photo">Фотографии дня</h1>
 <div class="slide">
 <div class="main-content">
@@ -88,7 +108,8 @@
 
 </div>
 </div>
-<div class="section s2">
+<!--Слайд 3-->
+    <div class="section s3">
 <h1 class="new-photo">Фотографии новых пользователей</h1>
 <div class="slide">
 <div class="main-content">
@@ -143,78 +164,11 @@
 
 </div>
 </div>
-<!--Слайд 3-->
-    <div class="section s3">
-<h1 class="best-photo">Номинация "Фото года 2021"</h1>
-<div class="slide">
-<div class="main-content">
-<div class="photo">
-            <img src="{% static 'img/15.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-            <img src="{% static 'img/18.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-            <img src="{% static 'img/11.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-            <img src="{% static 'img/44.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-
-
-<div class="slide">
- <div class="main-content">
-<div class="photo">
-             <img src="{% static 'img/11.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/9.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/13.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/22.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-    </div>
-           </div>
-    <div class="slide">
- <div class="main-content">
-<div class="photo">
-             <img src="{% static 'img/15.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/18.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/25.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/44.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-    </div>
-           </div>
-        </div>
-
-
-</div>
-</div>
 <div class="section s4">
     <div class="scrollable-content">
 
-<!--         <div class="main-content2">-->
-<!--              {% for post in pos %}-->
-<!--    <div class="photo">-->
-<!--            <img class="zoom" src="{{ post.img.url }}" alt="" width="300px" height="380px" style=" border-radius: 30px;">-->
-<!--         <div  class="content fade button2" id="postbtn{{ posts.id}}}">-->
-<!--            <p>Описание:</p>-->
-<!--            <p>{{ posts.description }}</p>-->
-<!--            <input id="toggle-heart" type="checkbox"/>-->
-<!--            <label for="toggle-heart" aria-label="like">❤ 199</label>-->
-<!--        </div>-->
-<!--</div>-->
-<!--               {% endfor %}-->
-<!--    </div>-->
+<h1 class="title-all-photo">ALL PHOTO</h1>
+        <img class="img-sort" src="{% static 'img/sort.png' %}" alt="сортировка по дате" width="40px">
 
         <div class="main-content2">
 
@@ -224,8 +178,7 @@
         <div  class="content fade button2" id="postbtn{{ posts.id}}}">
             <p>Описание:</p>
             <p>{{ post.description }}</p>
-            <input id="toggle-heart" type="checkbox"/>
-            <label for="toggle-heart" aria-label="like">❤ 199</label>
+
         </div>
     </div>
 {% endfor %}
@@ -244,6 +197,7 @@
 
 
 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js" integrity="sha512-gSf3NCgs6wWEdztl1e6vUqtRP884ONnCNzCpomdoQ0xXsk06lrxJsR7jX5yM/qAGkPGsps+4bLV5IEjhOZX+gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
  <script>
@@ -255,7 +209,8 @@
             showActiveTooltip: true,
             controlArrows: false,
             slidesNavigation: true,
-            normalScrollElements: '.scrollable-content'
+            normalScrollElements: '.scrollable-content',
+
 
         });
 

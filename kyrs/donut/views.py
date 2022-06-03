@@ -38,12 +38,13 @@ def reg(request):
 
 
 def mainl(request):
+    cUser = CustomUsers.objects.get(user=request.user)
     pos = Posts.objects.all()
     auth_form = AuthForm()
     if request.user.is_authenticated == False:
-        return render(request, 'donut/index.html', {'form': auth_form, 'post': NewPosts, 'pos': pos})
+        return render(request, 'donut/index.html', {'form': auth_form, 'post': NewPosts, 'pos': pos, 'cUser': cUser})
     else:
-        return render(request, 'donut/main.html', {'post': NewPosts, 'pos': pos})
+        return render(request, 'donut/main.html', {'post': NewPosts, 'pos': pos,'cUser': cUser})
 
 
 def index(request):
