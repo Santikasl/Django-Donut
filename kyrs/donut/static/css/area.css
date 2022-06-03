@@ -52,6 +52,7 @@ h3 {
     top: 120px;
 }
 
+
 .logo img {
     width: 100%;
     height: 100%;
@@ -109,6 +110,7 @@ h3 {
 
 .photo > img {
     display: block;
+    z-index: 100;
     width: 100%;
     object-fit: cover;
 }
@@ -156,6 +158,7 @@ h3 {
 
 .photo:hover > .content.fade {
     opacity: 1;
+
 
 }
 
@@ -528,6 +531,7 @@ ul {
 
 .button2 {
     cursor: pointer;
+
 }
 
 .overlay2 {
@@ -587,6 +591,14 @@ ul {
     transform: rotate(45deg);
     left: -4px;
 }
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+	display: none;
+}
+
+
 
 .description {
     font-size: 20px;
@@ -617,6 +629,16 @@ ul {
     margin-left: 67%;
     font-family: Organetto-Variable;
 }
+
+.blur-search{
+    filter: blur(0.5rem);
+    transition: 0.5s;
+    position: fixed;
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+
+}
+
 
 
 

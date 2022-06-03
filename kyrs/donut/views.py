@@ -117,17 +117,18 @@ def search_results(request):
     if request.is_ajax():
         res = None
         dataName = request.POST.get('dataName')
+        # фильтр работает правильно я проверил
         qs = CustomUsers.objects.filter(name__icontains=dataName)
-        print(qs)
         if len(qs) > 0 and len(dataName) > 0:
             data = []
             for pos in qs:
                 item = {
                     'pk': pos.pk,
                     'name': pos.name,
-                    'img': str(pos.img.url)
+                    # 'img': str(pos.img.url)
                 }
                 data.append(item)
+            print(data)
             res = data
         else:
             res = 'Пользователь не найден'
