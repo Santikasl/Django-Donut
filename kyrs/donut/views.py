@@ -119,7 +119,7 @@ def search_results(request):
         res = None
         dataName = request.POST.get('dataName')
         # фильтр работает правильно я проверил
-        qs = CustomUsers.objects.filter(name__icontains=dataName)
+        qs = CustomUsers.objects.filter(name__icontains=dataName)[:4]
         if len(qs) > 0 and len(dataName) > 0:
             data = []
             for pos in qs:

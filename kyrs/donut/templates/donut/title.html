@@ -19,16 +19,34 @@
 
     <title>Document</title>
 
-    {% block scripts %}
-    <script src="{% static 'js/search.js' %}" defer></script>
-    {% endblock scripts %}
+
 
     <link rel="stylesheet" href="{% static 'css/titels.css' %}"/>
 </head>
 {% endblock %}
 
 <body>
+<div class="sssss">
+    {% block scripts %}
+    <script src="{% static 'js/search.js' %}" defer></script>
+    {% endblock scripts %}
+    </div>
 {% block title %}
+
+<script>
+    window.onload = function () {
+      document.body.classList.add('loaded_hiding');
+      window.setTimeout(function () {
+        document.body.classList.add('loaded');
+        document.body.classList.remove('loaded_hiding');
+      }, 500);
+    }
+  </script>
+  <!-- Прелоадер -->
+  <div class="preloader">
+
+
+  </div>
 <div class="title">
 
     <a href="{% url 'main' %}"> <img src="{% static 'img/icon.png' %}" width="30px" height="30px"

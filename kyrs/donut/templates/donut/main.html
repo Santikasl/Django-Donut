@@ -7,22 +7,23 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/titels.css' %}"/>
     <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css" integrity="sha512-4rPgyv5iG0PZw8E+oRdfN/Gq+yilzt9rQ8Yci2jJ15rAyBmF0HBE4wFjBkoB72cxBeg63uobaj1UcNt/scV93w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css"
+          integrity="sha512-4rPgyv5iG0PZw8E+oRdfN/Gq+yilzt9rQ8Yci2jJ15rAyBmF0HBE4wFjBkoB72cxBeg63uobaj1UcNt/scV93w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
-        <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
-     {% block scripts %}
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    {% block scripts %}
     <script src="{% static 'js/search.js' %}" defer></script>
     {% endblock scripts %}
-
 
 
     <title>Главная</title>
@@ -31,190 +32,221 @@
 
 
 {% block name %}
+<script>
+    window.onload = function () {
+        document.body.classList.add('loaded_hiding');
+        window.setTimeout(function () {
+            document.body.classList.add('loaded');
+            document.body.classList.remove('loaded_hiding');
+        }, 500);
+    }
+</script>
+<!-- Прелоадер -->
+<div class="preloader">
+    <div class="preloader__row">
+        <div class="preloader__item"></div>
+        <div class="preloader__item"></div>
+    </div>
+</div>
 
-
+<a href="javascript:fade_out();">
+    <div class="overlay-likes" id="overlay-likes-id"></div>
+</a>
 <div class="blur-search" id="overlay-blur">
-<div id="fullpage">
-
-
-
-<div class="section s1">
-<div class="container-welcom">
-     <img class="welcome" src="{% static 'img/welcome.png' %}" alt="" width="400px">
-    <img class="welcome2" src="{% static 'img/back.png' %}" alt="" width="300px">
-    <div class="avatar">
-    <img class="main-logo" src="{{ cUser.img.url }}" alt="" width="150px">
-    </div>
-</div>
-
-    <img src="{% static 'img/like.png' %}" alt="" width="200px" class="likes">
-    <img src="{% static 'img/profile-icon.png' %}" alt="" width="210px" class="profile-icon">
-
-<!--    <img src="{% static 'img/profile.png' %}" alt="" style="position: absolute; width: 300px; margin-left: 79%; margin-top: -25%">-->
-<!--    <img src="{% static 'img/best-area.png' %}" alt="" style="position: absolute; width: 350px; margin-left: 65%; margin-top: 5%">-->
-</div>
-<div class="section s2">
-<h1 class="day-photo">Фотографии дня</h1>
-<div class="slide">
-<div class="main-content">
-<div class="photo">
-            <img src="{% static 'img/11.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-            <img src="{% static 'img/9.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-            <img src="{% static 'img/13.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-            <img src="{% static 'img/22.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-
-
-<div class="slide">
- <div class="main-content">
-<div class="photo">
-             <img src="{% static 'img/26.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/29.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/38.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/41.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-    </div>
-           </div>
-    <div class="slide">
- <div class="main-content">
-<div class="photo">
-             <img src="{% static 'img/15.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/18.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/25.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/44.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-    </div>
-           </div>
+    <div id="fullpage">
+        <div class="section s1">
+            <div class="container-welcom">
+                <img class="welcome" src="{% static 'img/welcome.png' %}" alt="" width="400px">
+                <img class="welcome2" src="{% static 'img/back.png' %}" alt="" width="300px">
+                <div class="avatar">
+                    <img class="main-logo" src="{{ cUser.img.url }}" alt="" width="150px">
+                </div>
+            </div>
+            <a href="javascript:oc_ch_menu();">
+                <div class="icons-container">
+                    <img src="{% static 'img/like.png' %}" alt="" width="200px" class="likes">
+                </div>
+            </a>
+            <a href="javascript:oc_ch_profile();">
+                <div class="profile-container">
+                    <img src="{% static 'img/profile-icon.png' %}" alt="" width="210px" class="profile-icon">
+                </div>
+            </a>
+            <div class="like-notification" id="like-notification-id">
+            </div>
+            <div class="profile-notification" id="profile-notification-id">
+            </div>
         </div>
+        <div class="section s2">
 
+            <div class="subscriptions horizontal-scroll-wrapper squares">
+                <div class="img-sub">
+                    <img src="{% static 'img/user-photo.png ' %}" alt="" class="shadow">
 
-</div>
-</div>
-<!--Слайд 3-->
-    <div class="section s3">
-<h1 class="new-photo">Фотографии новых пользователей</h1>
-<div class="slide">
-<div class="main-content">
-<div class="photo">
-            <img src="{% static 'img/26.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-            <img src="{% static 'img/29.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-            <img src="{% static 'img/38.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-            <img src="{% static 'img/41.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
+                </div>
+                <div class="img-sub">
+                    <img src="{% static 'img/ava.png ' %}" alt="" class="shadow">
+                </div>
+                <div class="img-sub">
+                    <img src="{% static 'img/11.jpg ' %}" alt="" class="shadow">
+                </div>
+                <div class="img-sub">
+                    <img src="{% static 'img/13.jpg ' %}" alt="" class="shadow">
+                </div>
+                <div class="img-sub">
+                    <img src="{% static 'img/15.jpg ' %}" alt="" class="shadow">
+                </div>
+                <div class="img-sub">
+                    <img src="{% static 'img/44.jpg ' %}" alt="" class="shadow">
+                </div>
+                <div class="img-sub">
+                    <img src="{% static 'img/29.jpg ' %}" alt="" class="shadow">
+                </div>
+                <div class="img-sub">
+                    <img src="{% static 'img/38.jpg ' %}" alt="" class="shadow">
+                </div>
+                <div class="img-sub">
+                    <img src="{% static 'img/25.jpg ' %}" alt="" class="shadow">
+                </div>
+                <div class="img-sub">
+                    <img src="{% static 'img/ava.png ' %}" alt="" class="shadow">
+                </div>
+                <div class="img-sub">
+                    <img src="{% static 'img/ava.png ' %}" alt="" class="shadow">
+                </div>
+                <div class="img-sub">
+                    <img src="{% static 'img/ava.png ' %}" alt="" class="shadow">
+                </div>
+                <div class="img-sub">
+                    <img src="{% static 'img/ava.png ' %}" alt="" class="shadow">
+                </div>
+            </div>
 
-
-<div class="slide">
- <div class="main-content">
-<div class="photo">
-             <img src="{% static 'img/11.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/9.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/13.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/22.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-    </div>
-           </div>
-    <div class="slide">
- <div class="main-content">
-<div class="photo">
-             <img src="{% static 'img/15.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/18.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/25.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-<div class="photo">
-             <img src="{% static 'img/44.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-</div>
-    </div>
-           </div>
-        </div>
-
-
-</div>
-</div>
-<div class="section s4">
-    <div class="scrollable-content">
-
-<h1 class="title-all-photo">ALL PHOTO</h1>
-        <img class="img-sort" src="{% static 'img/sort.png' %}" alt="сортировка по дате" width="40px">
-
-        <div class="main-content2">
-
-          {% for post in pos %}
-    <div class="photo">
-        <img class="zoom" src="{{ post.img.url }}" alt="" width="300px" height="380px" style=" border-radius: 30px;">
-        <div  class="content fade button2" id="postbtn{{ posts.id}}}">
-            <p>Описание:</p>
-            <p>{{ post.description }}</p>
 
         </div>
-    </div>
-{% endfor %}
+        <div class="section s3">
+            <h1 class="new-photo">Фотографии новых пользователей</h1>
+            <div class="slide">
+                <div class="main-content">
+                    <div class="photo">
+                        <img src="{% static 'img/26.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+                    </div>
+                    <div class="photo">
+                        <img src="{% static 'img/29.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+                    </div>
+                    <div class="photo">
+                        <img src="{% static 'img/38.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+                    </div>
+                    <div class="photo">
+                        <img src="{% static 'img/41.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+                    </div>
+
+
+                    <div class="slide">
+                        <div class="main-content">
+                            <div class="photo">
+                                <img src="{% static 'img/11.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+                            </div>
+                            <div class="photo">
+                                <img src="{% static 'img/9.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+                            </div>
+                            <div class="photo">
+                                <img src="{% static 'img/13.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+                            </div>
+                            <div class="photo">
+                                <img src="{% static 'img/22.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="main-content">
+                            <div class="photo">
+                                <img src="{% static 'img/15.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+                            </div>
+                            <div class="photo">
+                                <img src="{% static 'img/18.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+                            </div>
+                            <div class="photo">
+                                <img src="{% static 'img/25.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+                            </div>
+                            <div class="photo">
+                                <img src="{% static 'img/44.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
+        <div class="section s4">
+            <div class="scrollable-content">
+
+                <h1 class="title-all-photo">ALL PHOTO</h1>
+                <img class="img-sort" src="{% static 'img/sort.png' %}" alt="сортировка по дате" width="40px">
+
+                <div class="main-content2">
+
+                    {% for post in pos %}
+                    <div class="photo">
+                        <img class="zoom" src="{{ post.img.url }}" alt="" width="300px" height="380px"
+                             style=" border-radius: 30px;">
+                        <div class="content fade button2" id="postbtn{{ posts.id}}}">
+                            <p>Описание:</p>
+                            <p>{{ post.description }}</p>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
 
 
-
-
-</div>
+            </div>
+        </div>
     </div>
-
-
-</div>
 </div>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"
+        integrity="sha512-gSf3NCgs6wWEdztl1e6vUqtRP884ONnCNzCpomdoQ0xXsk06lrxJsR7jX5yM/qAGkPGsps+4bLV5IEjhOZX+gg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    new fullpage('#fullpage', {
+        // здесь параметры
+        autoScrolling: true,
+        anchors: ['1', '2', '3', '4'],
+        scrollHorizontally: true,
+        showActiveTooltip: true,
+        controlArrows: false,
+        slidesNavigation: true,
+        normalScrollElements: '.scrollable-content, .subscriptions, .post-subscriptions, .searchItems, .results-card, .blur-search, .sssss ',
 
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js" integrity="sha512-gSf3NCgs6wWEdztl1e6vUqtRP884ONnCNzCpomdoQ0xXsk06lrxJsR7jX5yM/qAGkPGsps+4bLV5IEjhOZX+gg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
- <script>
-        new fullpage('#fullpage', {
-            // здесь параметры
-            autoScrolling: true,
-            anchors: ['1', '2', '3', '4'],
-            scrollHorizontally: true,
-            showActiveTooltip: true,
-            controlArrows: false,
-            slidesNavigation: true,
-            normalScrollElements: '.scrollable-content',
+    });
 
 
-        });
+</script>
+<script type="text/javascript">
+    function oc_ch_menu() {
+        document.getElementById('like-notification-id').style.transform = 'translateX(10px)';
+        document.getElementById('like-notification-id').style.transition = 'all 1s';
+        document.getElementById('overlay-likes-id').style.zIndex = '1';
+    }
 
+    function oc_ch_profile() {
+        document.getElementById('profile-notification-id').style.transform = 'translateX(940px)';
+        document.getElementById('profile-notification-id').style.transition = 'all 1s';
+        document.getElementById('overlay-likes-id').style.zIndex = '1';
+    }
 
-    </script>
+    function fade_out() {
+        document.getElementById('like-notification-id').style.transform = 'translateX(-120%)';
+        document.getElementById('profile-notification-id').style.transform = 'translateX(300%)';
+        document.getElementById('like-notification-id').style.transition = 'all 1s';
+        document.getElementById('overlay-likes-id').style.zIndex = '-1';
+    }
+</script>
+
 
 {% endblock %}
