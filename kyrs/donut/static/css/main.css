@@ -20,12 +20,48 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
     transition: .5s;
     display: flex;
     position: absolute;
-    border-left: 1px solid white;
-    border-radius: 25px;
-    width: 94%;
-    margin-left: 40px;
-}
+    z-index: 100;
+   background-color: rgba(255, 255, 255, 0.96);
 
+    MARGIN-TOP: -280PX;
+    width: 25%;
+    margin-left: 40px;
+    height: 83%;
+    border-radius: 30px;
+
+}
+.img-sub{
+    width: 80px;
+    margin-left: 30px;
+    border-radius: 30px;
+}
+.name-sub{
+    font-size: 30px;
+   font-family: Calibri;
+    margin-top: -62px;
+    margin-left: 170px;
+}
+.titel-sub{
+    color: black;
+    font-size: 30px;
+     font-family: Organetto-Variable;
+    margin-left: 95px;
+}
+.sub{;
+    width: 100%;
+    height: 89%;
+    border-radius: 30px;
+    margin-top: 18%;
+    margin-left: 3%;
+     overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: unset;
+}
+.container-sub{
+   padding-top: 20px;
+
+
+}
 ::-webkit-scrollbar {
     width: 2px;
     height: 2px;
@@ -36,40 +72,6 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
     height: 2px;
 }
 
-.horizontal-scroll-wrapper {
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 0;
-    width: 80px;
-    margin-top: 100px;
-    height: 180%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    transform: rotate(-90deg) translateY(-80px);
-    transform-origin: right top;
-}
-
-.horizontal-scroll-wrapper > div {
-    display: block;
-    padding: 5px;
-    transform: rotate(90deg);
-    transform-origin: right top;
-}
-
-.squares {
-    padding: 50px 0 0px 40px;
-
-}
-
-.squares > div {
-    width: 60px;
-    height: 90px;
-    padding-top: 10px;
-!important;
-    margin-top: 37px;
-    margin-left: 5px;
-}
 
 .your-subscriptions {
     color: rgb(255, 255, 255);
@@ -227,7 +229,6 @@ span {
 .scrollable-content {
     position: absolute;
     margin-top: -300px;
-
     overflow: scroll;
     overflow-x: hidden;
     overflow-y: unset;
