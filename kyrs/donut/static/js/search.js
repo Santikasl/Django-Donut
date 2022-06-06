@@ -1,36 +1,29 @@
-
 const url = window.location.href
 const searchForm = document.getElementById("search-form")
 const searchInput = document.getElementById("search-input")
 const resultBlock = document.getElementById("results-block")
-
 const blurSearch = document.getElementById("overlay-blur")
-console.log(blurSearch)
-
 const csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
 blurSearch.classList.remove('blur-search')
-
 resultBlock.classList.remove('not-found-extend')
-
-
 const sendSearchData = (dataName) => {
     $.ajax({
         type: 'POST',
-        url:'search/',
+        url: '/search/',
         data: {
             'csrfmiddlewaretoken': csrf,
             'dataName': dataName,
         },
-        success: (res)=> {
-            console.log(res.data)
+        success: (res) => {
             const data = res.data
             if (Array.isArray(data)) {
                 resultBlock.classList.remove('not-found-extend')
                 resultBlock.innerHTML = ""
-                data.forEach(dataName=>{
+                data.forEach(dataName => {
                     resultBlock.innerHTML += `
+
                        <div class="searchItems" style="background-color: white; width: 900px; overflow: scroll">
-                       <a href="">
+                       <a href="/${dataName.pk}">
                        <div class="img-profile">
                        <img src="${dataName.img}" alt="" width="80px">
                        </div>
@@ -41,7 +34,7 @@ const sendSearchData = (dataName) => {
                     `
                 })
             } else {
-                if(searchInput.value.length > 0){
+                if (searchInput.value.length > 0) {
                     resultBlock.classList.add('not-found-extend')
                     console.log(searchInput.value.length)
                     resultBlock.innerHTML = ` 
@@ -55,20 +48,20 @@ const sendSearchData = (dataName) => {
             }
 
         },
-        error:(err) => {
+        error: (err) => {
             console.log(err)
         }
     })
 }
 
 
-searchInput.addEventListener('keyup', e =>{
+searchInput.addEventListener('keyup', e => {
     console.log(e.target.value)
 
-    if(resultBlock.classList.contains('not-visible')){
+    if (resultBlock.classList.contains('not-visible')) {
         resultBlock.classList.remove('not-visible')
         resultBlock.classList.remove('not-found-extend')
-         blurSearch.classList.add('blur-search')
+        blurSearch.classList.add('blur-search')
     }
 
     sendSearchData(e.target.value)

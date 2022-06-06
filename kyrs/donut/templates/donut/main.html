@@ -15,18 +15,29 @@
           integrity="sha512-4rPgyv5iG0PZw8E+oRdfN/Gq+yilzt9rQ8Yci2jJ15rAyBmF0HBE4wFjBkoB72cxBeg63uobaj1UcNt/scV93w=="
           crossorigin="anonymous" referrerpolicy="no-referrer"
     />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="ajax.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"></script>
 
     <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
     {% block scripts %}
-    <script src="{% static 'js/search.js' %}" defer></script>
+    <script src="{% static 'js/sort.js' %}" defer></script>
+<!--    <script src="{% static 'js/search.js' %}" defer></script>-->
     {% endblock scripts %}
+
+
+
+
+
 
 
     <title>Главная</title>
@@ -119,7 +130,44 @@
                         </div>
                 </div>
             </div>
-
+        <div class="sub-photo">
+            <div class="photo-s">
+            <img src="{% static 'img/26.jpg' %}" alt="" width="200px" style=" border-radius: 30px;">
+                </div>
+              <div class="photo-s">
+           <img src="{% static 'img/29.jpg' %}" alt="" width="200px" style=" border-radius: 30px;">
+                </div>
+              <div class="photo-s">
+            <img src="{% static 'img/38.jpg' %}" alt="" width="200px" style=" border-radius: 30px;">
+                </div>
+               <div class="photo-s">
+            <img src="{% static 'img/41.jpg' %}" alt="" width="200px" style=" border-radius: 30px;">
+                </div>
+            <div class="photo-s">
+            <img src="{% static 'img/11.jpg' %}" alt="" width="200px" style=" border-radius: 30px;">
+                </div>
+              <div class="photo-s">
+            <img src="{% static 'img/9.jpg' %}" alt="" width="200px" style=" border-radius: 30px;">
+                </div>
+              <div class="photo-s">
+            <img src="{% static 'img/13.jpg' %}" alt="" width="200px" style=" border-radius: 30px;">
+                </div>
+               <div class="photo-s">
+            <img src="{% static 'img/22.jpg' %}" alt="" width="200px" style=" border-radius: 30px;">
+                </div>
+            <div class="photo-s">
+            <img src="{% static 'img/11.jpg' %}" alt="" width="200px" style=" border-radius: 30px;">
+                </div>
+              <div class="photo-s">
+            <img src="{% static 'img/9.jpg' %}" alt="" width="200px" style=" border-radius: 30px;">
+                </div>
+              <div class="photo-s">
+            <img src="{% static 'img/13.jpg' %}" alt="" width="200px" style=" border-radius: 30px;">
+                </div>
+               <div class="photo-s">
+            <img src="{% static 'img/22.jpg' %}" alt="" width="200px" style=" border-radius: 30px;">
+                </div>
+        </div>
 
         </div>
         <div class="section s3">
@@ -181,8 +229,16 @@
             <div class="scrollable-content">
 
                 <h1 class="title-all-photo">ALL PHOTO</h1>
-                <img class="img-sort" src="{% static 'img/sort.png' %}" alt="сортировка по дате" width="40px">
 
+                <img class="img-sort" src="{% static 'img/sort.png' %}" alt="сортировка по дате" width="40px">
+                <form action="" id="sort-form"  method="post" autocomplete="off">
+                    {% csrf_token %}
+                    <button id="sortBtn" class="sortBtn">
+                    </button>
+                </form>
+                <div id="result_form">
+
+                </div>
                 <div class="main-content2">
 
                     {% for post in pos %}
@@ -218,9 +274,7 @@
         showActiveTooltip: true,
         controlArrows: false,
         slidesNavigation: true,
-        normalScrollElements: '.scrollable-content, .subscriptions, .post-subscriptions, .searchItems, .results-card, .blur-search, .sssss ',
-
-
+        normalScrollElements: '.scrollable-content, .subscriptions, .post-subscriptions, .searchItems, .results-card, .blur-search, .sssss, .sub-photo ',
     });
 
 

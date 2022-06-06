@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from django.core.validators import *
 from django.contrib.auth.models import User
@@ -16,9 +18,12 @@ class CustomUsers(models.Model):
         return str(self.name)
 
 
+def default_datetime(): return datetime.now()
+
+
 class Posts(models.Model):
     description = models.TextField(max_length=2000)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(default=default_datetime)
     likes = models.IntegerField(default=0)
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     img = models.ImageField(upload_to='posts/')

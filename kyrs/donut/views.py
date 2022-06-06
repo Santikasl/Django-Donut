@@ -1,5 +1,4 @@
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -7,13 +6,17 @@ from django.http import JsonResponse
 from .forms import *
 from .forms import Imgform
 from django.contrib import messages
-
 from .models import CustomUsers
+
+
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('reg'))
 
 
 def reg(request):
     if request.user.is_authenticated == True:
-        return render(request, 'donut/main.html', {'post': NewPosts})
+        return HttpResponseRedirect(reverse('main'))
     else:
         if request.method == 'POST':
             form = ExtendedRegisterForm(request.POST)
@@ -24,9 +27,7 @@ def reg(request):
                 cUser.email = request.POST.get("email")
                 cUser.password = request.POST.get("password1")
                 cUser.user = form.save()
-
                 cUser.save()
-
                 username = form.cleaned_data.get('username')
                 raw_password = form.cleaned_data.get('password1')
                 user = authenticate(username=username, password=raw_password)
@@ -38,18 +39,24 @@ def reg(request):
 
 
 def mainl(request):
-    cUser = CustomUsers.objects.get(user=request.user)
-    pos = Posts.objects.all()
-    auth_form = AuthForm()
     if request.user.is_authenticated == False:
-        return render(request, 'donut/index.html', {'form': auth_form, 'post': NewPosts, 'pos': pos, 'cUser': cUser})
+        return render(request, 'donut/index.html')
     else:
-        return render(request, 'donut/main.html', {'post': NewPosts, 'pos': pos,'cUser': cUser})
+        postt = Posts(user=request.user)
+        cUser = CustomUsers.objects.get(user=request.user)
+        pos = Posts.objects.all()
+        newPost = NewPosts(request.POST, request.FILES)
+        if newPost.is_valid():
+            postt.img = newPost.cleaned_data['postImg']
+            postt.description = newPost.cleaned_data['description']
+            postt.save()
+            return HttpResponseRedirect(reverse('area'))
+        return render(request, 'donut/main.html', {'post': NewPosts, 'pos': pos, 'cUser': cUser, 'post': NewPosts})
 
 
-def index(request):
+def signIn(request):
     if request.user.is_authenticated == True:
-        return render(request, 'donut/main.html', {'post': NewPosts})
+        return HttpResponseRedirect(reverse('main'))
     else:
         if request.method == 'POST':
             auth_form = AuthForm(request.POST)
@@ -60,22 +67,24 @@ def index(request):
                 if user:
                     if user.is_active:
                         login(request, user)
-                        return render(request, 'donut/main.html', {'post': NewPosts})
+                        return HttpResponseRedirect(reverse('main'))
                     else:
                         messages.add_message(request, messages.ERROR, 'Пользователь больше не активен')
-                        return render(request, 'donut/index.html', {'form': auth_form, 'post': NewPosts})
+                        return render(request, 'donut/index.html',
+                                      {'form': auth_form})
                 else:
                     messages.add_message(request, messages.ERROR, 'Проверьте правильность введённых данных')
-                    return render(request, 'donut/index.html', {'form': auth_form, 'post': NewPosts})
+                    return render(request, 'donut/index.html',
+                                  {'form': auth_form})
             else:
                 auth_form = AuthForm()
-                return render(request, 'donut/index.html', {'form': auth_form, 'post': NewPosts})
+                return render(request, 'donut/index.html',
+                              {'form': auth_form})
         else:
             auth_form = AuthForm()
             context = {
-
                 'form': auth_form,
-                'post': NewPosts
+                'post': NewPosts,
             }
             return render(request, 'donut/index.html', context=context)
 
@@ -84,11 +93,11 @@ def area(request):
     auth_form = AuthForm()
 
     if request.user.is_authenticated == False:
-        return render(request, 'donut/index.html', {'form': auth_form, 'post': NewPosts})
+        return render(request, 'donut/index.html', {'form': auth_form})
     else:
         cUser = CustomUsers.objects.get(user=request.user)
         postt = Posts(user=request.user)
-        ppp = Posts.objects.filter(user=request.user)
+        all_post_user = Posts.objects.filter(user=request.user)
         if request.method == 'POST':
             imgForm = Imgform(request.POST, request.FILES)
             newPost = NewPosts(request.POST, request.FILES)
@@ -103,15 +112,23 @@ def area(request):
                     cUser.img = imgForm.cleaned_data['img']
                     cUser.save()
                     return render(request, 'donut/area.html',
-                                  {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'ppp': ppp})
+                                  {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'all_post_user': all_post_user})
         else:
             imgForm = Imgform()
 
-        return render(request, 'donut/area.html', {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'ppp': ppp})
+        return render(request, 'donut/area.html',
+                      {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'all_post_user': all_post_user})
 
 
-def search(request):
-    pass
+def search_profile(request, pk):
+    search_user = CustomUsers.objects.filter(pk=pk).first()
+    # print(search_user)
+    all_post_user = Posts.objects.filter(user=search_user.user)
+    print(all_post_user)
+    obj = CustomUsers.objects.filter(pk=pk).first
+    if obj:
+        return render(request, 'donut/profile.html',
+                      {'obj': obj, 'pk': pk, 'post': NewPosts, 'all_post_user': all_post_user})
 
 
 def search_results(request):
@@ -126,12 +143,25 @@ def search_results(request):
                 item = {
                     'pk': pos.pk,
                     'name': pos.name,
-                    # 'img': str(pos.img.url)
+                    'count_posts': pos.count_posts,
+                    'likes': pos.likes,
+                    'followers': pos.followers,
+                    'img': pos.img.url,
                 }
+
                 data.append(item)
-            print(data)
+
             res = data
         else:
             res = 'Пользователь не найден'
         return JsonResponse({'data': res})
     return JsonResponse({})
+
+
+def sort(request):
+    if request.is_ajax():
+        dataName = "wegfegw"
+        res = 'data'
+        return JsonResponse({'data': res})
+    else:
+        return JsonResponse({})

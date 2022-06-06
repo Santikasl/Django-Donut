@@ -4,6 +4,7 @@
 {% block head %}
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -26,72 +27,42 @@
      {% block scripts %}
     <script src="{% static 'js/search.js' %}" defer></script>
     {% endblock scripts %}
-
 </head>
 {% endblock %}
-
-
 {% block name %}
 <div class="blur-search" id="overlay-blur">
 
 <div class="logo">
-    <img src="{{ cUser.img.url }}" alt="" width="150px">
+    <img src="{{ obj.img.url }}" alt="" width="150px">
 
 </div>
-<div class="file-upload ">
-    <form action="" enctype="multipart/form-data" method="post" >
-        {% csrf_token %}
-        <div class="example-1">
-            <div class="form-group">
-                <label class="label">
-                    <svg class="svg" style="width:100px;height:100px" viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                              d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                    </svg>
-                    {{ form.img }}
-                </label>
-            </div>
-        </div>
-    </form>
-</div>
+
 <div class="con">
-    {% if request.user.is_authenticated %}
+
     <div>
         <p style="color:white; font-family: Organetto-Variable;font-size:50px;">
-            {{ request.user.username }}
+            {{ obj.name }}
             <img src="{% static 'img/gaochka.png' %}" alt="" width="30px" style="margin-top: -5px">
         </p>
 
     </div>
-    {% endif %}
+
 </div>
 
 <div class="post">
     <div>
-        <nav class="three">
-            <ul class="topmenu">
 
-                <li><a class="as" href="#">. . .<i class=""></i></a>
-                    <ul class="submenu">
-                        <li><a class="as2" href="">Редактировать</a></li>
-
-                        <li><a class="as2 as3" href="{% url 'exit' %}?next=/">Выйти</a></li>
-                    </ul>
-                </li>
-
-            </ul>
-        </nav>
     </div>
-    <p style="color: white; font-family: Organetto-Variable; font-size: 30px">{{ cUser.count_posts }} постов</p>
-    <p style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ cUser.followers }}
+    <p style="color: white; font-family: Organetto-Variable; font-size: 30px">{{ obj.count_posts }} постов</p>
+    <p style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ obj.followers }}
         отслеживают</p>
-    <p style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ cUser.likes }}
+    <p style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ obj.likes }}
         лайков</p>
 </div>
 
 <div class="main-content2">
     {% for posts in all_post_user %}
-    <div class="photo">
+    <div class="photo" >
         <img class="zoom" src="{{ posts.img.url }}" alt="" width="300px" height="380px" style="border-radius: 30px;">
         <div class="button2 content fade" id="{{posts.id}}">
             <p>Описание:</p>

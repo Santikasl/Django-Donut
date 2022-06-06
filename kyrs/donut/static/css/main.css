@@ -21,56 +21,78 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
     display: flex;
     position: absolute;
     z-index: 100;
-   background-color: rgba(255, 255, 255, 0.96);
+    background-color: rgba(255, 255, 255, 0.96);
 
     MARGIN-TOP: -280PX;
     width: 25%;
     margin-left: 40px;
     height: 83%;
     border-radius: 30px;
+}
+
+.sub-photo {
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+    grid-column-gap: 65px;
+    grid-row-gap: 50px;
+
+    position: absolute;
+    width: 65%;
+    margin-left: 32%;
+    height: 78%;
+    overflow: scroll;
+    z-index: 999;
+    margin-top: -245px;
+
 
 }
-.img-sub{
+.sortBtn{
+    width: 50px;
+    height: 50px;
+    margin-top: 45px;
+    margin-left: 284px;
+    opacity: 0;
+    z-index: 999;
+    position: absolute;
+}
+.img-sub {
     width: 80px;
     margin-left: 30px;
     border-radius: 30px;
 }
-.name-sub{
+
+.name-sub {
     font-size: 30px;
-   font-family: Calibri;
+    font-family: Calibri;
     margin-top: -62px;
     margin-left: 170px;
 }
-.titel-sub{
+
+.titel-sub {
     color: black;
     font-size: 30px;
-     font-family: Organetto-Variable;
+    font-family: Organetto-Variable;
     margin-left: 95px;
 }
-.sub{;
+
+.sub {;
     width: 100%;
     height: 89%;
     border-radius: 30px;
     margin-top: 18%;
     margin-left: 3%;
-     overflow: scroll;
+    overflow: scroll;
     overflow-x: hidden;
     overflow-y: unset;
 }
-.container-sub{
-   padding-top: 20px;
+
+.container-sub {
+    padding-top: 20px;
 
 
 }
-::-webkit-scrollbar {
-    width: 2px;
-    height: 2px;
-}
 
-::-webkit-scrollbar-button {
-    width: 2px;
-    height: 2px;
-}
+
 
 
 .your-subscriptions {
@@ -739,7 +761,8 @@ span {
 }
 
 .blur-search {
-    filter: blur(0.5rem);
+
+    /*filter: blur(0.5rem);*/
     transition: 0.5s;
     position: fixed;
     left: 0;
