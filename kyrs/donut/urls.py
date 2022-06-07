@@ -12,7 +12,8 @@ urlpatterns = [
     path('area/', views.area, name='area'),
     path('search/', views.search_results, name='search'),
     path('sort/', views.sort, name='sort'),
-
+    path('edit/', views.edit, name='edit'),
+    path('delite', views.delite, name='delite'),
     path('<int:pk>/', views.search_profile, name='profile'),
     path('exit/', views.logout_user, name='exit'),
 

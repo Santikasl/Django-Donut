@@ -158,8 +158,6 @@ h3 {
 
 .photo:hover > .content.fade {
     opacity: 1;
-
-
 }
 
 
@@ -172,6 +170,21 @@ h3 {
 .content {
     height: 350px;
 
+
+}
+.btn-post{
+    width: 300px;
+    height: 370px;
+    opacity: .5;
+    background-color: #e2264d;
+    position: absolute;
+    margin-left: 50px;
+}
+.description-post{
+  text-align: justify;
+    height: 290px;
+    overflow: hidden;
+     text-overflow: ellipsis;
 }
 
 .photo:hover > img.zoom {
@@ -338,11 +351,26 @@ span {
 
 }
 
+.edit-desc{
+    resize: none;
+    position: absolute;
+    outline: black 3px;
+    border-radius: 20px;
+    font-size: 20px;
+    width: 400px;
+    text-align: justify;
+    height: 400px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 95px;
+    margin-left: 540px;
+    padding-top: 0px;
+}
+
 @import url(https://fonts.googleapis.com/css?family=Lora);
 
 nav {
     width: 200px;
-
     margin: -12% -9% 30px;
 }
 
@@ -350,6 +378,12 @@ nav {
     position: absolute;
     margin-left: 400px;
     margin-top: -70px;
+
+}
+.three2 {
+    position: absolute;
+    margin-left: 790px;
+    margin-top: -10px;
 
 }
 
@@ -383,6 +417,8 @@ ul {
     transition: .5s linear;
 }
 
+
+
 .as2 {
     display: block;
     padding: 10px 10px;
@@ -411,7 +447,20 @@ ul {
     position: absolute;
     top: 90%;
     left: -80px;
+    text-align: center;
+    background-color: #0c0c0c;
+    width: 100%;
+    z-index: 10;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
 
+.submenu2 {
+    position: absolute;
+    top: 70%;
+    left: -10px;
     text-align: center;
     background-color: #0c0c0c;
     width: 100%;
@@ -425,10 +474,28 @@ ul {
 .three ul {
 
 }
+.id-post{
+    opacity: 0;
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    margin-left: -100px;
+}
 
+.id-post2{
+opacity: 0;
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    margin-left: -100px;
+}
 .three ul a {
     color: white;
 }
+
+
 
 .three .submenu {
     visibility: hidden;
@@ -437,11 +504,28 @@ ul {
     border: 1px solid white;
 }
 
+
+
 .three ul li:hover .submenu {
     visibility: visible;
     opacity: 1;
 }
 
+.three2 ul  {
+    color: white;
+}
+
+.three2 .submenu2 {
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 20px;
+    border: 1px solid white;
+}
+
+.three2 ul li:hover .submenu2 {
+    visibility: visible;
+    opacity: 1;
+}
 
 .file-upload {
     position: absolute;
@@ -530,12 +614,15 @@ ul {
 }
 
 .button2 {
+    position: absolute;
+    z-index: 999;!important;
+    background-color: #e2264d;
     cursor: pointer;
-
 }
 
 .overlay2 {
     position: fixed;
+
     width: 100%;
     height: 100vh;
     top: 0;
@@ -598,17 +685,35 @@ input[type='search']::-webkit-search-results-decoration {
 	display: none;
 }
 
+/* width */
+.description::-webkit-scrollbar {
+    width: 10px;
+}
 
+/* Track */
+.description::-webkit-scrollbar-track {
+
+    border-radius: 10px;
+}
+
+/* Handle */
+.description::-webkit-scrollbar-thumb {
+    background: #777777;
+    border-radius: 10px;
+}
 
 .description {
     font-size: 20px;
     font-family: 'Montserrat Alternates', sans-serif;
     margin-top: 8%;
+    overflow: scroll;
     width: 400px;
+    overflow-x: hidden;
     margin-left: 53%;
     text-align: justify;
     height: 400px;
-    padding: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
     padding-top: 0px;
     overflow-wrap: break-word;
 

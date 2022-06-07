@@ -175,3 +175,20 @@ def sort(request):
     return JsonResponse({})
 
 
+def delite(request):
+    if request.method == 'POST':
+        post_id = request.POST['id']
+        print(post_id)
+        post = Posts.objects.get(id=post_id)
+        post.delete()
+    return HttpResponseRedirect(reverse('area'))
+
+def edit(request):
+    if request.is_ajax():
+        data = []
+        res_post2 = data
+        return JsonResponse({'data': res_post2})
+
+
+
+
