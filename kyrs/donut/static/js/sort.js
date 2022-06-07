@@ -1,54 +1,45 @@
-// const url = window.location.href
-const sortBtn = document.getElementById("sortBtn")
-const csrf = document.getElementsByName('csrfmiddlewaretoken')[2].value
-//
-// const sort = (dataName) => {
-//         $.ajax({
-//             type: 'POST',
-//             url: 'sort/',
-//             data: {
-//                 'csrfmiddlewaretoken': csrf,
-//                 'dataName': dataName,
-//             },
-//             success: (res) => {
-//                 alert("gewwg")
-//             },
-//             error: (err) => {
-//                 console.log(err)
-//         }
-//     })
-// }
-//
-// sortBtn.onclick = function(e) {
-//     alert('Спасибо');
-//     sort(e.target.value)
-// };
-
-$( document ).ready(function() {
-    $("#sortBtn").click(
-		function(){
-			sendAjaxForm('result_form', 'ajax_form', 'sort/');
-			return false;
-		}
-	);
-});
-
-function sendAjaxForm(result_form, ajax_form, url) {
+const sortPost = document.getElementById("sort-post")
+const mainContent = document.getElementById("mainId")
+let sort = false;
+$(document).on('click', '#sort-form',function(e){
     $.ajax({
-        url:'sort/',
         type:'POST',
-        dataType: "html",
-        data: {
-                'csrfmiddlewaretoken': csrf,
-                'dataName': dataName,
+        url: '/sort/',
+        data:{
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
         },
-        success: function(response) {
-        	result = $.parseJSON(response);
-        	$('#result_form').html('Имя: '+result.name+'<br>Телефон: '+result.phonenumber);
-    	},
-    	error: function(response) { // Данные не отправлены
-            $('#result_form').html('Ошибка. Данные не отправлены.');
-    	}
- 	});
-}
+        success:function(res_post) {
+            const dataPost = res_post.data
+            if (Array.isArray(dataPost) && sort === false) {
+                sortPost.style.display = 'grid'
+                mainContent.style.display = 'none'
+                dataPost.forEach(sortPosts => {
+                    sortPost.innerHTML += `
+                       <div class="photo">
+                        <img class="zoom" src="${sortPosts.img}" alt="" width="300px" height="380px"
+                             style=" border-radius: 30px;">
+                        <div class="content fade button2" id="postbtn{{ posts.id}}}">
+                            <p>Описание:</p>
+                            <p>${sortPosts.descriptions}</p>
+
+                        </div>
+                    </div>
+                  
+                    `
+                })
+                sort = true;
+            }
+            else {
+                sortPost.innerHTML = ""
+                sortPost.style.display = 'none'
+                mainContent.style.display = 'grid'
+                sort = false;
+            }
+        },
+
+        error : function(xhr,errmsg,err) {
+        console.log("error"); // provide a bit more info about the error to the console
+    }
+    });
+});
 

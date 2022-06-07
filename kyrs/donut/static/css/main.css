@@ -51,8 +51,10 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
     height: 50px;
     margin-top: 45px;
     margin-left: 284px;
+    opacity: 1;
     opacity: 0;
     z-index: 999;
+    background-color: #e2264d;
     position: absolute;
 }
 .img-sub {
@@ -762,7 +764,7 @@ span {
 
 .blur-search {
 
-    /*filter: blur(0.5rem);*/
+    filter: blur(0.5rem);
     transition: 0.5s;
     position: fixed;
     left: 0;
@@ -771,5 +773,16 @@ span {
     bottom: 0;
     overflow: hidden;
 
+}
+.sort-post{
+    z-index: 3;
+    display: grid;
+    grid-template-columns: 350px 350px 350px 350px;
+    position: absolute;
+    width: 94%;
+    margin-top: 150px;
+    margin-left: 40px;
+    height: 100%;
+    grid-row-gap: 55px;
 }
 

@@ -9,6 +9,7 @@ from django.contrib import messages
 from .models import CustomUsers
 
 
+
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse('reg'))
@@ -160,8 +161,17 @@ def search_results(request):
 
 def sort(request):
     if request.is_ajax():
-        dataName = "wegfegw"
-        res = 'data'
-        return JsonResponse({'data': res})
-    else:
-        return JsonResponse({})
+        all_post = Posts.objects.order_by('-date')
+        data = []
+        for pos in all_post:
+            item = {
+                'pk': pos.pk,
+                'descriptions': pos.description,
+                'img': pos.img.url,
+            }
+            data.append(item)
+        res_post = data
+        return JsonResponse({'data': res_post})
+    return JsonResponse({})
+
+
