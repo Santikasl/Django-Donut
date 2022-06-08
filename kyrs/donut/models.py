@@ -38,7 +38,7 @@ class Posts(models.Model):
             img.save(self.img.path)
 
 
-
-
-
-
+class LikesPost(models.Model):
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    post = models.ForeignKey(Posts, null=True, blank=True, on_delete=models.CASCADE)
+    check = models.BooleanField(default=False)

@@ -1,0 +1,42 @@
+$white: #FFF;
+$gray: #888;
+$red: indianred;
+
+#like-button {
+  color: $gray;
+  font-size: 1.5em;
+  font-family: 'Heebo', sans-serif;
+  background-color: transparent;
+  border: 0.1em solid;
+  border-radius: 1em;
+  padding: 0.333em 1em 0.25em;
+  line-height: 1.2em;
+  box-shadow: 0 0.25em 1em -0.25em;
+  cursor: pointer;
+  transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+  outline: 0;
+  margin: 5em 0;
+
+  &:hover {
+    color: $red;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.selected {
+    color: $white;
+    background-color: $red;
+    border-color: $red;
+  }
+
+  .heart-icon {
+    display: inline-block;
+    fill: currentColor;
+    width: 0.8em;
+    height: 0.8em;
+    margin-right: 0.2em;
+  }
+}
+

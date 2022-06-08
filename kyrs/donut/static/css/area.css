@@ -771,8 +771,44 @@ input[type='search']::-webkit-search-results-decoration {
 
 }
 
+.like{
+    position: absolute;
+    margin-top: -50px;
+    margin-left: 550px;
+}
 
-
+#like-button {
+  color: #050505;
+  font-size: 1.2em;
+   font-family: Organetto-Variable;
+  background-color: transparent;
+  border: 0.1px solid;
+  border-radius: 1em;
+  padding: 0.333em 1em 0.25em;
+  line-height: 1.2em;
+  cursor: pointer;
+  transition: color 150ms ease-in-out, background-color 150ms ease-in-out, transform 150ms ease-in-out;
+  outline: 0;
+  margin: 5em 0;
+}
+#like-button:hover {
+  color: indianred;
+}
+#like-button:active {
+  transform: scale(0.95);
+}
+#like-button.selected {
+  color: #FFF;
+  background-color: indianred;
+  border-color: indianred;
+}
+#like-button .heart-icon {
+  display: inline-block;
+  fill: currentColor;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.2em;
+}
 
 
 

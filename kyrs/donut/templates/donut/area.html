@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="{% static 'css/titels.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/area.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/like.scss' %}"/>
     <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +28,7 @@
     <script src="{% static 'js/search.js' %}" defer></script>
     {% endblock scripts %}
     <script src="{% static 'js/edit.js' %}" defer></script>
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 {% endblock %}
 
@@ -136,9 +137,12 @@
             <div class="description" id="description{{posts.id}}">
             <p>{{ posts.description | linebreaksbr }}</p>
             </div>
-<!--            <div class="description2" id="id_description2" >-->
-<!--<p></p>-->
-<!--            </div>-->
+            <div class="like">
+<button type="button" id="like-button">
+<svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/></svg>
+  Like
+</button>
+</div>
             <textarea class="edit-desc" id="edit-desc{{posts.id}}" style="display: none">
                 {{ posts.description }}
             </textarea>
@@ -152,6 +156,7 @@
 </div>
 </div>
 <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+
 <script>
 
     $(document).on('click', '.p-desc', function (e) {
@@ -179,7 +184,15 @@
 
 
 </script>
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+  var likeButton = document.getElementById('like-button');
+  likeButton.addEventListener('click', function() {
+    window.lb = likeButton;
+    likeButton.classList.toggle('selected');
+  });
+}, false);
+</script>
 <script>
     $(document).on('click', '.edit2',function(e) {
         let id = e.target.id
@@ -212,6 +225,7 @@
 
     })();
 </script>
+
 
 
 {% endblock %}
