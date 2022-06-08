@@ -96,7 +96,7 @@
         <img class="zoom" src="{{ posts.img.url }}" alt="" width="300px" height="380px" style="border-radius: 30px;">
         <div class="button2 content fade" >
             <p>Описание:</p>
-            <div class="description-post" >
+            <div class="description-post" id="description-post-id">
             <p class="p-desc"  id="open{{posts.id}}">{{ posts.description|linebreaksbr }}</p>
                 </div>
 
@@ -113,11 +113,13 @@
 
                 <li><a class="as" href="#">. . .<i class=""></i></a>
                     <ul class="submenu2">
-                        <form action="{% url 'edit' %}" method="post">
+                        <form action="" method="post">
                             {% csrf_token %}
                             <input class="id-post2 edit2" id="{{posts.id}}" name="id" type="button" value="{{ posts.id }}">
                             <li><a class="as2" href="">Редактировать</a></li>
                         </form>
+
+
 
                         <form action="{% url 'delite' %}" method="post">
                             {% csrf_token %}
@@ -134,9 +136,16 @@
             <div class="description" id="description{{posts.id}}">
             <p>{{ posts.description | linebreaksbr }}</p>
             </div>
+<!--            <div class="description2" id="id_description2" >-->
+<!--<p></p>-->
+<!--            </div>-->
             <textarea class="edit-desc" id="edit-desc{{posts.id}}" style="display: none">
                 {{ posts.description }}
             </textarea>
+             <form action="{% url 'edit' %}" method="post">
+                  {% csrf_token %}
+                 <input class="edit-button" name="id2" id="edit-button{{posts.id}}" type="button" value="{{ posts.id }}">
+             </form>
         </div>
     </div>
     {% endfor %}
@@ -171,6 +180,18 @@
 
 </script>
 
+<script>
+    $(document).on('click', '.edit2',function(e) {
+        let id = e.target.id
+        const btn = document.getElementById('edit-button'+ id)
+        btn.style.display='block'
+        const description2 = document.getElementById("description" + id)
+        const textarea = document.getElementById("edit-desc" + id)
+        textarea.style.display = 'none'
+        description2.style.display = 'none'
+        textarea.style.display = 'flex'
+    })
+</script>
 
 <script>
     (function () {

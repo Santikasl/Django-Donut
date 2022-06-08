@@ -1,48 +1,35 @@
 
-$(document).on('click', '.edit2',function(e){
+$(document).on('click', '.edit-button',function(e){
     let id = e.target.id;
-    const description2 = document.getElementById("description"+ id)
-    const textarea = document.getElementById("edit-desc"+id)
-    console.log(textarea)
-    textarea.style.display='none'
+    const ge = document.getElementById(id)
+    let idPosts = ge.value
+    const desc = document.getElementById('edit-desc'+ idPosts)
+    let description = desc.value
+    const descriptionpost2 = document.getElementById('open'+idPosts)
+    const description2 = document.getElementById("description" + idPosts)
+ const textarea = document.getElementById("edit-desc" + idPosts)
 
-    console.log(id)
     $.ajax({
         type:'POST',
         url: '/edit/',
         data:{
             csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            'id': idPosts,
+            'description': description,
         },
         success:function(res_post2) {
-            console.log("gwwrgewg")
-            description2.style.display = 'none'
-            textarea.style.display='flex'
-            // const dataPost = res_post.data
-            // if (Array.isArray(dataPost) && sort === false) {
-            //     sortPost.style.display = 'grid'
-            //     mainContent.style.display = 'none'
-            //     dataPost.forEach(sortPosts => {
-            //         sortPost.innerHTML += `
-            //            <div class="photo">
-            //             <img class="zoom" src="${sortPosts.img}" alt="" width="300px" height="380px"
-            //                  style=" border-radius: 30px;">
-            //             <div class="content fade button2" id="postbtn{{ posts.id}}}">
-            //                 <p>Описание:</p>
-            //                 <p>${sortPosts.descriptions}</p>
-            //
-            //             </div>
-            //         </div>
-            //
-            //         `
-            //     })
-            //     sort = true;
-            // }
-            // else {
-            //     sortPost.innerHTML = ""
-            //     sortPost.style.display = 'none'
-            //     mainContent.style.display = 'grid'
-            //     sort = false;
-            // }
+            const dataPost2 = res_post2.data
+            description2.style.display = 'flex'
+            console.log(dataPost2)
+            description2.innerHTML = ""
+            descriptionpost2.innerHTML=""
+            textarea.style.display='none'
+                        description2.innerHTML += `
+            <p>${dataPost2.split('\n').join('<br>')}</p>
+`
+            descriptionpost2.innerHTML+=`
+            ${dataPost2.split('\n').join('<br>')}
+            `
         },
 
         error : function(xhr,errmsg,err) {

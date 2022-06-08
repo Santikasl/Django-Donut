@@ -183,10 +183,22 @@ def delite(request):
         post.delete()
     return HttpResponseRedirect(reverse('area'))
 
+
 def edit(request):
     if request.is_ajax():
-        data = []
-        res_post2 = data
+        id = request.POST.get('id', None)
+        post2 = Posts.objects.get(id=id)
+        post2.description = request.POST.get('description', None)
+        post2.save()
+        data2 = post2.description
+        # for posi in post:
+        #     item = {
+        #         'pk': posi.pk,
+        #         'descriptions': posi.description,
+        #         'img': posi.img.url,
+        #     }
+        #     data2.append(item)
+        res_post2 = data2
         return JsonResponse({'data': res_post2})
 
 

@@ -13,6 +13,7 @@ const sendSearchData = (dataName) => {
         data: {
             'csrfmiddlewaretoken': csrf,
             'dataName': dataName,
+
         },
         success: (res) => {
             const data = res.data
