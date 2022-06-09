@@ -24,9 +24,13 @@ def default_datetime(): return datetime.now()
 class Posts(models.Model):
     description = models.TextField(max_length=2000)
     date = models.DateTimeField(default=default_datetime)
-    likes = models.IntegerField(default=0)
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, related_name='creaters')
     img = models.ImageField(upload_to='posts/')
+    liked = models.ManyToManyField(User, default=None, blank=True)
+
+    @property
+    def num_likes(self):
+        return self.liked.all().count()
 
     def save(self, **kwargs):
         super().save()
@@ -38,7 +42,17 @@ class Posts(models.Model):
             img.save(self.img.path)
 
 
+LIKE_CHOICES = {
+    ('Like', 'Like'),
+    ('Unlike', 'Unlike'),
+}
+
+
 class LikesPost(models.Model):
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
-    post = models.ForeignKey(Posts, null=True, blank=True, on_delete=models.CASCADE)
-    check = models.BooleanField(default=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
+
+    def __str__(self):
+        return f' {self.user}: {self.post.id}'
+

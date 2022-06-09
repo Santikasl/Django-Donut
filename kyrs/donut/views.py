@@ -1,13 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import JsonResponse
 from .forms import *
 from .forms import Imgform
 from django.contrib import messages
-from .models import CustomUsers
-
+from .models import CustomUsers, LikesPost
 
 
 def logout_user(request):
@@ -191,15 +190,36 @@ def edit(request):
         post2.description = request.POST.get('description', None)
         post2.save()
         data2 = post2.description
-        # for posi in post:
-        #     item = {
-        #         'pk': posi.pk,
-        #         'descriptions': posi.description,
-        #         'img': posi.img.url,
-        #     }
-        #     data2.append(item)
         res_post2 = data2
         return JsonResponse({'data': res_post2})
+
+
+def like(request):
+    user = request.user
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        post_ogj = Posts.objects.get(id=post_id)
+
+        if user in post_ogj.liked.all():
+            post_ogj.liked.remove(user)
+        else:
+            post_ogj.liked.add(user)
+        like, created = LikesPost.objects.get_or_create(user=user, post_id=post_id)
+
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+        like.save()
+
+        data = {
+            'value': like.value,
+            'likes': post_ogj.liked.all().count()
+        }
+        return JsonResponse(data, safe=False)
+
+
 
 
 

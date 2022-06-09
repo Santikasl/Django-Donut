@@ -24,11 +24,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <script src="https://code.jquery.com/jquery-2.0.2.min.js"></script>
-     {% block scripts %}
+    {% block scripts %}
     <script src="{% static 'js/search.js' %}" defer></script>
     {% endblock scripts %}
     <script src="{% static 'js/edit.js' %}" defer></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="{% static 'js/like.js' %}" defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 {% endblock %}
 
@@ -36,124 +37,125 @@
 {% block name %}
 <div class="blur-search" id="overlay-blur">
 
-<div class="logo">
-    <img src="{{ cUser.img.url }}" alt="" width="150px">
+    <div class="logo">
+        <img src="{{ cUser.img.url }}" alt="" width="150px">
 
-</div>
-<div class="file-upload ">
-    <form action="" enctype="multipart/form-data" method="post" >
-        {% csrf_token %}
-        <div class="example-1">
-            <div class="form-group">
-                <label class="label">
-                    <svg class="svg" style="width:100px;height:100px" viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                              d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                    </svg>
-                    {{ form.img }}
-                </label>
+    </div>
+    <div class="file-upload ">
+        <form action="" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div class="example-1">
+                <div class="form-group">
+                    <label class="label">
+                        <svg class="svg" style="width:100px;height:100px" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                  d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                        </svg>
+                        {{ form.img }}
+                    </label>
+                </div>
             </div>
+        </form>
+    </div>
+    <div class="con">
+        {% if request.user.is_authenticated %}
+        <div>
+            <p style="color:white; font-family: Organetto-Variable;font-size:50px;">
+                {{ request.user.username }}
+                <img src="{% static 'img/gaochka.png' %}" alt="" width="30px" style="margin-top: -5px">
+            </p>
+
         </div>
-    </form>
-</div>
-<div class="con">
-    {% if request.user.is_authenticated %}
-    <div>
-        <p style="color:white; font-family: Organetto-Variable;font-size:50px;">
-            {{ request.user.username }}
-            <img src="{% static 'img/gaochka.png' %}" alt="" width="30px" style="margin-top: -5px">
-        </p>
-
+        {% endif %}
     </div>
-    {% endif %}
-</div>
 
-<div class="post">
-    <div>
-        <nav class="three">
-            <ul class="topmenu">
+    <div class="post">
+        <div>
+            <nav class="three">
+                <ul class="topmenu">
 
-                <li><a class="as" href="#">. . .<i class=""></i></a>
-                    <ul class="submenu">
-                        <li><a class="as2" href="">Редактировать</a></li>
+                    <li><a class="as" href="#">. . .<i class=""></i></a>
+                        <ul class="submenu">
+                            <li><a class="as2" href="">Редактировать</a></li>
 
-                        <li><a class="as2 as3" href="{% url 'exit' %}?next=/">Выйти</a></li>
-                    </ul>
-                </li>
+                            <li><a class="as2 as3" href="{% url 'exit' %}?next=/">Выйти</a></li>
+                        </ul>
+                    </li>
 
-            </ul>
-        </nav>
+                </ul>
+            </nav>
+        </div>
+        <p style="color: white; font-family: Organetto-Variable; font-size: 30px">{{ cUser.count_posts }} постов</p>
+        <p style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ cUser.followers }}
+            отслеживают</p>
+        <p style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ cUser.likes }}
+            лайков</p>
     </div>
-    <p style="color: white; font-family: Organetto-Variable; font-size: 30px">{{ cUser.count_posts }} постов</p>
-    <p style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ cUser.followers }}
-        отслеживают</p>
-    <p style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ cUser.likes }}
-        лайков</p>
-</div>
 
-<div class="main-content2">
-    {% for posts in all_post_user %}
-    <div class="photo" >
-        <img class="zoom" src="{{ posts.img.url }}" alt="" width="300px" height="380px" style="border-radius: 30px;">
-        <div class="button2 content fade" >
-            <p>Описание:</p>
-            <div class="description-post" id="description-post-id">
-            <p class="p-desc"  id="open{{posts.id}}">{{ posts.description|linebreaksbr }}</p>
+    <div class="main-content2">
+        {% for posts in all_post_user %}
+        <div class="photo">
+            <img class="zoom" src="{{ posts.img.url }}" alt="" width="300px" height="380px"
+                 style="border-radius: 30px;">
+            <div class="button2 content fade">
+                <p>Описание:</p>
+                <div class="description-post" id="description-post-id">
+                    <p class="p-desc" id="open{{posts.id}}">{{ posts.description|linebreaksbr }}</p>
                 </div>
 
+            </div>
         </div>
-    </div>
-    <div class="overlay2" id="myOverlayopen{{posts.id}}">
-        <div class="popup2">
-            <div class="photo-post">
-                <img src="{{ posts.img.url }}" alt="" width="100%"  height="100%" style=" object-fit: cover;	">
-            </div>
+        <div class="overlay2" id="myOverlayopen{{posts.id}}">
+            <div class="popup2">
+                <div class="photo-post">
+                    <img src="{{ posts.img.url }}" alt="" width="100%" height="100%" style=" object-fit: cover;	">
+                </div>
                 <div>
-        <nav class="three2">
-            <ul class="topmenu">
+                    <nav class="three2">
+                        <ul class="topmenu">
 
-                <li><a class="as" href="#">. . .<i class=""></i></a>
-                    <ul class="submenu2">
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <input class="id-post2 edit2" id="{{posts.id}}" name="id" type="button" value="{{ posts.id }}">
-                            <li><a class="as2" href="">Редактировать</a></li>
-                        </form>
+                            <li><a class="as" href="#">. . .<i class=""></i></a>
+                                <ul class="submenu2">
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        <input class="id-post2 edit2" id="s{{posts.id}}" name="id" type="button"
+                                               value="{{ posts.id }}">
+                                        <li><a class="as2" href="">Редактировать</a></li>
+                                    </form>
 
 
+                                    <form action="{% url 'delite' %}" method="post">
+                                        {% csrf_token %}
+                                        <input class="id-post" name="id" type="submit" value="{{ posts.id }}">
+                                        <li><a class="as2 as3" href="{% url 'delite' %}">Удалить</a></li>
+                                    </form>
+                                </ul>
+                            </li>
 
-                        <form action="{% url 'delite' %}" method="post">
-                            {% csrf_token %}
-                            <input class="id-post" name="id"  type="submit" value="{{ posts.id }}">
-                            <li><a class="as2 as3" href="{% url 'delite' %}">Удалить</a></li>
-                        </form>
-                    </ul>
-                </li>
-
-            </ul>
-        </nav>
-    </div>
-            <h1 class="title-post">ОПИСАНИЕ</h1>
-            <div class="description" id="description{{posts.id}}">
-            <p>{{ posts.description | linebreaksbr }}</p>
-            </div>
-            <div class="like">
-<button type="button" id="like-button">
-<svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/></svg>
-  Like
-</button>
-</div>
-            <textarea class="edit-desc" id="edit-desc{{posts.id}}" style="display: none">
+                        </ul>
+                    </nav>
+                </div>
+                <h1 class="title-post">ОПИСАНИЕ</h1>
+                <div class="description" id="description{{posts.id}}">
+                    <p>{{ posts.description | linebreaksbr }}</p>
+                </div>
+                <form action="{% url 'like' %}" method="post" class="like-form form2" id="{{posts.id}}">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id"  value="{{posts.id}}">
+                  <p class="like-img">❤</p>  <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}" type="submit">{{ posts.liked.all.count }}</button>
+                </form>
+                <textarea class="edit-desc" id="edit-desc{{posts.id}}" style="display: none">
                 {{ posts.description }}
             </textarea>
-             <form action="{% url 'edit' %}" method="post">
-                  {% csrf_token %}
-                 <input class="edit-button" name="id2" id="edit-button{{posts.id}}" type="button" value="{{ posts.id }}">
-             </form>
+                <form action="{% url 'edit' %}" method="post">
+                    {% csrf_token %}
+                    <input class="edit-button" name="id2" id="edit-button{{posts.id}}" type="button"
+                           value="{{ posts.id }}">
+                </form>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 </div>
 <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
 
@@ -180,26 +182,16 @@
     });
 
 
-
-
-
 </script>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-  var likeButton = document.getElementById('like-button');
-  likeButton.addEventListener('click', function() {
-    window.lb = likeButton;
-    likeButton.classList.toggle('selected');
-  });
-}, false);
-</script>
-<script>
-    $(document).on('click', '.edit2',function(e) {
+    $(document).on('click', '.edit2', function (e) {
         let id = e.target.id
-        const btn = document.getElementById('edit-button'+ id)
-        btn.style.display='block'
-        const description2 = document.getElementById("description" + id)
-        const textarea = document.getElementById("edit-desc" + id)
+        let newid = id.slice(1);
+        const btn = document.getElementById('edit-button' + newid)
+        btn.style.display = 'block'
+        const description2 = document.getElementById("description" + newid)
+        const textarea = document.getElementById("edit-desc" + newid)
         textarea.style.display = 'none'
         description2.style.display = 'none'
         textarea.style.display = 'flex'
@@ -225,7 +217,6 @@
 
     })();
 </script>
-
 
 
 {% endblock %}
