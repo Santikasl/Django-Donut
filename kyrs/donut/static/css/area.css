@@ -189,6 +189,10 @@ h3 {
     text-overflow: ellipsis;
 }
 
+.p-desc {
+    z-index: -1;
+}
+
 .photo:hover > img.zoom {
 
     filter: blur(1px);
@@ -379,7 +383,7 @@ nav {
 
 .three {
     position: absolute;
-    margin-left: 400px;
+    margin-left: 350px;
     margin-top: -70px;
 
 }
@@ -841,9 +845,11 @@ input[type='search']::-webkit-search-results-decoration {
     box-shadow: 4px 4px 24px 0px rgba(34, 60, 80, 0.2);
     font-family: Calibri;
 }
-.like-img{
+
+.like-img {
 
 }
+
 .negative {
     width: 50px;
     border: none;

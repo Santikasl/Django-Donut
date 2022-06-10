@@ -58,7 +58,7 @@
     <div class="section s3">
         <div class="form">
             <a id="hider" class="btn" href="{% url 'signIn' %}#3">SignIN</a>
-            <a id="hider2" class="btn" href="{% url 'reg' %}#3">SignIN</a>
+            <a id="hider2" class="btn" href="{% url 'reg' %}#3">SignUP</a>
 </div>
         <img src="{% static 'img/list3.png' %}" alt="" width="1350px"
              style="z-index:-4;position: absolute; left: 100px; top: 0px; top:0px">
@@ -68,7 +68,7 @@
 
 
         <!--        форма с авторизацией-->
-        <form id="text2" class="registr" method="post">
+        <form id="text2" class="registr" method="post" action="{% url 'signIn' %}">
             {% if messages %}
             <div class="messages">
                 {% for message in messages %}

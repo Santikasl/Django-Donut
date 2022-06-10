@@ -9,6 +9,7 @@ $(document).on('click', '.edit-button',function(e){
     const description2 = document.getElementById("description" + idPosts)
  const textarea = document.getElementById("edit-desc" + idPosts)
 
+
     $.ajax({
         type:'POST',
         url: '/edit/',
@@ -19,6 +20,7 @@ $(document).on('click', '.edit-button',function(e){
         },
         success:function(res_post2) {
             const dataPost2 = res_post2.data
+
             description2.style.display = 'flex'
             console.log(dataPost2)
             description2.innerHTML = ""

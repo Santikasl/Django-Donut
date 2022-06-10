@@ -78,7 +78,7 @@
                         <ul class="submenu">
                             <li><a class="as2" href="">Редактировать</a></li>
 
-                            <li><a class="as2 as3" href="{% url 'exit' %}?next=/">Выйти</a></li>
+                            <li><a class="as2 as3" href="{% url 'exit' %}#3">Выйти</a></li>
                         </ul>
                     </li>
 
@@ -188,8 +188,10 @@
     $(document).on('click', '.edit2', function (e) {
         let id = e.target.id
         let newid = id.slice(1);
+        const btnlike = document.getElementById('btnlike' + newid)
         const btn = document.getElementById('edit-button' + newid)
         btn.style.display = 'block'
+        btnlike.style.display='none'
         const description2 = document.getElementById("description" + newid)
         const textarea = document.getElementById("edit-desc" + newid)
         textarea.style.display = 'none'

@@ -11,7 +11,7 @@ from .models import CustomUsers, LikesPost
 
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect(reverse('reg'))
+    return HttpResponseRedirect(reverse('signIn'))
 
 
 def reg(request):
@@ -32,7 +32,7 @@ def reg(request):
                 raw_password = form.cleaned_data.get('password1')
                 user = authenticate(username=username, password=raw_password)
                 login(request, user)
-                return render(request, 'donut/main.html', {'post': NewPosts})
+                return HttpResponseRedirect(reverse('main'))
         else:
             form = ExtendedRegisterForm()
         return render(request, 'donut/reg.html', {'form': form, 'post': NewPosts})
@@ -115,12 +115,14 @@ def area(request):
                     cUser.img = imgForm.cleaned_data['img']
                     cUser.save()
                     return render(request, 'donut/area.html',
-                                  {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'all_post_user': all_post_user, 'count':count})
+                                  {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'all_post_user': all_post_user,
+                                   'count': count})
         else:
             imgForm = Imgform()
 
         return render(request, 'donut/area.html',
-                      {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'all_post_user': all_post_user, 'count': count})
+                      {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'all_post_user': all_post_user,
+                       'count': count})
 
 
 def search_profile(request, pk):
@@ -202,29 +204,14 @@ def like(request):
     if request.method == 'POST' and request.is_ajax():
         post_id = request.POST.get('post_id')
         post_obj = Posts.objects.get(id=post_id)
-
-        # if user in post_obj.liked.all():
-        #     post_obj.liked.remove(user)
-        # else:
-        #     post_obj.liked.add(user)
-
         if user in post_obj.liked.all():
             like = 'Like'
             post_obj.liked.remove(user)
         else:
             like = 'Unlike'
             post_obj.liked.add(user)
-
-
         data = {
             'like_value': like,
             'likes': post_obj.liked.all().count()
         }
-        print(data['likes'])
         return JsonResponse(data, safe=False)
-
-
-
-
-
-
