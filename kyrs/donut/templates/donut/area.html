@@ -142,7 +142,7 @@
                 <form action="{% url 'like' %}" method="post" class="like-form form2" id="{{posts.id}}">
                     {% csrf_token %}
                     <input type="hidden" name="post_id"  value="{{posts.id}}">
-                  <p class="like-img">❤</p>  <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}" type="submit">{{ posts.liked.all.count }}</button>
+                   <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}" type="submit"> <p class="like-img" id="like-img{{posts.id}}">❤ {{ posts.liked.all.count }}</p></button>
                 </form>
                 <textarea class="edit-desc" id="edit-desc{{posts.id}}" style="display: none">
                 {{ posts.description }}

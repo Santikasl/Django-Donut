@@ -199,27 +199,28 @@ def edit(request):
 
 def like(request):
     user = request.user
-    if request.method == 'POST':
+    if request.method == 'POST' and request.is_ajax():
         post_id = request.POST.get('post_id')
-        post_ogj = Posts.objects.get(id=post_id)
+        post_obj = Posts.objects.get(id=post_id)
 
-        if user in post_ogj.liked.all():
-            post_ogj.liked.remove(user)
+        # if user in post_obj.liked.all():
+        #     post_obj.liked.remove(user)
+        # else:
+        #     post_obj.liked.add(user)
+
+        if user in post_obj.liked.all():
+            like = 'Like'
+            post_obj.liked.remove(user)
         else:
-            post_ogj.liked.add(user)
-        like, created = LikesPost.objects.get_or_create(user=user, post_id=post_id)
+            like = 'Unlike'
+            post_obj.liked.add(user)
 
-        if not created:
-            if like.value == 'Like':
-                like.value = 'Unlike'
-            else:
-                like.value = 'Like'
-        like.save()
 
         data = {
-            'value': like.value,
-            'likes': post_ogj.liked.all().count()
+            'like_value': like,
+            'likes': post_obj.liked.all().count()
         }
+        print(data['likes'])
         return JsonResponse(data, safe=False)
 
 
