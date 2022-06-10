@@ -2,6 +2,7 @@
 {% extends 'donut/title.html' %}
 {% load static %}
 {% block head %}
+{% load customtags %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -138,11 +139,12 @@
                 <h1 class="title-post">ОПИСАНИЕ</h1>
                 <div class="description" id="description{{posts.id}}">
                     <p>{{ posts.description | linebreaksbr }}</p>
+                    {{ posts | color:user}}
                 </div>
                 <form action="{% url 'like' %}" method="post" class="like-form form2" id="{{posts.id}}">
                     {% csrf_token %}
                     <input type="hidden" name="post_id"  value="{{posts.id}}">
-                   <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}" type="submit"> <p class="like-img" id="like-img{{posts.id}}">❤ {{ posts.liked.all.count }}</p></button>
+                   <button  class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}" type="submit"> <p {% if posts|color:user %} style="color: red;" {% endif%} class="like-img" id="like-img{{posts.id}}">❤ {{ posts.liked.all.count }}</p></button>
                 </form>
                 <textarea class="edit-desc" id="edit-desc{{posts.id}}" style="display: none">
                 {{ posts.description }}
