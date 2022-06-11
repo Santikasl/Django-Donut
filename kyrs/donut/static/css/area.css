@@ -184,13 +184,35 @@ h3 {
 
 .description-post {
     text-align: justify;
-    height: 290px;
+    height: 235px;
+
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+.text {
+    margin-top: 5px;
+}
+
 .p-desc {
     z-index: -1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.more-btn {
+    margin-top: 23px;
+    width: 120px;
+    height: 30px;
+    color: white;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: center;
+    border-radius: 30px;
+    padding-bottom: 3px;
+
+
 }
 
 .photo:hover > img.zoom {
@@ -364,14 +386,27 @@ span {
     border-radius: 20px;
     font-size: 20px;
     width: 400px;
+    font-family: 'Montserrat Alternates', sans-serif;
     background-color: #fafafa;
     text-align: justify;
     height: 400px;
     padding-left: 30px;
     padding-right: 30px;
-    margin-top: 95px;
+    margin-top: 0px;
     margin-left: 540px;
     padding-top: 0px;
+}
+
+.edit-button2 {
+    position: absolute;
+    background-color: #232323;
+    border: 2px solid black;
+    color: white;
+    border-radius: 20px;
+    width: 150px;
+    margin-left: 170px;
+    height: 50px;
+    margin-top: 430px;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Lora);
@@ -505,6 +540,7 @@ ul {
 }
 
 .edit-button {
+    opacity: 0;
     position: absolute;
     background-color: #232323;
     border: 2px solid black;
@@ -513,7 +549,7 @@ ul {
     width: 150px;
     margin-left: 665px;
     height: 50px;
-    margin-top: 520px;
+    margin-top: 430px;
 }
 
 
@@ -548,13 +584,12 @@ ul {
 
 .file-upload {
     position: absolute;
-
     width: 100px;
     height: 100px;
     color: white;
     top: 86px;
     left: 116px;
-    z-index: 100;
+    z-index: 3;
 }
 
 .example-1 .form-group {
@@ -864,4 +899,115 @@ input[type='search']::-webkit-search-results-decoration {
 }
 
 
+.follow-btn {
+    margin-top: 60px;
+    margin-left: 36px;
+}
 
+.follow {
+    background-color: #0c0c0c;
+    width: 130px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 20px;
+    outline: 1px solid white;
+    color: white;
+    font-family: Organetto-Variable;
+}
+
+.overlay3 {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+
+}
+
+.titel {
+    color: #1e1e1e;
+    font-family: Organetto-Variable;
+    margin-top: 40px;
+}
+
+.popup3 {
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    left: 50%;
+    top: 53%;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+    box-sizing: border-box;
+    background: #fafafa;
+    color: #0c0c0c;
+    text-align: center;
+}
+
+.close-popup3 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+}
+
+.close-popup3:before {
+    content: '';
+    background-color: #fff;
+    position: absolute;
+    height: 1px;
+    width: 20px;
+    top: 11px;
+    left: -4px;
+    transform: rotate(-45deg);
+}
+
+.close-popup3:after {
+    content: '';
+    background-color: #fff;
+    position: absolute;
+    height: 1px;
+    width: 20px;
+    top: 11px;
+    transform: rotate(45deg);
+    left: -4px;
+}
+
+.follower{
+    display: grid;
+}
+
+.img{
+    overflow: hidden;
+    width: 60px;
+    height: 60px;
+    border-radius: 90px;
+
+    z-index: 3;
+    background-color: #ffffff;
+    align-items: center;
+    justify-items: center;
+    margin-left: 50px;
+    top: 100px;
+}
+
+.nic{
+    font-family: Organetto-Variable;
+    color: #1e1e1e;
+    font-size: 30px;
+    margin-top: -50px;
+    margin-left: 40px;
+
+
+}
+
+.follow-div{
+    background-color: #e2264d;
+    width: 300px;
+    height: 80px;
+}

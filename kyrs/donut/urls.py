@@ -12,6 +12,7 @@ urlpatterns = [
     path('area/', views.area, name='area'),
     path('like/', views.like, name='like'),
     path('search/', views.search_results, name='search'),
+    path('siwtch_follow/', views.follow_unfollow, name='follow-unfollow-view'),
     path('sort/', views.sort, name='sort'),
     path('edit/', views.edit, name='edit'),
     path('like/', views.like, name='like'),

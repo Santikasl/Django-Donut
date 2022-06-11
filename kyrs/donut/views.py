@@ -95,10 +95,11 @@ def area(request):
     if request.user.is_authenticated == False:
         return render(request, 'donut/index.html', {'form': auth_form})
     else:
-
         cUser = CustomUsers.objects.get(user=request.user)
+        followers = cUser.following.all()
+        print(followers)
         postt = Posts(user=request.user)
-
+        count_follow = cUser.following.all().count()
         all_post_user = Posts.objects.filter(user=request.user)
         count = all_post_user.count()
         if request.method == 'POST':
@@ -116,24 +117,34 @@ def area(request):
                     cUser.save()
                     return render(request, 'donut/area.html',
                                   {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'all_post_user': all_post_user,
-                                   'count': count})
+                                   'count': count, 'count_follow': count_follow,'followers':followers})
         else:
             imgForm = Imgform()
 
         return render(request, 'donut/area.html',
                       {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'all_post_user': all_post_user,
-                       'count': count})
+                       'count': count, 'count_follow': count_follow,'followers':followers})
 
 
-def search_profile(request, pk):
+def search_profile(request, pk, **kwargs):
     search_user = CustomUsers.objects.filter(pk=pk).first()
-    # print(search_user)
+    my_profile = CustomUsers.objects.get(user=request.user)
+    if search_user == my_profile:
+        return HttpResponseRedirect(reverse('area'))
+    count_follow = search_user.following.all().count()
+    user = User.objects.get(pk=pk)
+    all_post_user = Posts.objects.filter(user=user)
+    post_count = all_post_user.count()
+    if my_profile.user in search_user.following.all():
+        follow = True
+    else:
+        follow = False
     all_post_user = Posts.objects.filter(user=search_user.user)
-    print(all_post_user)
     obj = CustomUsers.objects.filter(pk=pk).first
     if obj:
         return render(request, 'donut/profile.html',
-                      {'obj': obj, 'pk': pk, 'post': NewPosts, 'all_post_user': all_post_user})
+                      {'obj': obj, 'pk': pk, 'post': NewPosts, 'all_post_user': all_post_user, 'follow': follow,
+                       'count_follow': count_follow, 'post_count': post_count})
 
 
 def search_results(request):
@@ -150,7 +161,6 @@ def search_results(request):
                     'name': pos.name,
                     'count_posts': pos.count_posts,
                     'likes': pos.likes,
-                    'followers': pos.followers,
                     'img': pos.img.url,
                 }
 
@@ -182,7 +192,6 @@ def sort(request):
 def delite(request):
     if request.method == 'POST':
         post_id = request.POST['id']
-        print(post_id)
         post = Posts.objects.get(id=post_id)
         post.delete()
     return HttpResponseRedirect(reverse('area'))
@@ -215,3 +224,15 @@ def like(request):
             'likes': post_obj.liked.all().count()
         }
         return JsonResponse(data, safe=False)
+
+
+def follow_unfollow(request):
+    if request.method == 'POST':
+        my_profile = CustomUsers.objects.get(user=request.user)
+        pk = request.POST.get('profile_pk')
+        obj = CustomUsers.objects.get(pk=pk)
+        if my_profile.user in obj.following.all():
+            obj.following.remove(my_profile.user)
+        else:
+            obj.following.add(my_profile.user)
+        return redirect(request.META.get('HTTP_REFERER'))

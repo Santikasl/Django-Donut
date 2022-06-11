@@ -10,7 +10,7 @@ class CustomUsers(models.Model):
     name = models.CharField(max_length=100, default='none')
     count_posts = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
-    followers = models.IntegerField(default=0)
+    following = models.ManyToManyField(User, related_name='following', blank=True)
     img = models.ImageField(upload_to='images/', default='images/default.png')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 

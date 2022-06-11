@@ -87,8 +87,8 @@
             </nav>
         </div>
         <p style="color: white; font-family: Organetto-Variable; font-size: 30px">{{ count }} posts</p>
-        <p style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ cUser.followers }}
-            отслеживают</p>
+        <p class="follower" style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ count_follow }}
+            follow</p>
         <p style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ cUser.likes }}
             лайков</p>
     </div>
@@ -101,9 +101,9 @@
             <div class="button2 content fade">
                 <p>Описание:</p>
                 <div class="description-post" id="description-post-id">
-                    <p class="p-desc" id="open{{posts.id}}">{{ posts.description|linebreaksbr }}</p>
+                    <p class="p-desc">{{ posts.description|linebreaksbr }}</p>
                 </div>
-
+                <button class="more-btn" id="open{{posts.id}}">Подробнее</button>
             </div>
         </div>
         <div class="overlay2" id="myOverlayopen{{posts.id}}">
@@ -132,95 +132,118 @@
                                     </form>
                                 </ul>
                             </li>
-
                         </ul>
                     </nav>
                 </div>
                 <h1 class="title-post">ОПИСАНИЕ</h1>
                 <div class="description" id="description{{posts.id}}">
                     <p>{{ posts.description | linebreaksbr }}</p>
-                    {{ posts | color:user}}
                 </div>
                 <form action="{% url 'like' %}" method="post" class="like-form form2" id="{{posts.id}}">
                     {% csrf_token %}
-                    <input type="hidden" name="post_id"  value="{{posts.id}}">
-                   <button  class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}" type="submit"> <p {% if posts|color:user %} style="color: red;" {% endif%} class="like-img" id="like-img{{posts.id}}">❤ {{ posts.liked.all.count }}</p></button>
+                    <input type="hidden" name="post_id" value="{{posts.id}}">
+                    <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}" type="submit"><p
+                            {% if posts|color:user %}
+                            style="color: red;"
+                            {% endif %}
+                            class="like-img"
+                            id="like-img{{posts.id}}">
+                        ❤ {{ posts.liked.all.count }}</p></button>
                 </form>
                 <textarea class="edit-desc" id="edit-desc{{posts.id}}" style="display: none">
                 {{ posts.description }}
             </textarea>
                 <form action="{% url 'edit' %}" method="post">
                     {% csrf_token %}
+                    <button class="edit-button2">Изменить</button>
                     <input class="edit-button" name="id2" id="edit-button{{posts.id}}" type="button"
                            value="{{ posts.id }}">
+
                 </form>
             </div>
         </div>
         {% endfor %}
+        <div class="overlay3" id="myOverlay2">
+            <div class="popup3">
+                <h2 class="titel">Ваши подписчики</h2>
+                <div class="follower">
+ {% for followerss in followers %}
+
+                    <div class="follow-div">
+                        <div class="img">
+                            <img src="{{ followerss.img.url }}" alt="" width="70px">
+                        </div>
+                        <p class="nic">{{ followerss.name }}</p>
+                    </div>
+   {% endfor %}
+
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
-
-<script>
-
-    $(document).on('click', '.p-desc', function (e) {
-        let id = e.target.id;
-        $('#myOverlay' + id).fadeIn();
-
-    });
-
-
-    // Закрытие окна на крестикe
-    $('.close-popup2').click(function () {
-        $('.overlay2').fadeOut();
-    });
-
-    // Закрытие окна на поле
-    $(document).mouseup(function (e) {
-        var popup = $('.popup2');
-        if (e.target != popup[0] && popup.has(e.target).length === 0) {
-            $('.overlay2').fadeOut();
-        }
-    });
-
-
-</script>
-
-<script>
-    $(document).on('click', '.edit2', function (e) {
-        let id = e.target.id
-        let newid = id.slice(1);
-        const btnlike = document.getElementById('btnlike' + newid)
-        const btn = document.getElementById('edit-button' + newid)
-        btn.style.display = 'block'
-        btnlike.style.display='none'
-        const description2 = document.getElementById("description" + newid)
-        const textarea = document.getElementById("edit-desc" + newid)
-        textarea.style.display = 'none'
-        description2.style.display = 'none'
-        textarea.style.display = 'flex'
-    })
-</script>
-
-<script>
-    (function () {
-
-        'use strict';
-
-        $('.input-file').each(function () {
-            var $input = $(this),
-                $label = $input.next('.js-labelFile'),
-                labelVal = $label.html();
-
-            $input.on('change', function (element) {
-                var fileName = '';
-                if (element.target.value) fileName = element.target.value.split('\\').pop();
-                fileName ? $label.addClass('has-file').find('.js-fileName').html(fileName) : $label.removeClass('has-file').html(labelVal);
-            });
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script>
+        $(document).on('click', '.more-btn', function (e) {
+            let id = e.target.id;
+            $('#myOverlay' + id).fadeIn();
         });
-
-    })();
-</script>
-
-
-{% endblock %}
+        // Закрытие окна на крестикe
+        $('.close-popup2').click(function () {
+            $('.overlay2').fadeOut();
+        });
+        // Закрытие окна на поле
+        $(document).mouseup(function (e) {
+            var popup = $('.popup2');
+            if (e.target != popup[0] && popup.has(e.target).length === 0) {
+                $('.overlay2').fadeOut();
+            }
+        });
+    </script>
+    <script>
+        $(document).on('click', '.follower', function (e) {
+            let id = e.target.id;
+            $('#myOverlay2').fadeIn();
+        });
+        // Закрытие окна на крестикe
+        $('.close-popup3').click(function () {
+            $('.overlay3').fadeOut();
+        });
+        // Закрытие окна на поле
+        $(document).mouseup(function (e) {
+            var popup = $('.popup3');
+            if (e.target != popup[0] && popup.has(e.target).length === 0) {
+                $('.overlay3').fadeOut();
+            }
+        });
+    </script>
+    <script>
+        $(document).on('click', '.edit2', function (e) {
+            let id = e.target.id
+            let newid = id.slice(1);
+            const btnlike = document.getElementById('btnlike' + newid)
+            const btn = document.getElementById('edit-button' + newid)
+            btn.style.display = 'block'
+            btnlike.style.opacity = '0'
+            const description2 = document.getElementById("description" + newid)
+            const textarea = document.getElementById("edit-desc" + newid)
+            textarea.style.display = 'none'
+            description2.style.display = 'none'
+            textarea.style.display = 'flex'
+        })
+    </script>
+    <script>
+        (function () {
+            'use strict';
+            $('.input-file').each(function () {
+                var $input = $(this),
+                    $label = $input.next('.js-labelFile'),
+                    labelVal = $label.html();
+                $input.on('change', function (element) {
+                    var fileName = '';
+                    if (element.target.value) fileName = element.target.value.split('\\').pop();
+                    fileName ? $label.addClass('has-file').find('.js-fileName').html(fileName) : $label.removeClass('has-file').html(labelVal);
+                });
+            });
+        })();
+    </script>
+    {% endblock %}
