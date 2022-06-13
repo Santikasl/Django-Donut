@@ -32,21 +32,27 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
 
 .sub-photo {
     display: grid;
-    grid-template-columns: 200px 200px 200px 200px;
-    grid-column-gap: 65px;
-    grid-row-gap: 50px;
-
+    grid-template-columns: 200px 200px 200px;
+    grid-column-gap: 290px;
+    grid-row-gap: 150px;
     position: absolute;
-    width: 65%;
-    margin-left: 32%;
+    width: 90%;
+    margin-left: 100px;
     height: 78%;
+
     overflow: scroll;
     z-index: 999;
     margin-top: -245px;
-
-
 }
-.sortBtn{
+
+.photo-s {
+    background-color: rgba(255, 255, 255, 0.97);
+    width: 370px;
+    height: 570px;
+    border-radius: 30px
+}
+
+.sortBtn {
     width: 50px;
     height: 50px;
     margin-top: 45px;
@@ -57,6 +63,7 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
     background-color: #e2264d;
     position: absolute;
 }
+
 .img-sub {
     width: 80px;
     margin-left: 30px;
@@ -93,8 +100,6 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
 
 
 }
-
-
 
 
 .your-subscriptions {
@@ -390,6 +395,51 @@ span {
     align-items: center;
     justify-items: center;
 
+}
+
+.avatar2 {
+    margin-top: 15px;
+    z-index: 3;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    border-radius: 80px;
+    margin-left: 30px;
+    background-color: #ffffff;
+    align-items: center;
+    justify-items: center;
+
+}
+
+.name-follow {
+    position: absolute;
+    color: #2a2a2a;
+    font-size: 30px;
+    font-family: Organetto-Variable;
+    margin-top: -55px;
+    margin-left: 120px;
+    z-index: 999;
+}
+.positive {
+    width: 50px;
+
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 80px;
+    font-size: 15px;
+    word-spacing: 2px;
+    border: none;
+    color: #2a2a2a;
+    box-shadow: 4px 4px 24px 0px rgba(34, 60, 80, 0.2);
+    font-family: Calibri;
+}
+
+.like-img {
+
+}
+.form2 {
+    margin-left: 280px;
+    margin-top: -60px;
 }
 
 .likes {
@@ -774,7 +824,8 @@ span {
     overflow: hidden;
 
 }
-.sort-post{
+
+.sort-post {
     z-index: 3;
     display: grid;
     grid-template-columns: 350px 350px 350px 350px;

@@ -45,13 +45,15 @@ def mainl(request):
         postt = Posts(user=request.user)
         cUser = CustomUsers.objects.get(user=request.user)
         pos = Posts.objects.all()
+        follows = cUser.user.following.all()
+
         newPost = NewPosts(request.POST, request.FILES)
         if newPost.is_valid():
             postt.img = newPost.cleaned_data['postImg']
             postt.description = newPost.cleaned_data['description']
             postt.save()
             return HttpResponseRedirect(reverse('area'))
-        return render(request, 'donut/main.html', {'post': NewPosts, 'pos': pos, 'cUser': cUser, 'post': NewPosts})
+        return render(request, 'donut/main.html', {'post': NewPosts, 'pos': pos, 'cUser': cUser, 'post': NewPosts, 'follows': follows})
 
 
 def signIn(request):
