@@ -5,7 +5,6 @@
 {% load customtags %}
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -14,6 +13,7 @@
 
     <link rel="stylesheet" href="{% static 'css/titels.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/area.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/like.scss' %}"/>
     <link rel="shortcut icon" href="{% static 'img/icon.png' %}" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,13 +24,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.0.2.min.js"></script>
     {% block scripts %}
     <script src="{% static 'js/search.js' %}" defer></script>
     {% endblock scripts %}
+    <script src="{% static 'js/edit.js' %}" defer></script>
     <script src="{% static 'js/like.js' %}" defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 {% endblock %}
+
+
 {% block name %}
 <div class="blur-search" id="overlay-blur">
 
@@ -38,6 +42,7 @@
         <img src="{{ obj.img.url }}" alt="" width="150px">
 
     </div>
+
 
     <div class="con">
 
@@ -69,15 +74,14 @@
         </div>
 
     </div>
-
     <div class="post">
         <div>
 
         </div>
         <p style="color: white; font-family: Organetto-Variable; font-size: 30px">{{ post_count }} posts</p>
-        <p style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ count_follow }} follow</p>
-        <p style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ obj.likes }}
-            лайков</p>
+        <p class="follower" style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ count_follow }} follow</p>
+       <p  class="follow2" style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ follows.count }}
+            follow</p>
     </div>
 
     <div class="main-content2">
@@ -85,85 +89,178 @@
         <div class="photo">
             <img class="zoom" src="{{ posts.img.url }}" alt="" width="300px" height="380px"
                  style="border-radius: 30px;">
-            <div class="button2 content fade" id="{{posts.id}}">
+            <div class="button2 content fade">
                 <p>Описание:</p>
-                <p>{{ posts.description }}</p>
-
+                <div class="description-post" id="description-post-id">
+                    <p class="p-desc">{{ posts.description|linebreaksbr }}</p>
+                </div>
+                <button class="more-btn" id="open{{posts.id}}">Подробнее</button>
             </div>
         </div>
-        <div class="overlay2" id="myOverlay{{posts.id}}">
+        <div class="overlay2" id="myOverlayopen{{posts.id}}">
             <div class="popup2">
                 <div class="photo-post">
                     <img src="{{ posts.img.url }}" alt="" width="100%" height="100%" style=" object-fit: cover;	">
                 </div>
+
                 <h1 class="title-post">ОПИСАНИЕ</h1>
-                <div class="description">
-                    <p>{{ posts.description }}</p>
+                <div class="description" id="description{{posts.id}}">
+                    <p>{{ posts.description | linebreaksbr }}</p>
                 </div>
                 <form action="{% url 'like' %}" method="post" class="like-form form2" id="{{posts.id}}">
                     {% csrf_token %}
                     <input type="hidden" name="post_id" value="{{posts.id}}">
-                    <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}" type="submit"><p {%
-                                                                                                                      if
-                                                                                                                      posts|color:user
-                                                                                                                      %}
-                                                                                                                      style="color: red;"
-                                                                                                                      {%
-                                                                                                                      endif%}
-                                                                                                                      class="like-img"
-                                                                                                                      id="like-img{{posts.id}}">
+                    <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}" type="submit"><p
+                            {% if posts|color:user %}
+                            style="color: red;"
+                            {% endif %}
+                            class="like-img"
+                            id="like-img{{posts.id}}">
                         ❤ {{ posts.liked.all.count }}</p></button>
+                </form>
+                <textarea class="edit-desc" id="edit-desc{{posts.id}}" style="display: none">
+                {{ posts.description }}
+            </textarea>
+                <form action="{% url 'edit' %}" method="post">
+                    {% csrf_token %}
+                    <button class="edit-button2">Изменить</button>
+                    <input class="edit-button" name="id2" id="edit-button{{posts.id}}" type="button"
+                           value="{{ posts.id }}">
+
                 </form>
             </div>
         </div>
         {% endfor %}
+        <div class="overlay3" id="myOverlay2">
+            <div class="popup3">
+                <h2 class="titel">Подписчики {{ obj.name }}</h2>
+                <div class="follower">
+                    {% if followers.count == 0 %}
+                    <img src="{% static 'img/no-followers.gif' %}" alt="" width="200px" style="border-radius: 30px">
+                    <h2 class="no-followers">No followers</h2>
+                    {% else %}
+                    <div class="followers-scroll">
+                        {% for followerss in followers %}
+                        <a href="{% url 'profile' followerss.id%}">
+                            <div class="follow-div">
+                                <div class="img">
+                                    <img src="{{ followerss.img.url }}" alt="" width="60px">
+                                </div>
+                                <p class="nic">{{ followerss.name }}</p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                  <div class="overlay4" id="myOverlay3">
+            <div class="popup3">
+                <h2 class="titel">Подписки {{obj.name}}</h2>
+                <div class="follower">
+                    {% if follows.count == 0 %}
+                    <img src="{% static 'img/no-followers.gif' %}" alt="" width="200px" style="border-radius: 30px">
+                    <h2 class="no-followers">No follow</h2>
+                    {% else %}
+                    <div class="followers-scroll">
+                        {% for followerss in follows %}
+                        <a href="{% url 'profile' followerss.id%}">
+                            <div class="follow-div">
+                                <div class="img">
+                                    <img src="{{ followerss.img.url }}" alt="" width="60px">
+                                </div>
+                                <p class="nic">{{ followerss.name }}</p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
-<script>
-
-    $(document).on('click', '.button2', function (e) {
-        let id = e.target.id;
-        $('#myOverlay' + id).fadeIn();
-        console.log(id)
-    });
-
-
-    // Закрытие окна на крестикe
-    $('.close-popup2').click(function () {
-        $('.overlay2').fadeOut();
-    });
-
-    // Закрытие окна на поле
-    $(document).mouseup(function (e) {
-        var popup = $('.popup2');
-        if (e.target != popup[0] && popup.has(e.target).length === 0) {
-            $('.overlay2').fadeOut();
-        }
-    });
-
-</script>
-
-
-<script>
-    (function () {
-
-        'use strict';
-
-        $('.input-file').each(function () {
-            var $input = $(this),
-                $label = $input.next('.js-labelFile'),
-                labelVal = $label.html();
-
-            $input.on('change', function (element) {
-                var fileName = '';
-                if (element.target.value) fileName = element.target.value.split('\\').pop();
-                fileName ? $label.addClass('has-file').find('.js-fileName').html(fileName) : $label.removeClass('has-file').html(labelVal);
-            });
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script>
+        $(document).on('click', '.more-btn', function (e) {
+            let id = e.target.id;
+            $('#myOverlay' + id).fadeIn();
         });
-
-    })();
-</script>
-
-
-{% endblock %}
+        // Закрытие окна на крестикe
+        $('.close-popup2').click(function () {
+            $('.overlay2').fadeOut();
+        });
+        // Закрытие окна на поле
+        $(document).mouseup(function (e) {
+            var popup = $('.popup2');
+            if (e.target != popup[0] && popup.has(e.target).length === 0) {
+                $('.overlay2').fadeOut();
+            }
+        });
+    </script>
+      <script>
+        $(document).on('click', '.follow2', function (e) {
+            let id = e.target.id;
+            $('#myOverlay3').fadeIn();
+        });
+        // Закрытие окна на крестикe
+        $('.close-popup4').click(function () {
+            $('.overlay4').fadeOut();
+        });
+        // Закрытие окна на поле
+        $(document).mouseup(function (e) {
+            var popup = $('.popup4');
+            if (e.target != popup[0] && popup.has(e.target).length === 0) {
+                $('.overlay4').fadeOut();
+            }
+        });
+    </script>
+    <script>
+        $(document).on('click', '.follower', function (e) {
+            let id = e.target.id;
+            $('#myOverlay2').fadeIn();
+        });
+        // Закрытие окна на крестикe
+        $('.close-popup3').click(function () {
+            $('.overlay3').fadeOut();
+        });
+        // Закрытие окна на поле
+        $(document).mouseup(function (e) {
+            var popup = $('.popup3');
+            if (e.target != popup[0] && popup.has(e.target).length === 0) {
+                $('.overlay3').fadeOut();
+            }
+        });
+    </script>
+    <script>
+        $(document).on('click', '.edit2', function (e) {
+            let id = e.target.id
+            let newid = id.slice(1);
+            const btnlike = document.getElementById('btnlike' + newid)
+            const btn = document.getElementById('edit-button' + newid)
+            btn.style.display = 'block'
+            btnlike.style.opacity = '0'
+            const description2 = document.getElementById("description" + newid)
+            const textarea = document.getElementById("edit-desc" + newid)
+            textarea.style.display = 'none'
+            description2.style.display = 'none'
+            textarea.style.display = 'flex'
+        })
+    </script>
+    <script>
+        (function () {
+            'use strict';
+            $('.input-file').each(function () {
+                var $input = $(this),
+                    $label = $input.next('.js-labelFile'),
+                    labelVal = $label.html();
+                $input.on('change', function (element) {
+                    var fileName = '';
+                    if (element.target.value) fileName = element.target.value.split('\\').pop();
+                    fileName ? $label.addClass('has-file').find('.js-fileName').html(fileName) : $label.removeClass('has-file').html(labelVal);
+                });
+            });
+        })();
+    </script>
+    {% endblock %}

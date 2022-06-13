@@ -96,8 +96,10 @@ def area(request):
         return render(request, 'donut/index.html', {'form': auth_form})
     else:
         cUser = CustomUsers.objects.get(user=request.user)
-        followers = cUser.following.all()
-        print(followers)
+        follow = cUser.user.following.all()
+
+        followersUser = cUser.following.all()
+        followers = CustomUsers.objects.filter(user__in=followersUser)
         postt = Posts(user=request.user)
         count_follow = cUser.following.all().count()
         all_post_user = Posts.objects.filter(user=request.user)
@@ -117,17 +119,20 @@ def area(request):
                     cUser.save()
                     return render(request, 'donut/area.html',
                                   {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'all_post_user': all_post_user,
-                                   'count': count, 'count_follow': count_follow,'followers':followers})
+                                   'count': count, 'count_follow': count_follow,'followers': followers,'follow':follow})
         else:
             imgForm = Imgform()
 
         return render(request, 'donut/area.html',
                       {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'all_post_user': all_post_user,
-                       'count': count, 'count_follow': count_follow,'followers':followers})
+                       'count': count, 'count_follow': count_follow, 'followers': followers, 'follow': follow})
 
 
 def search_profile(request, pk, **kwargs):
     search_user = CustomUsers.objects.filter(pk=pk).first()
+    followersUser = search_user.following.all()
+    followers = CustomUsers.objects.filter(user__in=followersUser)
+    follows = search_user.user.following.all()
     my_profile = CustomUsers.objects.get(user=request.user)
     if search_user == my_profile:
         return HttpResponseRedirect(reverse('area'))
@@ -144,7 +149,7 @@ def search_profile(request, pk, **kwargs):
     if obj:
         return render(request, 'donut/profile.html',
                       {'obj': obj, 'pk': pk, 'post': NewPosts, 'all_post_user': all_post_user, 'follow': follow,
-                       'count_follow': count_follow, 'post_count': post_count})
+                       'count_follow': count_follow, 'post_count': post_count, 'followers':followers, 'follows': follows})
 
 
 def search_results(request):

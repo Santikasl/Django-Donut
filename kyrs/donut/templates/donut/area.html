@@ -70,27 +70,27 @@
         {% endif %}
     </div>
 
+    <div>
+        <nav class="three">
+            <ul class="topmenu">
+
+                <li><a class="as" href="#">. . .<i class=""></i></a>
+                    <ul class="submenu">
+                        <li><a class="as2" href="">Редактировать</a></li>
+
+                        <li><a class="as2 as3" href="{% url 'exit' %}#3">Выйти</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
     <div class="post">
-        <div>
-            <nav class="three">
-                <ul class="topmenu">
-
-                    <li><a class="as" href="#">. . .<i class=""></i></a>
-                        <ul class="submenu">
-                            <li><a class="as2" href="">Редактировать</a></li>
-
-                            <li><a class="as2 as3" href="{% url 'exit' %}#3">Выйти</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </nav>
-        </div>
         <p style="color: white; font-family: Organetto-Variable; font-size: 30px">{{ count }} posts</p>
         <p class="follower" style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ count_follow }}
+            follower</p>
+        <p  class="follow2" style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ follow.count }}
             follow</p>
-        <p style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ cUser.likes }}
-            лайков</p>
     </div>
 
     <div class="main-content2">
@@ -167,16 +167,49 @@
             <div class="popup3">
                 <h2 class="titel">Ваши подписчики</h2>
                 <div class="follower">
- {% for followerss in followers %}
-
-                    <div class="follow-div">
-                        <div class="img">
-                            <img src="{{ followerss.img.url }}" alt="" width="70px">
-                        </div>
-                        <p class="nic">{{ followerss.name }}</p>
+                    {% if followers.count == 0 %}
+                    <img src="{% static 'img/no-followers.gif' %}" alt="" width="200px" style="border-radius: 30px">
+                    <h2 class="no-followers">No followers</h2>
+                    {% else %}
+                    <div class="followers-scroll">
+                        {% for followerss in followers %}
+                        <a href="{% url 'profile' followerss.id%}">
+                            <div class="follow-div">
+                                <div class="img">
+                                    <img src="{{ followerss.img.url }}" alt="" width="60px">
+                                </div>
+                                <p class="nic">{{ followerss.name }}</p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                        {% endif %}
                     </div>
-   {% endfor %}
+                </div>
+            </div>
+        </div>
 
+
+                <div class="overlay4" id="myOverlay3">
+            <div class="popup3">
+                <h2 class="titel">Подписки</h2>
+                <div class="follower">
+                    {% if follow.count == 0 %}
+                    <img src="{% static 'img/no-followers.gif' %}" alt="" width="200px" style="border-radius: 30px">
+                    <h2 class="no-followers">No follow</h2>
+                    {% else %}
+                    <div class="followers-scroll">
+                        {% for followerss in follow %}
+                        <a href="{% url 'profile' followerss.id%}">
+                            <div class="follow-div">
+                                <div class="img">
+                                    <img src="{{ followerss.img.url }}" alt="" width="60px">
+                                </div>
+                                <p class="nic">{{ followerss.name }}</p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
@@ -213,6 +246,24 @@
             var popup = $('.popup3');
             if (e.target != popup[0] && popup.has(e.target).length === 0) {
                 $('.overlay3').fadeOut();
+            }
+        });
+    </script>
+
+     <script>
+        $(document).on('click', '.follow2', function (e) {
+            let id = e.target.id;
+            $('#myOverlay3').fadeIn();
+        });
+        // Закрытие окна на крестикe
+        $('.close-popup4').click(function () {
+            $('.overlay4').fadeOut();
+        });
+        // Закрытие окна на поле
+        $(document).mouseup(function (e) {
+            var popup = $('.popup4');
+            if (e.target != popup[0] && popup.has(e.target).length === 0) {
+                $('.overlay4').fadeOut();
             }
         });
     </script>

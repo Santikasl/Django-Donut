@@ -209,7 +209,7 @@ h3 {
     border: 2px solid white;
     background-color: rgba(0, 0, 0, 0);
     text-align: center;
-    border-radius: 30px;
+    border-radius: 10px;
     padding-bottom: 3px;
 
 
@@ -418,8 +418,8 @@ nav {
 
 .three {
     position: absolute;
-    margin-left: 350px;
-    margin-top: -70px;
+    margin-left: 750px;
+    margin-top: 125px;
 
 }
 
@@ -907,12 +907,18 @@ input[type='search']::-webkit-search-results-decoration {
 .follow {
     background-color: #0c0c0c;
     width: 130px;
-    height: 40px;
+    height: 30px;
+    margin-top: 6px;
     font-size: 20px;
     border-radius: 20px;
     outline: 1px solid white;
     color: white;
     font-family: Organetto-Variable;
+}
+
+.no-followers{
+    color: #0c0c0c;
+    margin-top: 15px;
 }
 
 .overlay3 {
@@ -929,10 +935,11 @@ input[type='search']::-webkit-search-results-decoration {
 .titel {
     color: #1e1e1e;
     font-family: Organetto-Variable;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .popup3 {
+
     position: absolute;
     width: 300px;
     height: 400px;
@@ -945,6 +952,15 @@ input[type='search']::-webkit-search-results-decoration {
     background: #fafafa;
     color: #0c0c0c;
     text-align: center;
+
+}
+
+.followers-scroll{
+    width: 280px;
+    height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: unset;
 }
 
 .close-popup3 {
@@ -978,16 +994,13 @@ input[type='search']::-webkit-search-results-decoration {
     left: -4px;
 }
 
-.follower{
-    display: grid;
-}
+
 
 .img{
     overflow: hidden;
     width: 60px;
     height: 60px;
     border-radius: 90px;
-
     z-index: 3;
     background-color: #ffffff;
     align-items: center;
@@ -999,15 +1012,96 @@ input[type='search']::-webkit-search-results-decoration {
 .nic{
     font-family: Organetto-Variable;
     color: #1e1e1e;
-    font-size: 30px;
+    font-size: 25px;
     margin-top: -50px;
-    margin-left: 40px;
+    margin-left: 43px;
 
 
 }
 
 .follow-div{
-    background-color: #e2264d;
+
     width: 300px;
     height: 80px;
 }
+
+
+.followers-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.followers-scroll::-webkit-scrollbar-track {
+
+    border-radius: 10px;
+}
+
+/* Handle */
+.followers-scroll::-webkit-scrollbar-thumb {
+    background: #777777;
+    border-radius: 10px;
+}
+
+
+.overlay4 {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+
+}
+
+
+
+.popup4 {
+
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    left: 50%;
+    top: 53%;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+    box-sizing: border-box;
+    background: #fafafa;
+    color: #0c0c0c;
+    text-align: center;
+
+}
+
+
+.close-popup4 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+}
+
+.close-popup4:before {
+    content: '';
+    background-color: #fff;
+    position: absolute;
+    height: 1px;
+    width: 20px;
+    top: 11px;
+    left: -4px;
+    transform: rotate(-45deg);
+}
+
+.close-popup4:after {
+    content: '';
+    background-color: #fff;
+    position: absolute;
+    height: 1px;
+    width: 20px;
+    top: 11px;
+    transform: rotate(45deg);
+    left: -4px;
+}
+
