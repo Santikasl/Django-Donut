@@ -1,3 +1,5 @@
+from itertools import chain
+
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -46,6 +48,15 @@ def mainl(request):
         cUser = CustomUsers.objects.get(user=request.user)
         pos = Posts.objects.all()
         follows = cUser.user.following.all()
+        users = [user for user in follows]
+        post_follow = []
+        for u in users:
+            Posts_fo = Posts.objects.filter(user=u.user)
+            post_follow.append(Posts_fo)
+        if len(post_follow) > 0:
+            qs = chain(*post_follow)
+        else:
+            qs=[]
 
         newPost = NewPosts(request.POST, request.FILES)
         if newPost.is_valid():
@@ -53,7 +64,8 @@ def mainl(request):
             postt.description = newPost.cleaned_data['description']
             postt.save()
             return HttpResponseRedirect(reverse('area'))
-        return render(request, 'donut/main.html', {'post': NewPosts, 'pos': pos, 'cUser': cUser, 'post': NewPosts, 'follows': follows})
+        return render(request, 'donut/main.html',
+                      {'post': NewPosts, 'pos': pos, 'cUser': cUser, 'post': NewPosts, 'follows': follows, 'qs': qs})
 
 
 def signIn(request):
@@ -121,7 +133,8 @@ def area(request):
                     cUser.save()
                     return render(request, 'donut/area.html',
                                   {'form': imgForm, 'cUser': cUser, 'post': NewPosts, 'all_post_user': all_post_user,
-                                   'count': count, 'count_follow': count_follow,'followers': followers,'follow':follow})
+                                   'count': count, 'count_follow': count_follow, 'followers': followers,
+                                   'follow': follow})
         else:
             imgForm = Imgform()
 
@@ -151,7 +164,8 @@ def search_profile(request, pk, **kwargs):
     if obj:
         return render(request, 'donut/profile.html',
                       {'obj': obj, 'pk': pk, 'post': NewPosts, 'all_post_user': all_post_user, 'follow': follow,
-                       'count_follow': count_follow, 'post_count': post_count, 'followers':followers, 'follows': follows})
+                       'count_follow': count_follow, 'post_count': post_count, 'followers': followers,
+                       'follows': follows})
 
 
 def search_results(request):
@@ -182,6 +196,7 @@ def search_results(request):
 
 def sort(request):
     if request.is_ajax():
+        all_post_no_ordering = Posts.objects.all()
         all_post = Posts.objects.order_by('-date')
         data = []
         for pos in all_post:

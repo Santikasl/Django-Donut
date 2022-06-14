@@ -32,6 +32,7 @@
     {% block scripts %}
     <script src="{% static 'js/sort.js' %}" defer></script>
     <script src="{% static 'js/search.js' %}" defer></script>
+      <script src="{% static 'js/like.js' %}" defer></script>
     {% endblock scripts %}
     <title>Главная</title>
 </head>
@@ -83,94 +84,55 @@
             </div>
             <div class="profile-notification" id="profile-notification-id">
             </div>
+<!--            <a  href=""><img class="down" src="{% static 'img/down.png' %}" alt=""></a>-->
         </div>
         <div class="section s2">
+            {% if qs %}
+            <div class="sub-photo">
+                {% for x in qs %}
+                <div class="photo-s">
+                    <div class="img-div">
+                        <img class="zoom2" src="{{ x.img.url }}" alt="" height="463px"
+                             style=" border-radius: 30px 30px 0 0;">
+                        <div class="button22 content2 fade2">
+                            <p>Описание:</p>
+                            <div class="description-post2" id="description-post-id">
+                                <p class="p-desc2">{{ x.description|linebreaksbr }}</p>
+                            </div>
 
-        <div class="sub-photo">
-
-            {% for x in follows  %}
-            <div class="photo-s">
-            <img src="{% static 'img/26.jpg' %}" alt="" width="370px" style=" border-radius: 30px 30px 0 0;">
-                  <div class="avatar2">
-                    <img class="main-logo" src="{{ x.img.url }}" alt="" width="70px">
+                        </div>
+                    </div>
+                    <div class="avatar2">
+                        <img class="main-logo" src="{{ x.user.img.url }}" alt="" width="70px">
+                    </div>
+                    <h3 class="name-follow">{{ x.user }}</h3>
+                    <form action="{% url 'like' %}" method="post" class="like-form form2" id="{{posts.id}}">
+                       {% csrf_token %}
+                                <input type="hidden" name="post_id" value="{{posts.id}}">
+                                <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}"
+                                        type="submit"><p
+                                        {% if x|color:user %}
+                                        style="color: red;"
+                                        {% endif %}
+                                        class="like-img"
+                                        id="like-img{{posts.id}}">
+                                    ❤ {{ x.liked.all.count }}</p></button>
+                            </form>
                 </div>
-                <h3 class="name-follow">SANTIKAS</h3>
-                <form action="{% url 'like' %}" method="post" class="like-form form2" id="{{posts.id}}">
-                    {% csrf_token %}
-                    <input type="hidden" name="post_id" value="{{posts.id}}">
-                    <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}" type="submit"><p
-
-                            class="like-img"
-                            id="like-img{{posts.id}}">
-                        ❤ {{ posts.liked.all.count }}</p></button>
-                </form>
-                </div>
-        {% endfor %}
-        </div>
-
+                {% endfor %}
+            </div>
+            {% else %}
+            <img src="{% static 'img/not.gif' %}" alt="" width="300px"style="margin-left: 40%">
+                    <h2 class="no-followers">Подпишитесь на друзей, что бы видеть их новые фото</h2>
+            {% endif %}
         </div>
         <div class="section s3">
-            <h1 class="new-photo">Фотографии новых пользователей</h1>
-            <div class="slide">
-                <div class="main-content">
-                    <div class="photo">
-                        <img src="{% static 'img/26.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-                    </div>
-                    <div class="photo">
-                        <img src="{% static 'img/29.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-                    </div>
-                    <div class="photo">
-                        <img src="{% static 'img/38.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-                    </div>
-                    <div class="photo">
-                        <img src="{% static 'img/41.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-                    </div>
-
-
-                    <div class="slide">
-                        <div class="main-content">
-                            <div class="photo">
-                                <img src="{% static 'img/11.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-                            </div>
-                            <div class="photo">
-                                <img src="{% static 'img/9.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-                            </div>
-                            <div class="photo">
-                                <img src="{% static 'img/13.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-                            </div>
-                            <div class="photo">
-                                <img src="{% static 'img/22.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <div class="main-content">
-                            <div class="photo">
-                                <img src="{% static 'img/15.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-                            </div>
-                            <div class="photo">
-                                <img src="{% static 'img/18.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-                            </div>
-                            <div class="photo">
-                                <img src="{% static 'img/25.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-                            </div>
-                            <div class="photo">
-                                <img src="{% static 'img/44.jpg' %}" alt="" width="300px" style=" border-radius: 30px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-        <div class="section s4">
             <div class="scrollable-content">
 
                 <h1 class="title-all-photo">ALL PHOTO</h1>
 
                 <img class="img-sort" src="{% static 'img/sort.png' %}" alt="сортировка по дате" width="40px">
-                <form  action="" id="sort-form"  method="post" autocomplete="off" >
+                <form action="" id="sort-form" method="post" autocomplete="off">
                     {% csrf_token %}
                     <input type="button" id="sortBtn" class="sortBtn">
 
@@ -179,28 +141,61 @@
 
                 </div>
                 <div class="main-content2" id="mainId">
-
-                    {% for post in pos %}
+                    {% for posts in pos %}
                     <div class="photo">
-                        <img class="zoom" src="{{ post.img.url }}" alt="" width="300px" height="380px"
-                             style=" border-radius: 30px;">
-                        <div class="content fade button2" id="postbtn{{ posts.id}}}">
+                        <img class="zoom" src="{{ posts.img.url }}" alt="" width="300px" height="380px"
+                             style="border-radius: 30px;">
+                        <div class="button2 content fade">
                             <p>Описание:</p>
-                            <p>{{ post.description }}</p>
-
+                            <div class="description-post" id="description-post-id">
+                                <p class="p-desc">{{ posts.description|linebreaksbr }}</p>
+                            </div>
+                            <button class="more-btn" id="open{{posts.id}}">Подробнее</button>
+                        </div>
+                    </div>
+                    <div class="overlay2" id="myOverlayopen{{posts.id}}">
+                        <div class="popup2">
+                            <div class="photo-post">
+                                <img src="{{ posts.img.url }}" alt="" width="100%" height="100%"
+                                     style=" object-fit: cover;	">
+                            </div>
+                            <h1 class="title-post">ОПИСАНИЕ</h1>
+                            <div class="description" id="description{{posts.id}}">
+                                <p>{{ posts.description | linebreaksbr }}</p>
+                            </div>
+                            <form action="{% url 'like' %}" method="post" class="like-form form-like" id="{{posts.id}}">
+                                {% csrf_token %}
+                                <input type="hidden" name="post_id" value="{{posts.id}}">
+                                <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}"
+                                        type="submit"><p
+                                        {% if posts|color:user %}
+                                        style="color: red;"
+                                        {% endif %}
+                                        class="like-img"
+                                        id="like-img{{posts.id}}">
+                                    ❤ {{ posts.liked.all.count }}</p></button>
+                            </form>
                         </div>
                     </div>
                     {% endfor %}
+
                 </div>
-            <div class="sort-post" id="sort-post">
-            </div>
+                <div class="sort-post" id="sort-post">
+
+                </div>
 
             </div>
         </div>
     </div>
+
+</div>
 </div>
 
+<script>
 
+var context_var= "{{csrf_token}}";
+
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"
         integrity="sha512-gSf3NCgs6wWEdztl1e6vUqtRP884ONnCNzCpomdoQ0xXsk06lrxJsR7jX5yM/qAGkPGsps+4bLV5IEjhOZX+gg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -209,7 +204,7 @@
     new fullpage('#fullpage', {
         // здесь параметры
         autoScrolling: true,
-        anchors: ['1', '2', '3', '4'],
+        anchors: ['1', '2', '3'],
         scrollHorizontally: true,
         showActiveTooltip: true,
         controlArrows: false,
@@ -239,6 +234,23 @@
         document.getElementById('overlay-likes-id').style.zIndex = '-1';
     }
 </script>
-
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+<script>
+    $(document).on('click', '.more-btn', function (e) {
+        let id = e.target.id;
+        $('#myOverlay' + id).fadeIn();
+    });
+    // Закрытие окна на крестикe
+    $('.close-popup2').click(function () {
+        $('.overlay2').fadeOut();
+    });
+    // Закрытие окна на поле
+    $(document).mouseup(function (e) {
+        var popup = $('.popup2');
+        if (e.target != popup[0] && popup.has(e.target).length === 0) {
+            $('.overlay2').fadeOut();
+        }
+    });
+</script>
 
 {% endblock %}
