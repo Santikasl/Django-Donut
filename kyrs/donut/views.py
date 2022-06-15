@@ -1,6 +1,7 @@
 from itertools import chain
 
 from django.contrib.auth import authenticate, login, logout
+from django.core import serializers
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -204,10 +205,21 @@ def sort(request):
                 'pk': pos.pk,
                 'descriptions': pos.description,
                 'img': pos.img.url,
+                'like': pos.liked.all().count(),
             }
             data.append(item)
         res_post = data
-        return JsonResponse({'data': res_post})
+        all = []
+        for posts in all_post_no_ordering:
+            items = {
+                'pk': posts.pk,
+                'descriptions': posts.description,
+                'img': posts.img.url,
+                'like': posts.liked.all().count(),
+            }
+            all.append(items)
+        a = all
+        return JsonResponse({'data': res_post, 'a': a})
     return JsonResponse({})
 
 
@@ -232,7 +244,7 @@ def edit(request):
 
 def like(request):
     user = request.user
-    if request.method == 'POST' and request.is_ajax():
+    if request.method == 'POST':
         post_id = request.POST.get('post_id')
         post_obj = Posts.objects.get(id=post_id)
         if user in post_obj.liked.all():

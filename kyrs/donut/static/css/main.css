@@ -31,14 +31,14 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
 }
 
 .sub-photo {
-    border: 1px solid white;
+    /*border: 1px solid white;*/
     border-radius: 20px;
     display: grid;
     grid-template-columns: 200px 200px 200px;
     grid-column-gap: 220px;
     grid-row-gap: 10px;
 
-    background-color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(38, 38, 38, 0.87);
     position: absolute;
     width: 85%;
     margin-left: 130px;
@@ -832,8 +832,8 @@ span {
 }
 
 .sort-post {
-    z-index: 2;
-    display: grid;
+    z-index: 99;
+    display: none;
     grid-template-columns: 350px 350px 350px 350px;
     position: absolute;
     width: 94%;
@@ -1663,10 +1663,19 @@ input[type='search']::-webkit-search-results-decoration {
 
 .title-post {
     color: #0c0c0c;
-    margin-left: 67%;
+    margin-left: 90px;
     font-family: Organetto-Variable;
-}
 
+}
+.header{
+    display: flex;
+    background-color: #e2264d;
+    width: 200px;
+    height: 80px;
+    position: absolute;
+    margin-left: 55%;
+    margin-top: 3%;
+}
 .form-like {
     margin-left: 160px;
     margin-top: 30px;
@@ -1752,12 +1761,25 @@ input[type='search']::-webkit-search-results-decoration {
 }
 
 .titel-subh {
-    color: #2a2a2a;
+    color: #ffffff;
     z-index: 999;
     font-size: 30px;
     position: absolute;
     font-family: Organetto-Variable;
     margin-left: 43%;
     margin-top: 10px;
+
+}
+
+.avatar3 {
+    z-index: 3;
+
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+    border-radius: 80px;
+    background-color: #ffffff;
+    align-items: center;
+    justify-items: center;
 
 }
