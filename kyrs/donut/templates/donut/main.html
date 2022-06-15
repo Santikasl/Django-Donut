@@ -32,7 +32,7 @@
     {% block scripts %}
     <script src="{% static 'js/sort.js' %}" defer></script>
     <script src="{% static 'js/search.js' %}" defer></script>
-      <script src="{% static 'js/like.js' %}" defer></script>
+    <script src="{% static 'js/like.js' %}" defer></script>
     {% endblock scripts %}
     <title>Главная</title>
 </head>
@@ -84,15 +84,17 @@
             </div>
             <div class="profile-notification" id="profile-notification-id">
             </div>
-<!--            <a  href=""><img class="down" src="{% static 'img/down.png' %}" alt=""></a>-->
+            <!--            <a  href=""><img class="down" src="{% static 'img/down.png' %}" alt=""></a>-->
         </div>
         <div class="section s2">
+
             {% if qs %}
+
             <div class="sub-photo">
                 {% for x in qs %}
                 <div class="photo-s">
                     <div class="img-div">
-                        <img class="zoom2" src="{{ x.img.url }}" alt="" height="463px"
+                        <img class="zoom2" src="{{ x.img.url }}" alt="" height="390px"
                              style=" border-radius: 30px 30px 0 0;">
                         <div class="button22 content2 fade2">
                             <p>Описание:</p>
@@ -105,25 +107,29 @@
                     <div class="avatar2">
                         <img class="main-logo" src="{{ x.user.img.url }}" alt="" width="70px">
                     </div>
-                    <h3 class="name-follow">{{ x.user }}</h3>
-                    <form action="{% url 'like' %}" method="post" class="like-form form2" id="{{posts.id}}">
-                       {% csrf_token %}
-                                <input type="hidden" name="post_id" value="{{posts.id}}">
-                                <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}"
-                                        type="submit"><p
-                                        {% if x|color:user %}
-                                        style="color: red;"
-                                        {% endif %}
-                                        class="like-img"
-                                        id="like-img{{posts.id}}">
-                                    ❤ {{ x.liked.all.count }}</p></button>
-                            </form>
+                    <a href="{% url 'profile' x.user.id%}">
+                        <h3 class="name-follow">{{ x.user }}</h3>
+                    </a>
+                    <form action="{% url 'like' %}" method="post" class="like-form form2" id="{{x.id}}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{posts.id}}">
+                        <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{x.id}}"
+                                type="submit"><p
+                                {% if x|color:user %}
+                                style="color: red;"
+                                {% endif %}
+                                class="like-img"
+                                id="like-img{{x.id}}">
+                            ❤ {{ x.liked.all.count }}</p></button>
+                    </form>
                 </div>
                 {% endfor %}
+                  <h3 class="titel-subh">Ваши подписки</h3>
             </div>
+
             {% else %}
-            <img src="{% static 'img/not.gif' %}" alt="" width="300px"style="margin-left: 40%">
-                    <h2 class="no-followers">Подпишитесь на друзей, что бы видеть их новые фото</h2>
+            <img src="{% static 'img/not.gif' %}" alt="" width="300px" style="margin-left: 40%">
+            <h2 class="no-followers">Подпишитесь на друзей, что бы видеть их новые фото</h2>
             {% endif %}
         </div>
         <div class="section s3">
@@ -193,7 +199,7 @@
 
 <script>
 
-var context_var= "{{csrf_token}}";
+    var context_var = "{{csrf_token}}";
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"
@@ -214,6 +220,8 @@ var context_var= "{{csrf_token}}";
 
 
 </script>
+
+
 <script type="text/javascript">
     function oc_ch_menu() {
         document.getElementById('like-notification-id').style.transform = 'translateX(10px)';
@@ -234,7 +242,7 @@ var context_var= "{{csrf_token}}";
         document.getElementById('overlay-likes-id').style.zIndex = '-1';
     }
 </script>
-    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
 <script>
     $(document).on('click', '.more-btn', function (e) {
         let id = e.target.id;

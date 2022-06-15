@@ -31,25 +31,30 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
 }
 
 .sub-photo {
-    outline: 1px solid white;
+    border: 1px solid white;
+    border-radius: 20px;
     display: grid;
     grid-template-columns: 200px 200px 200px;
-    grid-column-gap: 290px;
-    grid-row-gap: 150px;
+    grid-column-gap: 220px;
+    grid-row-gap: 10px;
+
+    background-color: rgba(255, 255, 255, 0.87);
     position: absolute;
-    width: 90%;
-    margin-left: 100px;
-    height: 88%;
+    width: 85%;
+    margin-left: 130px;
+    height: 82%;
     overflow: scroll;
     z-index: 999;
-    margin-top: -300px;
+    margin-top: -280px;
 }
 
 .photo-s {
     background-color: rgba(255, 255, 255, 0.97);
-    width: 370px;
-    height: 570px;
-    margin-top: 50px;
+    width: 350px;
+    height: 510px;
+    margin-top: 70px;
+    box-shadow: 4px 4px 24px 0px rgba(34, 60, 80, 0.2);
+    margin-left: 55px;
     border-radius: 30px
 }
 
@@ -281,11 +286,11 @@ span {
 .img-div > .content2 {
     position: absolute;
     inset: 0;
-    border-radius: 30px;
+    border-radius: 30px 30px 0 0;
     font-size: 15px;
     padding: 1rem;
     font-family: 'Montserrat Alternates', sans-serif;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.42);
     color: white;
     left: 50px;
     text-align: justify;
@@ -340,8 +345,9 @@ span {
 }
 
 .content2 {
-    height: 463px;
+    height: 360px;
     margin-left: -50px;
+    margin-top: 35px;
 }
 
 .p-desc2 {
@@ -434,7 +440,7 @@ span {
 }
 
 .avatar2 {
-    margin-top: 15px;
+    margin-top: -10px;
     z-index: 3;
     width: 70px;
     height: 70px;
@@ -485,6 +491,7 @@ span {
     position: relative;
     height: 463px;
     overflow: hidden;
+    margin-top: -40px;
     align-items: center;
     justify-items: center;
     object-fit: cover;
@@ -1744,3 +1751,13 @@ input[type='search']::-webkit-search-results-decoration {
     position: fixed;
 }
 
+.titel-subh {
+    color: #2a2a2a;
+    z-index: 999;
+    font-size: 30px;
+    position: absolute;
+    font-family: Organetto-Variable;
+    margin-left: 43%;
+    margin-top: 10px;
+
+}

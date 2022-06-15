@@ -24,7 +24,7 @@ def default_datetime(): return datetime.now()
 class Posts(models.Model):
     description = models.TextField(max_length=2000)
     date = models.DateTimeField(default=default_datetime)
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, related_name='creaters')
+    user = models.ForeignKey(CustomUsers, null=True, blank=True, on_delete=models.CASCADE, related_name='creaters')
     img = models.ImageField(upload_to='posts/')
     liked = models.ManyToManyField(User, default=None, blank=True)
 

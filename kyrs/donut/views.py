@@ -44,14 +44,14 @@ def mainl(request):
     if request.user.is_authenticated == False:
         return render(request, 'donut/index.html')
     else:
-        postt = Posts(user=request.user)
         cUser = CustomUsers.objects.get(user=request.user)
+        postt = Posts(user=cUser)
         pos = Posts.objects.all()
         follows = cUser.user.following.all()
         users = [user for user in follows]
         post_follow = []
         for u in users:
-            Posts_fo = Posts.objects.filter(user=u.user)
+            Posts_fo = Posts.objects.filter(user=u)
             post_follow.append(Posts_fo)
         if len(post_follow) > 0:
             qs = chain(*post_follow)
@@ -111,12 +111,11 @@ def area(request):
     else:
         cUser = CustomUsers.objects.get(user=request.user)
         follow = cUser.user.following.all()
-
         followersUser = cUser.following.all()
         followers = CustomUsers.objects.filter(user__in=followersUser)
-        postt = Posts(user=request.user)
+        postt = Posts(user=cUser)
         count_follow = cUser.following.all().count()
-        all_post_user = Posts.objects.filter(user=request.user)
+        all_post_user = Posts.objects.filter(user=cUser)
         count = all_post_user.count()
         if request.method == 'POST':
             imgForm = Imgform(request.POST, request.FILES)
@@ -144,6 +143,7 @@ def area(request):
 
 
 def search_profile(request, pk, **kwargs):
+    cUser = CustomUsers.objects.get(user=request.user)
     search_user = CustomUsers.objects.filter(pk=pk).first()
     followersUser = search_user.following.all()
     followers = CustomUsers.objects.filter(user__in=followersUser)
@@ -153,13 +153,13 @@ def search_profile(request, pk, **kwargs):
         return HttpResponseRedirect(reverse('area'))
     count_follow = search_user.following.all().count()
     user = User.objects.get(pk=pk)
-    all_post_user = Posts.objects.filter(user=user)
+    all_post_user = Posts.objects.filter(user=cUser)
     post_count = all_post_user.count()
     if my_profile.user in search_user.following.all():
         follow = True
     else:
         follow = False
-    all_post_user = Posts.objects.filter(user=search_user.user)
+    all_post_user = Posts.objects.filter(user=search_user)
     obj = CustomUsers.objects.filter(pk=pk).first
     if obj:
         return render(request, 'donut/profile.html',

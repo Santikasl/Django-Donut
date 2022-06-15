@@ -1,15 +1,14 @@
 $('.like-form').submit(function (e) {
     e.preventDefault()
-    const post_id = $(this).attr('id')
+    var post_id =  $(this).attr('id')
     const url = $(this).attr('action')
     let res;
     const like = $(`.like-btn${post_id}`).text()
     const intLike = like
     const trimCount = parseInt(intLike)
-    console.log(trimCount)
-    const btnlike = document.getElementById('btnlike' + post_id)
+    const btnlike = document.querySelectorAll('#btnlike' + post_id)
+
     const like_img = document.getElementById('like-img' + post_id)
-    console.log(like)
     $.ajax({
         type: 'POST',
         url: url,
@@ -19,15 +18,18 @@ $('.like-form').submit(function (e) {
         },
         success: function (response) {
             value = response.likes
-            btnlike.innerHTML = `
-            <p class="like-img" id="like-img${post_id}">❤ ${value}</p> 
+            btnlike.forEach(button => {
+                button.innerHTML = `
+            <p class="like-img" id="like-img${post_id}">❤ ${value}</p>
             `
+            })
+
             if (response.like_value == 'Like') {
-                btnlike.style.color = 'black'
+                btnlike.forEach(button => {button.style.color = 'black'})
 
 
             } else {
-                btnlike.style.color = 'red'
+                btnlike.forEach(button => {button.style.color = 'red'})
 
 
             }
