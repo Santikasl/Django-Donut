@@ -176,7 +176,8 @@
                             <div class="description" id="description{{posts.id}}">
                                 <p>{{ posts.description | linebreaksbr }}</p>
                             </div>
-                            <form action="{% url 'like' %}" method="post" class="like-form form-like" id="g{{posts.id}}">
+                            <form action="{% url 'like' %}" method="post" class="like-form form-like"
+                                  id="g{{posts.id}}">
                                 {% csrf_token %}
                                 <input type="hidden" name="post_id" value="{{posts.id}}">
                                 <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}"
@@ -193,10 +194,98 @@
                     {% endfor %}
 
                 </div>
+
                 <div class="sort-post" id="sort-post">
+                    {% for x in data %}
+                    <div class="photo">
+                        <img class="zoom" src="{{ x.img }}" alt="" width="300px" height="380px"
+                             style="border-radius: 30px;">
+                        <div class="button2 content fade">
+                            <p>Описание:</p>
+                            <div class="description-post" id="description-post-id">
+                                <p class="p-desc">{{ x.descriptions | linebreaksbr }}</p>
+                            </div>
+                            <button class="more-btn2" id="open{{ x.pk }}">Подробнее</button>
+                        </div>
+                    </div>
+                    <div class="overlay3" id="myOverlay2open{{ x.pk }}">
+                        <div class="popup3">
+                            <div class="photo-post">
+                                <img src="{{ x.img }}" alt="" width="100%" height="100%"
+                                     style=" object-fit: cover;">
+                            </div>
+                             <a href="{% url 'profile' x.user %}">
+                                <div class="header">
+                                    <div class="avatar3">
+                                        <img class="main-logo" src="{{ x.imgUrl }}" alt="" width="70px">
+                                    </div>
+                                    <h1 class="title-post">{{ x.name }}</h1>
+                                </div>
+                            </a>
+                            <div class="description" id="description{{ x.pk }}">
+                                <p>{{ x.descriptions | linebreaksbr }}</p>
+                            </div>
+                            <form action="{% url 'like' %}" method="post" class="like-form form-like" id="l{{ x.pk }}">
+                                {% csrf_token %}
+
+                                <input type="hidden" name="post_id" value="{{ x.pk }}">
+                                <button class="ui button positive like-btn{{ x.pk }}" id="btnlike{{ x.pk }}"
+                                        type="submit" style="color: red;">
+                                    <p class="like-img" id="like-img{{ x.pk }}"> ❤ {{ x.like }}</p>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                        {% endfor %}
+                </div>
+                <div class="main-content22" id="mainId2">
+                    {% for posts in pos %}
+                    <div class="photo">
+                        <img class="zoom" src="{{ posts.img.url }}" alt="" width="300px" height="380px"
+                             style="border-radius: 30px;">
+                        <div class="button2 content fade">
+                            <p>Описание:</p>
+                            <div class="description-post" id="description-post-id">
+                                <p class="p-desc">{{ posts.description|linebreaksbr }}</p>
+                            </div>
+                            <button class="more-btn" id="open{{posts.id}}">Подробнее</button>
+                        </div>
+                    </div>
+                    <div class="overlay2" id="myOverlayopen{{posts.id}}">
+                        <div class="popup2">
+                            <div class="photo-post">
+                                <img src="{{ posts.img.url }}" alt="" width="100%" height="100%"
+                                     style=" object-fit: cover;	">
+                            </div>
+                            <a href="{% url 'profile' posts.user.id%}">
+                                <div class="header">
+                                    <div class="avatar3">
+                                        <img class="main-logo" src="{{ posts.user.img.url }}" alt="" width="70px">
+                                    </div>
+                                    <h1 class="title-post">{{ posts.user.name }}</h1>
+                                </div>
+                            </a>
+                            <div class="description" id="description{{posts.id}}">
+                                <p>{{ posts.description | linebreaksbr }}</p>
+                            </div>
+                            <form action="{% url 'like' %}" method="post" class="like-form form-like"
+                                  id="g{{posts.id}}">
+                                {% csrf_token %}
+                                <input type="hidden" name="post_id" value="{{posts.id}}">
+                                <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}"
+                                        type="submit"><p
+                                        {% if posts|color:user %}
+                                        style="color: red;"
+                                        {% endif %}
+                                        class="like-img"
+                                        id="like-img{{posts.id}}">
+                                    ❤ {{ posts.liked.all.count }}</p></button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
 
                 </div>
-
             </div>
         </div>
     </div>
@@ -265,6 +354,24 @@
         var popup = $('.popup2');
         if (e.target != popup[0] && popup.has(e.target).length === 0) {
             $('.overlay2').fadeOut();
+        }
+    });
+</script>
+
+<script>
+    $(document).on('click', '.more-btn2', function (e) {
+        let id = e.target.id;
+        $('#myOverlay2' + id).fadeIn();
+    });
+    // Закрытие окна на крестикe
+    $('.close-popup3').click(function () {
+        $('.overlay3').fadeOut();
+    });
+    // Закрытие окна на поле
+    $(document).mouseup(function (e) {
+        var popup = $('.popup3');
+        if (e.target != popup[0] && popup.has(e.target).length === 0) {
+            $('.overlay3').fadeOut();
         }
     });
 </script>

@@ -842,25 +842,25 @@ span {
     grid-row-gap: 55px;
 }
 
+.main-content22 {
+    z-index: 99;
+    display: none;
+    grid-template-columns: 350px 350px 350px 350px;
+    position: absolute;
+    width: 94%;
+    margin-top: 150px;
+    margin-left: 40px;
+    height: 100%;
+    grid-row-gap: 55px;
+}
+
 
 .content {
     height: 350px;
 }
 
 
-.more-btn {
-    margin-top: 23px;
-    width: 120px;
-    height: 30px;
-    color: white;
-    border: 2px solid white;
-    background-color: rgba(0, 0, 0, 0);
-    text-align: center;
-    border-radius: 10px;
-    padding-bottom: 3px;
 
-
-}
 
 .all-all-photo:hover > img.zoom22 {
 
@@ -969,7 +969,19 @@ h1 {
 
 
 }
+.more-btn2 {
+    margin-top: 23px;
+    width: 120px;
+    height: 30px;
+    color: white;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: center;
+    border-radius: 10px;
+    padding-bottom: 3px;
 
+
+}
 .photo:hover > img.zoom {
 
     filter: blur(1px);
@@ -1542,8 +1554,7 @@ input[type='search']::-webkit-search-results-decoration {
     position: fixed;
     width: 100%;
     margin-top: 1510px;
-    z-index: 999;
-!important;
+    z-index: 999 !important;
     height: 100vh;
     top: 0;
     left: 0;
@@ -1781,4 +1792,63 @@ input[type='search']::-webkit-search-results-decoration {
     align-items: center;
     justify-items: center;
 
+}
+
+.overlay3 {
+    position: fixed;
+    width: 100%;
+    margin-top: 1510px;
+    z-index: 999 !important;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+
+}
+
+.popup3 {
+    position: absolute;
+    width: 1000px;
+    height: 600px;
+    left: 50%;
+    top: 53%;
+    z-index: 999 !important;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+    box-sizing: border-box;
+    background: #fafafa;
+    color: #0c0c0c;
+    text-align: center;
+}
+
+.close-popup3 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+}
+
+.close-popup3:before {
+    content: '';
+    background-color: #fff;
+    position: absolute;
+    height: 1px;
+    width: 20px;
+    top: 11px;
+    left: -4px;
+    transform: rotate(-45deg);
+}
+
+.close-popup3:after {
+    content: '';
+    background-color: #fff;
+    position: absolute;
+    height: 1px;
+    width: 20px;
+    top: 11px;
+    transform: rotate(45deg);
+    left: -4px;
 }

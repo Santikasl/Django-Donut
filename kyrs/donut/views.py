@@ -45,6 +45,31 @@ def mainl(request):
     if request.user.is_authenticated == False:
         return render(request, 'donut/index.html')
     else:
+        all_post_no_ordering = Posts.objects.all()
+        all_post = Posts.objects.order_by('-date')
+        data = []
+        for pos in all_post:
+            item = {
+                'pk': pos.pk,
+                'descriptions': pos.description,
+                'img': pos.img.url,
+                'like': pos.liked.all().count(),
+                'user': pos.user.id,
+                'imgUrl': pos.user.img.url,
+                'name': pos.user.name,
+            }
+            data.append(item)
+        res_post = data
+        all = []
+        for posts in all_post_no_ordering:
+            items = {
+                'pk': posts.pk,
+                'descriptions': posts.description,
+                'img': posts.img.url,
+                'like': posts.liked.all().count(),
+            }
+            all.append(items)
+        a = all
         cUser = CustomUsers.objects.get(user=request.user)
         postt = Posts(user=cUser)
         pos = Posts.objects.all()
@@ -66,7 +91,7 @@ def mainl(request):
             postt.save()
             return HttpResponseRedirect(reverse('area'))
         return render(request, 'donut/main.html',
-                      {'post': NewPosts, 'pos': pos, 'cUser': cUser, 'post': NewPosts, 'follows': follows, 'qs': qs})
+                      {'post': NewPosts, 'pos': pos, 'cUser': cUser, 'post': NewPosts, 'follows': follows, 'qs': qs, 'data': res_post, 'a': a})
 
 
 def signIn(request):
@@ -197,29 +222,29 @@ def search_results(request):
 
 def sort(request):
     if request.is_ajax():
-        all_post_no_ordering = Posts.objects.all()
-        all_post = Posts.objects.order_by('-date')
-        data = []
-        for pos in all_post:
-            item = {
-                'pk': pos.pk,
-                'descriptions': pos.description,
-                'img': pos.img.url,
-                'like': pos.liked.all().count(),
-            }
-            data.append(item)
-        res_post = data
-        all = []
-        for posts in all_post_no_ordering:
-            items = {
-                'pk': posts.pk,
-                'descriptions': posts.description,
-                'img': posts.img.url,
-                'like': posts.liked.all().count(),
-            }
-            all.append(items)
-        a = all
-        return JsonResponse({'data': res_post, 'a': a})
+        # all_post_no_ordering = Posts.objects.all()
+        # all_post = Posts.objects.order_by('-date')
+        # data = []
+        # for pos in all_post:
+        #     item = {
+        #         'pk': pos.pk,
+        #         'descriptions': pos.description,
+        #         'img': pos.img.url,
+        #         'like': pos.liked.all().count(),
+        #     }
+        #     data.append(item)
+        # res_post = data
+        # all = []
+        # for posts in all_post_no_ordering:
+        #     items = {
+        #         'pk': posts.pk,
+        #         'descriptions': posts.description,
+        #         'img': posts.img.url,
+        #         'like': posts.liked.all().count(),
+        #     }
+        #     all.append(items)
+        # a = all
+        return JsonResponse()
     return JsonResponse({})
 
 
@@ -257,7 +282,6 @@ def like(request):
             'like_value': like,
             'likes': post_obj.liked.all().count()
         }
-        print(data)
         return JsonResponse(data, safe=False)
 
 
