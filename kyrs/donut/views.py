@@ -1,4 +1,5 @@
 from itertools import chain
+import random
 
 from django.contrib.auth import authenticate, login, logout
 from django.core import serializers
@@ -9,7 +10,7 @@ from django.http import JsonResponse
 from .forms import *
 from .forms import Imgform
 from django.contrib import messages
-from .models import CustomUsers, LikesPost
+from .models import CustomUsers, LikesPost, Facts
 
 
 def logout_user(request):
@@ -70,6 +71,9 @@ def mainl(request):
             }
             all.append(items)
         a = all
+        facts = Facts.objects.all()
+        factsId = random.randint(1, 46)
+        randomFacts = facts[factsId]
         cUser = CustomUsers.objects.get(user=request.user)
         postt = Posts(user=cUser)
         pos = Posts.objects.all()
@@ -91,7 +95,7 @@ def mainl(request):
             postt.save()
             return HttpResponseRedirect(reverse('area'))
         return render(request, 'donut/main.html',
-                      {'post': NewPosts, 'pos': pos, 'cUser': cUser, 'post': NewPosts, 'follows': follows, 'qs': qs, 'data': res_post, 'a': a})
+                      {'post': NewPosts, 'pos': pos, 'cUser': cUser, 'follows': follows, 'qs': qs, 'data': res_post, 'a': a, 'randomFacts':randomFacts })
 
 
 def signIn(request):
@@ -141,7 +145,7 @@ def area(request):
         followers = CustomUsers.objects.filter(user__in=followersUser)
         postt = Posts(user=cUser)
         count_follow = cUser.following.all().count()
-        all_post_user = Posts.objects.filter(user=cUser)
+        all_post_user = Posts.objects.filter(user=cUser).order_by('-date')
         count = all_post_user.count()
         if request.method == 'POST':
             imgForm = Imgform(request.POST, request.FILES)

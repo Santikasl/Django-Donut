@@ -91,7 +91,7 @@
         <p style="color: white; font-family: Organetto-Variable; font-size: 30px">{{ count }} posts</p>
         <p class="follower" style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ count_follow }}
             follower</p>
-        <p  class="follow2" style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ follow.count }}
+        <p class="follow2" style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ follow.count }}
             follow</p>
     </div>
 
@@ -103,11 +103,12 @@
             <div class="button2 content fade">
                 <p>Описание:</p>
                 <div class="description-post" id="description-post-id">
-                    <p class="p-desc">{{ posts.description|linebreaksbr }}</p>
+                    <p class="p-desc" id="open{{posts.id}}">{{ posts.description|linebreaksbr }}</p>
                 </div>
                 <button class="more-btn" id="open{{posts.id}}">Подробнее</button>
             </div>
         </div>
+
         <div class="overlay2" id="myOverlayopen{{posts.id}}">
             <div class="popup2">
                 <div class="photo-post">
@@ -127,11 +128,8 @@
                                     </form>
 
 
-                                    <form action="{% url 'delite' %}" method="post">
-                                        {% csrf_token %}
-                                        <input class="id-post" name="id" type="submit" value="{{ posts.id }}">
-                                        <li><a class="as2 as3" href="{% url 'delite' %}">Удалить</a></li>
-                                    </form>
+                                    <li><a class="as2 as3 delete-btn" id="opens{{posts.id}}" href="#">Удалить</a></li>
+
                                 </ul>
                             </li>
                         </ul>
@@ -164,6 +162,17 @@
                 </form>
             </div>
         </div>
+        <div class="overlay5" id="myOverlayopens{{posts.id}}">
+            <div class="popup5">
+                <h2 class="submit-delete">Вы действительно хотите</br>удалить этот пост?</h2>
+                <form action="{% url 'delite' %}" method="post">
+                    {% csrf_token %}
+                    <input class="id-post" name="id" type="submit" value="{{ posts.id }}">
+                    <div class="yes">ДА</div>
+                </form>
+                <div class="close-popup5">НЕТ</div>
+            </div>
+        </div>
         {% endfor %}
         <div class="overlay3" id="myOverlay2">
             <div class="popup3">
@@ -189,7 +198,7 @@
                 </div>
             </div>
         </div>
-                <div class="overlay4" id="myOverlay3">
+        <div class="overlay4" id="myOverlay3">
             <div class="popup3">
                 <h2 class="titel">Подписки</h2>
                 <div class="follower">
@@ -214,16 +223,24 @@
             </div>
         </div>
     </div>
-    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script>
+        $(document).on('click', '.delete-btn', function (e) {
+            let id = e.target.id;
+            $('#myOverlay' + id).fadeIn();
+        });
+        // Закрытие окна на крестикe
+        $('.close-popup5').click(function () {
+            $('.overlay5').fadeOut();
+        });
+
+    </script>
     <script>
         $(document).on('click', '.more-btn', function (e) {
             let id = e.target.id;
             $('#myOverlay' + id).fadeIn();
         });
-        // Закрытие окна на крестикe
-        $('.close-popup2').click(function () {
-            $('.overlay2').fadeOut();
-        });
+
         // Закрытие окна на поле
         $(document).mouseup(function (e) {
             var popup = $('.popup2');
@@ -237,10 +254,7 @@
             let id = e.target.id;
             $('#myOverlay2').fadeIn();
         });
-        // Закрытие окна на крестикe
-        $('.close-popup3').click(function () {
-            $('.overlay3').fadeOut();
-        });
+
         // Закрытие окна на поле
         $(document).mouseup(function (e) {
             var popup = $('.popup3');
@@ -249,16 +263,12 @@
             }
         });
     </script>
-
-     <script>
+    <script>
         $(document).on('click', '.follow2', function (e) {
             let id = e.target.id;
             $('#myOverlay3').fadeIn();
         });
-        // Закрытие окна на крестикe
-        $('.close-popup4').click(function () {
-            $('.overlay4').fadeOut();
-        });
+
         // Закрытие окна на поле
         $(document).mouseup(function (e) {
             var popup = $('.popup4');
@@ -297,5 +307,6 @@
             });
         })();
     </script>
+
 
     {% endblock %}

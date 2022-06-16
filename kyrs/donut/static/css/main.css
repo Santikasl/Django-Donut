@@ -60,11 +60,10 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
 .sortBtn {
     width: 50px;
     height: 50px;
-    margin-top: 45px;
+    margin-top: -280px;
     margin-left: 284px;
-    opacity: 1;
     opacity: 0;
-    z-index: 999;
+    z-index: 3;
     background-color: #e2264d;
     position: absolute;
 }
@@ -260,16 +259,6 @@ span {
     height: 120%;
 }
 
-.scrollable-content {
-    position: absolute;
-    margin-top: -300px;
-    overflow: scroll;
-    overflow-x: hidden;
-    overflow-y: unset;
-    width: 100%;
-    height: 90%;
-}
-
 
 ::-webkit-scrollbar {
     width: 0;
@@ -393,27 +382,28 @@ span {
 
 .main-content2 {
     z-index: 5;
+
     display: grid;
     grid-template-columns: 350px 350px 350px 350px;
     position: absolute;
-    width: 94%;
-    margin-top: 150px;
-    margin-left: 40px;
+    width: 70%;
+
     height: 100%;
-    grid-row-gap: 55px;
+    margin-left: 0;
+    grid-row-gap: 0;
 
 }
 
 .img-sort {
     position: absolute;
-    margin-top: 49px;
+    margin-top: -282px;
     margin-left: 19%;
 }
 
 
 .container-welcom {
     margin-top: 200px;
-    margin-left: 35%;
+    margin-left: 8%;
 }
 
 
@@ -502,6 +492,22 @@ span {
 
 }
 
+.img-div2 {
+    border-radius: 30px 30px 0 0;
+    position: relative;
+    height: 463px;
+    overflow: hidden;
+    align-items: center;
+    justify-items: center;
+    object-fit: cover;
+    display: flex;
+    z-index: 100;
+    width: 100%;
+    justify-content: center;
+    overflow-wrap: break-word;
+
+}
+
 .likes {
     transition: 2s;
 }
@@ -548,13 +554,14 @@ span {
     position: absolute;
     z-index: 100;
 !important;
-    margin-top: -24%;
-    border-radius: 20px;
-    background-color: white;
-    width: 500px;
-    margin-left: 40px;
-    transform: translate(-130%);
-    height: 600px;
+    margin-top: -17%;
+    border-radius: 30px;
+    background-color: rgba(239, 239, 239, 0.96);
+    width: 600px;
+    margin-left: 48%;
+
+    padding: 30px;
+    height: 300px;
 }
 
 .profile-notification {
@@ -624,9 +631,8 @@ span {
 .title-all-photo {
     color: white;
     position: absolute;
-    z-index: -1;
     font-size: 45px;
-    margin-top: 40px;
+    margin-top: -19%;
     margin-left: 7%;
     font-family: Organetto-Variable;
 }
@@ -835,11 +841,11 @@ span {
     display: none;
     grid-template-columns: 350px 350px 350px 350px;
     position: absolute;
-    width: 94%;
-    margin-top: 150px;
-    margin-left: 40px;
-    height: 100%;
-    grid-row-gap: 55px;
+    width: 70%;
+    margin-top: 0;
+    height: 1400px;
+    margin-left: 0;
+    grid-row-gap: -100px;
 }
 
 .main-content22 {
@@ -860,8 +866,6 @@ span {
 }
 
 
-
-
 .all-all-photo:hover > img.zoom22 {
 
     filter: blur(1px);
@@ -877,6 +881,7 @@ h1 {
 
 .photo {
     z-index: 5;
+    padding-bottom: 90px;
     padding-left: 50px;
     position: relative;
 }
@@ -969,6 +974,7 @@ h1 {
 
 
 }
+
 .more-btn2 {
     margin-top: 23px;
     width: 120px;
@@ -982,6 +988,7 @@ h1 {
 
 
 }
+
 .photo:hover > img.zoom {
 
     filter: blur(1px);
@@ -1020,11 +1027,12 @@ span {
 
 .scrollable-content {
     position: absolute;
-    margin-top: -300px;
+    margin-top: -215px;
     overflow: scroll;
     overflow-x: hidden;
     overflow-y: unset;
-    width: 100%;
+    margin-left: 50px;
+    width: 95%;
     height: 90%;
 }
 
@@ -1677,7 +1685,8 @@ input[type='search']::-webkit-search-results-decoration {
     font-family: Organetto-Variable;
 
 }
-.header{
+
+.header {
     display: flex;
 
     width: 200px;
@@ -1686,6 +1695,7 @@ input[type='search']::-webkit-search-results-decoration {
     margin-left: 55%;
     margin-top: 3%;
 }
+
 .form-like {
     margin-left: 160px;
     margin-top: 20px;
@@ -1851,4 +1861,48 @@ input[type='search']::-webkit-search-results-decoration {
     top: 11px;
     transform: rotate(45deg);
     left: -4px;
+}
+
+.random {
+    position: absolute;
+    color: #000000;
+    z-index: 999;
+    margin-top: -10px;
+    font-family: Organetto-Variable;
+    /*font-family: Current;*/
+    width: 180px;
+    text-align: center;
+    margin-left: 31%;
+    border-radius: 30px;
+    padding: 8px;
+
+}
+
+.round {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    margin-top: -208px;
+    margin-left: 90px;
+    filter: blur(100px);
+    background-color: #80c8ff;
+    border-radius: 400px;
+}
+
+
+.facts-text {
+    display: table;
+
+    width: 610px;
+    margin-top: 30px;
+    text-align: center;
+    color: #2a2a2a;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 23px;
+    height: 250px;
+}
+
+.facts-text p {
+    display: table-cell !important;
+    vertical-align: middle;
 }

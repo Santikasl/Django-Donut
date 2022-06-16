@@ -64,27 +64,23 @@
     <div id="fullpage">
         <div class="section s1">
             <div class="container-welcom">
+                <div class="round"></div>
                 <img class="welcome" src="{% static 'img/welcome.png' %}" alt="" width="400px">
                 <img class="welcome2" src="{% static 'img/back.png' %}" alt="" width="300px">
+                 <a href="{% url 'area' %}">
                 <div class="avatar">
                     <img class="main-logo" src="{{ cUser.img.url }}" alt="" width="150px">
                 </div>
+                 </a>
             </div>
-            <a href="javascript:oc_ch_menu();">
-                <div class="icons-container">
-                    <img src="{% static 'img/like.png' %}" alt="" width="200px" class="likes">
-                </div>
-            </a>
-            <a href="javascript:oc_ch_profile();">
-                <div class="profile-container">
-                    <img src="{% static 'img/profile-icon.png' %}" alt="" width="210px" class="profile-icon">
-                </div>
-            </a>
+
             <div class="like-notification" id="like-notification-id">
-            </div>
-            <div class="profile-notification" id="profile-notification-id">
-            </div>
-            <!--            <a  href=""><img class="down" src="{% static 'img/down.png' %}" alt=""></a>-->
+            <h1 class="random">Random facts</h1>
+                <div class="facts-text">
+            <p class="facts-p">{{ randomFacts.description }}</p>
+                </div>
+                </div>
+
         </div>
         <div class="section s2">
 
@@ -133,19 +129,19 @@
             {% endif %}
         </div>
         <div class="section s3">
+
+            <h1 class="title-all-photo">ALL PHOTO</h1>
+
+            <img class="img-sort" src="{% static 'img/sort.png' %}" alt="сортировка по дате" width="40px">
+            <form action="" id="sort-form" method="post" autocomplete="off">
+                {% csrf_token %}
+                <input type="button" id="sortBtn" class="sortBtn">
+
+            </form>
             <div class="scrollable-content">
+<!--                <div id="result_form">-->
 
-                <h1 class="title-all-photo">ALL PHOTO</h1>
-
-                <img class="img-sort" src="{% static 'img/sort.png' %}" alt="сортировка по дате" width="40px">
-                <form action="" id="sort-form" method="post" autocomplete="off">
-                    {% csrf_token %}
-                    <input type="button" id="sortBtn" class="sortBtn">
-
-                </form>
-                <div id="result_form">
-
-                </div>
+<!--                </div>-->
                 <div class="main-content2" id="mainId">
                     {% for posts in pos %}
                     <div class="photo">
@@ -238,54 +234,6 @@
                     </div>
                         {% endfor %}
                 </div>
-                <div class="main-content22" id="mainId2">
-                    {% for posts in pos %}
-                    <div class="photo">
-                        <img class="zoom" src="{{ posts.img.url }}" alt="" width="300px" height="380px"
-                             style="border-radius: 30px;">
-                        <div class="button2 content fade">
-                            <p>Описание:</p>
-                            <div class="description-post" id="description-post-id">
-                                <p class="p-desc">{{ posts.description|linebreaksbr }}</p>
-                            </div>
-                            <button class="more-btn" id="open{{posts.id}}">Подробнее</button>
-                        </div>
-                    </div>
-                    <div class="overlay2" id="myOverlayopen{{posts.id}}">
-                        <div class="popup2">
-                            <div class="photo-post">
-                                <img src="{{ posts.img.url }}" alt="" width="100%" height="100%"
-                                     style=" object-fit: cover;	">
-                            </div>
-                            <a href="{% url 'profile' posts.user.id%}">
-                                <div class="header">
-                                    <div class="avatar3">
-                                        <img class="main-logo" src="{{ posts.user.img.url }}" alt="" width="70px">
-                                    </div>
-                                    <h1 class="title-post">{{ posts.user.name }}</h1>
-                                </div>
-                            </a>
-                            <div class="description" id="description{{posts.id}}">
-                                <p>{{ posts.description | linebreaksbr }}</p>
-                            </div>
-                            <form action="{% url 'like' %}" method="post" class="like-form form-like"
-                                  id="g{{posts.id}}">
-                                {% csrf_token %}
-                                <input type="hidden" name="post_id" value="{{posts.id}}">
-                                <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}"
-                                        type="submit"><p
-                                        {% if posts|color:user %}
-                                        style="color: red;"
-                                        {% endif %}
-                                        class="like-img"
-                                        id="like-img{{posts.id}}">
-                                    ❤ {{ posts.liked.all.count }}</p></button>
-                            </form>
-                        </div>
-                    </div>
-                    {% endfor %}
-
-                </div>
             </div>
         </div>
     </div>
@@ -319,26 +267,26 @@
 </script>
 
 
-<script type="text/javascript">
-    function oc_ch_menu() {
-        document.getElementById('like-notification-id').style.transform = 'translateX(10px)';
-        document.getElementById('like-notification-id').style.transition = 'all 1s';
-        document.getElementById('overlay-likes-id').style.zIndex = '1';
-    }
+<!--<script type="text/javascript">-->
+<!--    function oc_ch_menu() {-->
+<!--        document.getElementById('like-notification-id').style.transform = 'translateX(10px)';-->
+<!--        document.getElementById('like-notification-id').style.transition = 'all 1s';-->
+<!--        document.getElementById('overlay-likes-id').style.zIndex = '1';-->
+<!--    }-->
 
-    function oc_ch_profile() {
-        document.getElementById('profile-notification-id').style.transform = 'translateX(940px)';
-        document.getElementById('profile-notification-id').style.transition = 'all 1s';
-        document.getElementById('overlay-likes-id').style.zIndex = '1';
-    }
+<!--    function oc_ch_profile() {-->
+<!--        document.getElementById('profile-notification-id').style.transform = 'translateX(940px)';-->
+<!--        document.getElementById('profile-notification-id').style.transition = 'all 1s';-->
+<!--        document.getElementById('overlay-likes-id').style.zIndex = '1';-->
+<!--    }-->
 
-    function fade_out() {
-        document.getElementById('like-notification-id').style.transform = 'translateX(-120%)';
-        document.getElementById('profile-notification-id').style.transform = 'translateX(300%)';
-        document.getElementById('like-notification-id').style.transition = 'all 1s';
-        document.getElementById('overlay-likes-id').style.zIndex = '-1';
-    }
-</script>
+<!--    function fade_out() {-->
+<!--        document.getElementById('like-notification-id').style.transform = 'translateX(-120%)';-->
+<!--        document.getElementById('profile-notification-id').style.transform = 'translateX(300%)';-->
+<!--        document.getElementById('like-notification-id').style.transition = 'all 1s';-->
+<!--        document.getElementById('overlay-likes-id').style.zIndex = '-1';-->
+<!--    }-->
+<!--</script>-->
 <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
 <script>
     $(document).on('click', '.more-btn', function (e) {

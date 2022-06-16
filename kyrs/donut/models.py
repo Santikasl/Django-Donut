@@ -32,7 +32,6 @@ class Posts(models.Model):
     def num_likes(self):
         return self.liked.all().count()
 
-
     def save(self, **kwargs):
         super().save()
         img = Image.open(self.img.path)
@@ -57,3 +56,6 @@ class LikesPost(models.Model):
     def __str__(self):
         return f' {self.user}: {self.post.id}'
 
+
+class Facts(models.Model):
+    description = models.TextField(max_length=2000)
