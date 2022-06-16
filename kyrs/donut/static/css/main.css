@@ -37,7 +37,6 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
     grid-template-columns: 200px 200px 200px;
     grid-column-gap: 220px;
     grid-row-gap: 10px;
-
     background-color: rgba(38, 38, 38, 0.87);
     position: absolute;
     width: 85%;
@@ -1619,7 +1618,7 @@ input[type='search']::-webkit-search-results-decoration {
 .description {
     font-size: 20px;
     font-family: 'Montserrat Alternates', sans-serif;
-    margin-top: 8%;
+    margin-top: 10%;
     overflow: scroll;
     width: 400px;
     overflow-x: hidden;
@@ -1669,7 +1668,7 @@ input[type='search']::-webkit-search-results-decoration {
 }
 .header{
     display: flex;
-    background-color: #e2264d;
+
     width: 200px;
     height: 80px;
     position: absolute;
@@ -1678,7 +1677,7 @@ input[type='search']::-webkit-search-results-decoration {
 }
 .form-like {
     margin-left: 160px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 

@@ -1,6 +1,8 @@
+
 $('.like-form').submit(function (e) {
     e.preventDefault()
-    var post_id =  $(this).attr('id')
+    var post_id_not_slice =  $(this).attr('id')
+    const post_id =  post_id_not_slice.slice(1)
     const url = $(this).attr('action')
     let res;
     const like = $(`.like-btn${post_id}`).text()
@@ -10,13 +12,14 @@ $('.like-form').submit(function (e) {
 
     const like_img = document.getElementById('like-img' + post_id)
     $.ajax({
-        type: 'POST',
-        url: url,
+        method: 'POST',
+        url: '/like/',
         data: {
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
             'post_id': post_id,
         },
         success: function (response) {
+
             value = response.likes
             btnlike.forEach(button => {
                 button.innerHTML = `

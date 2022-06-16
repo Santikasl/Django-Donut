@@ -16,6 +16,7 @@ $(document).on('click', '#sort-form', function (e) {
                 mainContent.innerHTML = ""
                 dataPost.forEach(sortPosts => {
                     sortPost.innerHTML += `
+    <script src="like.js" defer></script>
                     <div class="photo">
                         <img class="zoom" src="${sortPosts.img}" alt="" width="300px" height="380px"
                              style="border-radius: 30px;">
@@ -37,18 +38,13 @@ $(document).on('click', '#sort-form', function (e) {
                             <div class="description" id="description${sortPosts.pk}">
                                 <p>${sortPosts.descriptions}</p>
                             </div>
-                            <form action="/like/" method="post" class="like-form form-like" id="${sortPosts.pk}">
+                            <form action="${like_urs}" method="post" class="like-form form-like" id="l${sortPosts.pk}">
                                <input type='hidden' name='csrfmiddlewaretoken' value='${context_var}' />
 
                                 <input type="hidden" name="post_id" value="${sortPosts.pk}">
-                                <button class="ui button positive like-btn${sortPosts.pk}" id="btnlike${sortPosts.pk}"
-                                        type="submit"><p
-                                        {% if posts|color:user %}
-                                        style="color: red;"
-                                        {% endif %}
-                                        class="like-img"
-                                        id="like-img${sortPosts.pk}">
-                                    ❤ ${sortPosts.like}</p></button>
+                                <button class="ui button positive like-btn${sortPosts.pk}" id="btnlike${sortPosts.pk}" type="submit" style="color: red;">
+                                <p class="like-img" id="like-img${sortPosts.pk}"> ❤ ${sortPosts.like}</p>
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -85,7 +81,7 @@ $(document).on('click', '#sort-form', function (e) {
                                 <p>${allPosts.descriptions}</p>
                             </div>
                             <form action="{% url 'like' %}" method="post" class="like-form form-like"
-                                  id="${allPosts.pk}">
+                                  id="e${allPosts.pk}">
                                    <input type='hidden' name='csrfmiddlewaretoken' value='${context_var}' />
                                 <input type="hidden" name="post_id" value="${allPosts.pk}">
                                     <button class="ui button positive like-btn${allPosts.pk}"
@@ -104,13 +100,12 @@ $(document).on('click', '#sort-form', function (e) {
                     `
                 })
                 sort = false;
-                }
-                },
+            }
+        },
 
-                error: function (xhr, errmsg, err)
-                    {
-                        console.log("error"); // provide a bit more info about the error to the console
-                    }
-                });
-                });
+        error: function (xhr, errmsg, err) {
+            console.log("error"); // provide a bit more info about the error to the console
+        }
+    });
+});
 

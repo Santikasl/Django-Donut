@@ -52,7 +52,7 @@ def mainl(request):
         users = [user for user in follows]
         post_follow = []
         for u in users:
-            Posts_fo = Posts.objects.filter(user=u)
+            Posts_fo = Posts.objects.filter(user=u).order_by('-date')
             post_follow.append(Posts_fo)
         if len(post_follow) > 0:
             qs = chain(*post_follow)
@@ -144,7 +144,7 @@ def area(request):
 
 
 def search_profile(request, pk, **kwargs):
-    cUser = CustomUsers.objects.get(user=request.user)
+    cUser = CustomUsers.objects.get(pk=pk)
     search_user = CustomUsers.objects.filter(pk=pk).first()
     followersUser = search_user.following.all()
     followers = CustomUsers.objects.filter(user__in=followersUser)
@@ -257,6 +257,7 @@ def like(request):
             'like_value': like,
             'likes': post_obj.liked.all().count()
         }
+        print(data)
         return JsonResponse(data, safe=False)
 
 

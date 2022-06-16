@@ -49,7 +49,9 @@
         <div>
             <p style="color:white; font-family: Organetto-Variable;font-size:50px;">
                 {{ obj.name }}
+                 {% if count_follow > 10 %}
                 <img src="{% static 'img/gaochka.png' %}" alt="" width="30px" style="margin-top: -5px">
+                {% endif %}
             </p>
 
         </div>
@@ -107,7 +109,7 @@
                 <div class="description" id="description{{posts.id}}">
                     <p>{{ posts.description | linebreaksbr }}</p>
                 </div>
-                <form action="{% url 'like' %}" method="post" class="like-form form2" id="{{posts.id}}">
+                <form action="{% url 'like' %}" method="post" class="like-form form2" id="q{{posts.id}}">
                     {% csrf_token %}
                     <input type="hidden" name="post_id" value="{{posts.id}}">
                     <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}" type="submit"><p

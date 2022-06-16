@@ -110,7 +110,7 @@
                     <a href="{% url 'profile' x.user.id%}">
                         <h3 class="name-follow">{{ x.user }}</h3>
                     </a>
-                    <form action="{% url 'like' %}" method="post" class="like-form form2" id="{{x.id}}">
+                    <form action="{% url 'like' %}" method="post" class="like-form form2" id="f{{x.id}}">
                         {% csrf_token %}
                         <input type="hidden" name="post_id" value="{{posts.id}}">
                         <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{x.id}}"
@@ -124,7 +124,7 @@
                     </form>
                 </div>
                 {% endfor %}
-                  <h3 class="titel-subh">Ваши подписки</h3>
+                <h3 class="titel-subh">Ваши подписки</h3>
             </div>
 
             {% else %}
@@ -165,11 +165,18 @@
                                 <img src="{{ posts.img.url }}" alt="" width="100%" height="100%"
                                      style=" object-fit: cover;	">
                             </div>
-                            <h1 class="title-post">ОПИСАНИЕ</h1>
+                            <a href="{% url 'profile' posts.user.id%}">
+                                <div class="header">
+                                    <div class="avatar3">
+                                        <img class="main-logo" src="{{ posts.user.img.url }}" alt="" width="70px">
+                                    </div>
+                                    <h1 class="title-post">{{ posts.user.name }}</h1>
+                                </div>
+                            </a>
                             <div class="description" id="description{{posts.id}}">
                                 <p>{{ posts.description | linebreaksbr }}</p>
                             </div>
-                            <form action="{% url 'like' %}" method="post" class="like-form form-like" id="{{posts.id}}">
+                            <form action="{% url 'like' %}" method="post" class="like-form form-like" id="g{{posts.id}}">
                                 {% csrf_token %}
                                 <input type="hidden" name="post_id" value="{{posts.id}}">
                                 <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}"
@@ -200,7 +207,7 @@
 <script>
 
     var context_var = "{{csrf_token}}";
-
+    var like_urs = "{% url 'like' %}";
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"
