@@ -28,6 +28,8 @@ def reg(request):
             if form.is_valid():
                 cUser = CustomUsers()
                 cUser.name = request.POST.get("username")
+                rgrg = request.POST.get("male")
+                cUser.male = request.POST.get("male")
                 cUser.email = request.POST.get("email")
                 cUser.password = request.POST.get("password1")
                 cUser.user = form.save()
@@ -302,4 +304,16 @@ def follow_unfollow(request):
 
 
 def statistics(request):
-    return render(request, 'donut/statistics.html')
+    cUser = CustomUsers.objects.get(user=request.user)
+    followersUser = cUser.following.all()
+    followers = CustomUsers.objects.filter(user__in=followersUser)
+    count_male = 0
+    count_female = 0
+    for male in followers:
+        if male.male == 'male':
+            count_male += 1
+        else:
+            count_female += 1
+    print(count_male)
+    print(count_female)
+    return render(request, 'donut/statistics.html', {'count_male': count_male, 'count_female':count_female})

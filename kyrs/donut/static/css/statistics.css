@@ -4,20 +4,26 @@ body{
     outline: none;
 }
 
-#myChart{
-    z-index: 100;
 
-    background-color: #ffffff;
-}
 
 .chart{
     display: flex;
+    padding: 50px;
     justify-content: center;
     align-items: center;
     position: absolute;
     border-radius: 80px;
-    margin-top: 20%;
+    margin-top: 10%;
     background-color: #ffffff;
-    width: 500px;
-    height: 500px;
+    width: 300px;
+    height: 300px;
+    z-index: 9;
+}
+
+.section{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: #e2264d;
+
 }

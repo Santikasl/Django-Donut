@@ -60,14 +60,13 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
     position: relative;
     width: 50px;
     height: 50px;
-   top: -220%;
+    top: -220%;
     left: 13%;
     opacity: 0;
     z-index: 3;
     background-color: #2677e2;
 
 }
-
 
 
 .img-sub {
@@ -395,7 +394,7 @@ span {
 }
 
 
-.sort-container{
+.sort-container {
 
     position: relative;
     top: -145%;
@@ -655,7 +654,7 @@ span {
     color: white;
     position: relative;
     font-size: 45px;
-    top:-33%;
+    top: -33%;
     width: 100%;
     height: 70px;
     padding-left: 9%;
@@ -1054,7 +1053,7 @@ span {
     position: absolute;
     overflow: scroll;
     overflow-x: hidden;
-    top:22%;
+    top: 22%;
     overflow-y: unset;
     width: 1400px;
     height: 90%;
@@ -1973,3 +1972,7 @@ input[type='search']::-webkit-search-results-decoration {
     width: 100%;
     height: 100%;
 }
+
+
+
+

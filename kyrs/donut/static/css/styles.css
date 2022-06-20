@@ -95,8 +95,8 @@ h1 {
 }
 
 
-#id_password{
-       margin-top: -30px;
+#id_password {
+    margin-top: -30px;
     border-radius: 20px;
     width: 300px;
     padding-left: 20px;
@@ -118,18 +118,8 @@ h1 {
 }
 
 
-#id_email{
-       margin-top: -30px;
-    border-radius: 20px;
-    width: 300px;
-    padding-left: 20px;
-    height: 35px;
-    border: 2px solid black;
-    margin-bottom: 35px;
-    margin-left: 65px;
-}
-#id_isPassword{
-           margin-top: -30px;
+#id_email {
+    margin-top: -30px;
     border-radius: 20px;
     width: 300px;
     padding-left: 20px;
@@ -139,8 +129,8 @@ h1 {
     margin-left: 65px;
 }
 
-#id_username{
-               margin-top: -30px;
+#id_isPassword {
+    margin-top: -30px;
     border-radius: 20px;
     width: 300px;
     padding-left: 20px;
@@ -150,8 +140,8 @@ h1 {
     margin-left: 65px;
 }
 
-#id_password1{
-                   margin-top: -30px;
+#id_username {
+    margin-top: -30px;
     border-radius: 20px;
     width: 300px;
     padding-left: 20px;
@@ -161,8 +151,8 @@ h1 {
     margin-left: 65px;
 }
 
-#id_password2{
-                       margin-top: -30px;
+#id_password1 {
+    margin-top: -30px;
     border-radius: 20px;
     width: 300px;
     padding-left: 20px;
@@ -172,8 +162,19 @@ h1 {
     margin-left: 65px;
 }
 
-.inp{
-       margin-top: -30px;
+#id_password2 {
+    margin-top: -30px;
+    border-radius: 20px;
+    width: 300px;
+    padding-left: 20px;
+    height: 35px;
+    border: 2px solid black;
+    margin-bottom: 35px;
+    margin-left: 65px;
+}
+
+.inp {
+    margin-top: -30px;
     border-radius: 20px;
     width: 300px;
     padding-left: 20px;
@@ -263,8 +264,8 @@ input:focus:-ms-input-placeholder {
     margin-left: -110px;
 }
 
-.messages{
-position: absolute;
+.messages {
+    position: absolute;
     font-size: 20px;
     font-family: Century Gothic;
     width: 100%;
@@ -274,15 +275,156 @@ position: absolute;
     text-align: center;
 }
 
-#text2{
-margin-top: 10%;
+#text2 {
+    margin-top: 10%;
 
 }
 
-#text3{
+#text3 {
 
 
 }
 
+.logotip {
+    width: 700px;
+    z-index: 1;
+    position: absolute;
+    left: 410px;
+    top: 80px;
 
+}
+
+.crystal {
+
+    width: 500px;
+    z-index: 10;
+    position: absolute;
+    left: -50px;
+    top: -450px
+}
+
+.crystal2 {
+    width: 500px;
+    z-index: 1;
+    position: absolute;
+    left: 1150px;
+    top: -100px;
+}
+
+.text-container {
+    width: 800px;
+    z-index: 1;
+    position: absolute;
+    left: 23%;
+    top: 70%;
+}
+
+.crystal-info {
+    width: 700px;
+    z-index: -1;
+    position: absolute;
+    left: 5px;
+    top: 120px;
+}
+
+.about {
+    width: 650px;
+    position: absolute;
+    left: 750px;
+    top: 150px;
+}
+
+.start {
+    width: 1350px;
+    z-index: -4;
+    position: absolute;
+    left: 100px;
+    top: 0px;
+    top: 0px
+}
+
+.start3 {
+    display: none;
+}
+
+@media screen and (max-width: 1080px) {
+    .logotip {
+        width: 600px;
+        z-index: 1;
+        position: absolute;
+        left: 22%;
+        top: 40%;
+    }
+
+    .crystal {
+        width: 500px;
+        z-index: 10;
+        position: absolute;
+        left: 100px;
+        top: -700px
+    }
+
+    .crystal2 {
+        width: 500px;
+        z-index: 1;
+        position: absolute;
+        left: 500px;
+        top: 300px;
+    }
+
+    .crystal-info {
+        width: 700px;
+        z-index: -1;
+        position: absolute;
+        left: 200px;
+        top: 300px;
+    }
+
+    .about {
+        width: 650px;
+        position: absolute;
+        left: 200px;
+        top: 45%;
+    }
+
+    .text-container {
+        width: 800px;
+        z-index: 1;
+        position: absolute;
+        left: 14%;
+        top: 58%;
+    }
+
+    .start {
+        display: none;
+
+    }
+
+    .start3 {
+        display: flex;
+        width: 700px;
+        z-index: -4;
+        position: absolute;
+        left: 230px;
+        top: 150px;
+    }
+
+    .registr {
+        position: relative;
+        width: 449px;
+        height: 500px;
+        background-color: white;
+        border-radius: 50px;
+        margin-top: -1px;
+        margin-left: 350px;
+    }
+    .form {
+    position: absolute;
+    z-index: 100000 !important;
+    left: 30%;
+    top: 67%;
+    padding-left: 150px;
+}
+
+}
 

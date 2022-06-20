@@ -5,6 +5,11 @@ from django.core.validators import *
 from django.contrib.auth.models import User
 from PIL import Image
 
+MALE_CHOICES = (
+    ('female', 'FEMALE'),
+    ('male', 'MALE'),
+)
+
 
 class CustomUsers(models.Model):
     name = models.CharField(max_length=100, default='none')
@@ -13,12 +18,14 @@ class CustomUsers(models.Model):
     following = models.ManyToManyField(User, related_name='following', blank=True)
     img = models.ImageField(upload_to='images/', default='images/default.png')
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    male = models.CharField(max_length=6, choices=MALE_CHOICES, default='male')
 
     def __str__(self):
         return str(self.name)
 
 
-def default_datetime(): return datetime.now()
+def default_datetime():
+    return datetime.now()
 
 
 class Posts(models.Model):
@@ -59,3 +66,7 @@ class LikesPost(models.Model):
 
 class Facts(models.Model):
     description = models.TextField(max_length=2000)
+
+
+
+
