@@ -1,0 +1,23 @@
+body{
+        background-color: #0c0c0c;
+    text-decoration: none;
+    outline: none;
+}
+
+#myChart{
+    z-index: 100;
+
+    background-color: #ffffff;
+}
+
+.chart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border-radius: 80px;
+    margin-top: 20%;
+    background-color: #ffffff;
+    width: 500px;
+    height: 500px;
+}

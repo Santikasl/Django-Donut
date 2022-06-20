@@ -1,6 +1,6 @@
 <!doctype html>
 {% load static %}
-<html lang="en" xmlns:input="http://www.w3.org/1999/html">
+<html lang="en">
 {% block head %}
 
 <head>
@@ -20,87 +20,75 @@
     <title>Document</title>
 
 
-
     <link rel="stylesheet" href="{% static 'css/titels.css' %}"/>
 </head>
 {% endblock %}
 
 <body>
-<div class="sssss">
     {% block scripts %}
     <script src="{% static 'js/search.js' %}" defer></script>
     {% endblock scripts %}
-    </div>
 {% block title %}
 
 <script>
     window.onload = function () {
-      document.body.classList.add('loaded_hiding');
-      window.setTimeout(function () {
-        document.body.classList.add('loaded');
-        document.body.classList.remove('loaded_hiding');
-      }, 500);
+        document.body.classList.add('loaded_hiding');
+        window.setTimeout(function () {
+            document.body.classList.add('loaded');
+            document.body.classList.remove('loaded_hiding');
+        }, 500);
     }
-  </script>
-  <!-- Прелоадер -->
-  <div class="preloader">
-
-
-  </div>
-<div class="title">
-
-    <a href="{% url 'main' %}"> <img src="{% static 'img/icon.png' %}" width="30px" height="30px"
-                                     style="margin:23px"></a>
-    <a href="{% url 'main' %}"><h3 class="name no-bootstrap">DONUT</h3></a>
-
-    <div class="well">
-        <form action="" id="search-form"  method="post" autocomplete="off">
-              {% csrf_token %}
-            <input class="search" type="search" name="" id="search-input" placeholder="Поиск">
-        </form>
-        <div id="results-block" class="results-card not-visible not-found-extend">
-
+</script>
+<div class="preloader"></div>
+<header>
+    <div class="title">
+        <div class="logo-container">
+            <a href="{% url 'main' %}"> <img src="{% static 'img/icon.png' %}" width="30px" height="30px"
+                                             style="margin-left: 25px;margin-top: 10px;"></a>
+            <a href="{% url 'main' %}"><h3 class="name">DONUT</h3></a>
         </div>
-
-    </div>
-
-
-    <div class="button">
-        <img src="{% static 'img/notification.png' %}" alt="" width="55px"
-             style="margin-top:17px; margin-left:70px">
-    </div>
-    <a href="{% url 'area' %}">
-        <img src="{% static 'img/user-photo.png' %}" alt="" width="43px"
-             style="margin-top:21px; margin-left:70px">
-    </a>
-
-    <div class="overlay">
-        <div class="popup">
-            <h2>Добавление поста</h2>
-            <form id="form" action="" enctype="multipart/form-data" method="post">
-                <link rel="stylesheet"
-                      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <div class="well">
+            <form action="" id="search-form" method="post" autocomplete="off">
                 {% csrf_token %}
-                <div class="example-2">
-                    <div class="form-group">
-
-                        {{ post.postImg }}
-                        <label for="file" class="btn btn-tertiary js-labelFile">
-                            <i class="icon fa fa-check"></i>
-                            <span class="js-fileName">Загрузить файл</span>
-                        </label>
-                    </div>
-                </div>
-
-                {{ post.description }}
-                <input type="submit" id="btn" value="Добавить">
+                <input class="search" type="search" name="" id="search-input" placeholder="Поиск">
             </form>
+            <div id="results-block" class="results-card not-visible not-found-extend">
+
+            </div>
+        </div>
+        <div class="new-post-and-area">
+            <div class="button">
+                <img src="{% static 'img/notification.png' %}" alt="" width="55px">
+            </div>
+            <a href="{% url 'area' %}" style="z-index: 10;">
+                <img src="{% static 'img/user-photo.png' %}" alt="" width="43px"
+                     style="margin-top: 5px; margin-left: 60px; z-index: 10;">
+            </a>
+        </div>
+        <div class="overlay">
+            <div class="popup">
+                <h2>Добавление поста</h2>
+                <form id="form" action="" enctype="multipart/form-data" method="post">
+                    <link rel="stylesheet"
+                          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+                    {% csrf_token %}
+                    <div class="example-2">
+                        <div class="form-group">
+
+                            {{ post.postImg }}
+                            <label for="file" class="btn btn-tertiary js-labelFile">
+                                <i class="icon fa fa-check"></i>
+                                <span class="js-fileName">Загрузить файл</span>
+                            </label>
+                        </div>
+                    </div>
+                    {{ post.description }}
+                    <input type="submit" id="btn" value="Добавить">
+                </form>
+            </div>
         </div>
     </div>
-
-
-</div>
-
+</header>
 
 <script>
     $('.button').click(function () {

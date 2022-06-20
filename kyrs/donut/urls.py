@@ -14,10 +14,14 @@ urlpatterns = [
     path('search/', views.search_results, name='search'),
     path('siwtch_follow/', views.follow_unfollow, name='follow-unfollow-view'),
     path('sort/', views.sort, name='sort'),
+    path('statistics/', views.statistics, name='statistics'),
     path('edit/', views.edit, name='edit'),
     path('like/', views.like, name='like'),
     path('delite', views.delite, name='delite'),
     path('<int:pk>/', views.search_profile, name='profile'),
     path('exit/', views.logout_user, name='exit'),
+    path('exit/', views.logout_user, name='exit'),
 
 ]
+
+

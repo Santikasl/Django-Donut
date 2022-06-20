@@ -24,18 +24,10 @@ a:active {
     text-decoration: none;
 }
 
-h3 {
-    color: #fff;
-    font-size: 1.2em;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 0;
-}
 
-*, ::after, ::before {
-    box-sizing: inherit;
-}
+/**, ::after, ::before {*/
+/*    box-sizing: inherit;*/
+/*}*/
 
 
 .logo {
@@ -132,21 +124,8 @@ h3 {
     overflow-wrap: break-word;
 }
 
-.search {
-    background-image: url(icon.png);
-    background-repeat: no-repeat;
-    background-position: 4px;
-    margin-top: 15px;
-    margin-left: 140px;
-    padding-left: 50px;
-    padding-top: 2px;
-    text-decoration: none;
-    width: 876px;
-    height: 40px;
-    border-radius: 25px;
-    outline: none;
-    border: none;
-}
+
+
 
 .photo > img,
 .photo > .content {
@@ -1194,3 +1173,5 @@ input[type='search']::-webkit-search-results-decoration {
     transition: .5s;
 
 }
+
+

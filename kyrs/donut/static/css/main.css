@@ -31,20 +31,19 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
 }
 
 .sub-photo {
-    /*border: 1px solid white;*/
     border-radius: 20px;
     display: grid;
-    grid-template-columns: 200px 200px 200px;
+    grid-template-columns: 15% 15% 15%;
     grid-column-gap: 220px;
     grid-row-gap: 10px;
     background-color: rgba(38, 38, 38, 0.87);
     position: absolute;
-    width: 85%;
-    margin-left: 130px;
+    width: 1300px;
+    margin-top: 4%;
     height: 82%;
     overflow: scroll;
     z-index: 999;
-    margin-top: -280px;
+
 }
 
 .photo-s {
@@ -58,15 +57,18 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
 }
 
 .sortBtn {
+    position: relative;
     width: 50px;
     height: 50px;
-    margin-top: -280px;
-    margin-left: 284px;
+   top: -220%;
+    left: 13%;
     opacity: 0;
     z-index: 3;
-    background-color: #e2264d;
-    position: absolute;
+    background-color: #2677e2;
+
 }
+
+
 
 .img-sub {
     width: 80px;
@@ -382,43 +384,48 @@ span {
 
 .main-content2 {
     z-index: 5;
-
     display: grid;
-    grid-template-columns: 350px 350px 350px 350px;
-    position: absolute;
-    width: 70%;
-
-    height: 100%;
+    grid-template-columns: 25%  25%  25%  25%;
+    position: relative;
+    width: 1400px;
+    align-items: center;
     margin-left: 0;
     grid-row-gap: 0;
 
 }
 
-.img-sort {
-    position: absolute;
-    margin-top: -282px;
-    margin-left: 19%;
+
+.sort-container{
+
+    position: relative;
+    top: -145%;
+    left: 13%;
 }
 
 
 .container-welcom {
-    margin-top: 200px;
-    margin-left: 8%;
+    display: flex;
+
+    width: 50%;
+    align-items: center;
+    justify-content: center;
 }
 
 
 .avatar {
-    position: absolute;
+    position: relative;
     z-index: 3;
     width: 150px;
     overflow: hidden;
     border-radius: 80px;
     height: 150px;
+    top: -75%;
+    left: 30%;
     background-color: #ffffff;
     align-items: center;
     justify-items: center;
-    margin-left: 140px;
-    margin-top: -160px;
+    /*margin-left: 140px;*/
+    /*margin-top: -160px;*/
 }
 
 
@@ -471,7 +478,7 @@ span {
 }
 
 .form2 {
-    margin-left: 280px;
+    margin-left: 200px;
     margin-top: -60px;
 }
 
@@ -551,16 +558,15 @@ span {
 }
 
 .like-notification {
-    position: absolute;
+    /*position: absolute;*/
     z-index: 100;
 !important;
-    margin-top: -17%;
     border-radius: 30px;
     background-color: rgba(239, 239, 239, 0.96);
     width: 600px;
-    margin-left: 48%;
-
     padding: 30px;
+
+    margin-top: 5%;
     height: 300px;
 }
 
@@ -615,25 +621,44 @@ span {
 }
 
 .welcome {
-    position: absolute;
-    margin-top: -285px;
-    margin-left: 1%;
+    position: relative;
+    margin-top: -110%;
+    /*margin-left: -5%;*/
+    /*margin-top: -10%;*/
+    /*position: fixed;*/
+    /*margin-top: 26%;*/
+    /*margin-left: 20%;*/
+    width: 400px;
+    top: -1%;
+
 
 }
 
+.welcome-container {
+
+    width: 400px;
+    height: 400px;
+
+}
+
+
 .welcome2 {
-    position: absolute;
-    margin-top: -235px;
-    margin-left: 65px;
+    position: relative;
+    margin-top: -150%;
+    top: -18%;
+    left: 12%;
+    width: 300px;
 
 }
 
 .title-all-photo {
     color: white;
-    position: absolute;
+    position: relative;
     font-size: 45px;
-    margin-top: -19%;
-    margin-left: 7%;
+    top:-33%;
+    width: 100%;
+    height: 70px;
+    padding-left: 9%;
     font-family: Organetto-Variable;
 }
 
@@ -1027,12 +1052,11 @@ span {
 
 .scrollable-content {
     position: absolute;
-    margin-top: -215px;
     overflow: scroll;
     overflow-x: hidden;
+    top:22%;
     overflow-y: unset;
-    margin-left: 50px;
-    width: 95%;
+    width: 1400px;
     height: 90%;
 }
 
@@ -1561,7 +1585,7 @@ input[type='search']::-webkit-search-results-decoration {
 .overlay2 {
     position: fixed;
     width: 100%;
-    margin-top: 1510px;
+    margin-top: 100%;
     z-index: 999 !important;
     height: 100vh;
     top: 0;
@@ -1697,7 +1721,7 @@ input[type='search']::-webkit-search-results-decoration {
 }
 
 .form-like {
-    margin-left: 160px;
+    margin-left: 80px;
     margin-top: 20px;
 }
 
@@ -1807,7 +1831,7 @@ input[type='search']::-webkit-search-results-decoration {
 .overlay3 {
     position: fixed;
     width: 100%;
-    margin-top: 1510px;
+    margin-top: 100%;
     z-index: 999 !important;
     height: 100vh;
     top: 0;
@@ -1864,26 +1888,25 @@ input[type='search']::-webkit-search-results-decoration {
 }
 
 .random {
-    position: absolute;
+
     color: #000000;
     z-index: 999;
     margin-top: -10px;
+
     font-family: Organetto-Variable;
     /*font-family: Current;*/
     width: 180px;
     text-align: center;
-    margin-left: 31%;
     border-radius: 30px;
     padding: 8px;
 
 }
 
 .round {
-    position: absolute;
-    width: 250px;
-    height: 250px;
-    margin-top: -208px;
-    margin-left: 90px;
+    position: relative;
+    width: 200px;
+    margin: 25%;
+    height: 200px;
     filter: blur(100px);
     background-color: #80c8ff;
     border-radius: 400px;
@@ -1905,4 +1928,48 @@ input[type='search']::-webkit-search-results-decoration {
 .facts-text p {
     display: table-cell !important;
     vertical-align: middle;
+}
+
+.section1 {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+
+}
+
+.facts-container {
+
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.random-container {
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    height: 4%;
+    text-align: center;
+    width: 100%;
+
+}
+
+.section2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+.section3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
 }

@@ -299,3 +299,7 @@ def follow_unfollow(request):
         else:
             obj.following.add(my_profile.user)
         return redirect(request.META.get('HTTP_REFERER'))
+
+
+def statistics(request):
+    return render(request, 'donut/statistics.html')

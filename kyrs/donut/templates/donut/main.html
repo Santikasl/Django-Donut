@@ -63,180 +63,187 @@
 <div class="blur-search" id="overlay-blur">
     <div id="fullpage">
         <div class="section s1">
-            <div class="container-welcom">
-                <div class="round"></div>
-                <img class="welcome" src="{% static 'img/welcome.png' %}" alt="" width="400px">
-                <img class="welcome2" src="{% static 'img/back.png' %}" alt="" width="300px">
-                 <a href="{% url 'area' %}">
-                <div class="avatar">
-                    <img class="main-logo" src="{{ cUser.img.url }}" alt="" width="150px">
+            <div class="section1">
+                <div class="container-welcom">
+                    <div class="welcome-container">
+                        <div class="round"></div>
+                        <img class="welcome" src="{% static 'img/welcome.png' %}" alt="">
+                        <img class="welcome2" src="{% static 'img/back.png' %}" alt="">
+                        <a href="{% url 'area' %}">
+                            <div class="avatar">
+                                <img class="main-logo" src="{{ cUser.img.url }}" alt="" width="150px">
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                 </a>
+                <div class="facts-container">
+                    <div class="like-notification" id="like-notification-id">
+                        <div class="random-container">
+                            <h1 class="random">Random facts</h1>
+                        </div>
+                        <div class="facts-text">
+                            <p class="facts-p">{{ randomFacts.description }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="like-notification" id="like-notification-id">
-            <h1 class="random">Random facts</h1>
-                <div class="facts-text">
-            <p class="facts-p">{{ randomFacts.description }}</p>
-                </div>
-                </div>
-
         </div>
         <div class="section s2">
 
             {% if qs %}
+            <div class="section2">
+                <div class="sub-photo">
+                    {% for x in qs %}
+                    <div class="photo-s">
+                        <div class="img-div">
+                            <img class="zoom2" src="{{ x.img.url }}" alt="" height="390px"
+                                 style=" border-radius: 30px 30px 0 0;">
+                            <div class="button22 content2 fade2">
+                                <p>Описание:</p>
+                                <div class="description-post2" id="description-post-id">
+                                    <p class="p-desc2">{{ x.description|linebreaksbr }}</p>
+                                </div>
 
-            <div class="sub-photo">
-                {% for x in qs %}
-                <div class="photo-s">
-                    <div class="img-div">
-                        <img class="zoom2" src="{{ x.img.url }}" alt="" height="390px"
-                             style=" border-radius: 30px 30px 0 0;">
-                        <div class="button22 content2 fade2">
-                            <p>Описание:</p>
-                            <div class="description-post2" id="description-post-id">
-                                <p class="p-desc2">{{ x.description|linebreaksbr }}</p>
                             </div>
-
                         </div>
+                        <div class="avatar2">
+                            <img class="main-logo" src="{{ x.user.img.url }}" alt="" width="70px">
+                        </div>
+                        <a href="{% url 'profile' x.user.id%}">
+                            <h3 class="name-follow">{{ x.user }}</h3>
+                        </a>
+                        <form action="{% url 'like' %}" method="post" class="like-form form2" id="f{{x.id}}">
+                            {% csrf_token %}
+                            <input type="hidden" name="post_id" value="{{posts.id}}">
+                            <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{x.id}}"
+                                    type="submit"><p
+                                    {% if x|color:user %}
+                                    style="color: red;"
+                                    {% endif %}
+                                    class="like-img"
+                                    id="like-img{{x.id}}">
+                                ❤ {{ x.liked.all.count }}</p></button>
+                        </form>
                     </div>
-                    <div class="avatar2">
-                        <img class="main-logo" src="{{ x.user.img.url }}" alt="" width="70px">
-                    </div>
-                    <a href="{% url 'profile' x.user.id%}">
-                        <h3 class="name-follow">{{ x.user }}</h3>
-                    </a>
-                    <form action="{% url 'like' %}" method="post" class="like-form form2" id="f{{x.id}}">
-                        {% csrf_token %}
-                        <input type="hidden" name="post_id" value="{{posts.id}}">
-                        <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{x.id}}"
-                                type="submit"><p
-                                {% if x|color:user %}
-                                style="color: red;"
-                                {% endif %}
-                                class="like-img"
-                                id="like-img{{x.id}}">
-                            ❤ {{ x.liked.all.count }}</p></button>
-                    </form>
+                    {% endfor %}
+                    <h3 class="titel-subh">Ваши подписки</h3>
                 </div>
-                {% endfor %}
-                <h3 class="titel-subh">Ваши подписки</h3>
             </div>
-
             {% else %}
             <img src="{% static 'img/not.gif' %}" alt="" width="300px" style="margin-left: 40%">
             <h2 class="no-followers">Подпишитесь на друзей, что бы видеть их новые фото</h2>
             {% endif %}
         </div>
         <div class="section s3">
+            <div class="section3">
+                <div class="title-all-photo">
+                    <p style=" font-size: 45px; font-weight: bold; margin-top:0" >ALL PHOTO</p>
 
-            <h1 class="title-all-photo">ALL PHOTO</h1>
+                    <img class="sort-container" src="{% static 'img/sort.png' %}" alt="сортировка по дате" width="40px">
+                    <form class="sortBtn" action="" id="sort-form" method="post" autocomplete="off">
+                        {% csrf_token %}
+                        <input type="button" id="sortBtn">
 
-            <img class="img-sort" src="{% static 'img/sort.png' %}" alt="сортировка по дате" width="40px">
-            <form action="" id="sort-form" method="post" autocomplete="off">
-                {% csrf_token %}
-                <input type="button" id="sortBtn" class="sortBtn">
-
-            </form>
-            <div class="scrollable-content">
-<!--                <div id="result_form">-->
-
-<!--                </div>-->
-                <div class="main-content2" id="mainId">
-                    {% for posts in pos %}
-                    <div class="photo">
-                        <img class="zoom" src="{{ posts.img.url }}" alt="" width="300px" height="380px"
-                             style="border-radius: 30px;">
-                        <div class="button2 content fade">
-                            <p>Описание:</p>
-                            <div class="description-post" id="description-post-id">
-                                <p class="p-desc">{{ posts.description|linebreaksbr }}</p>
-                            </div>
-                            <button class="more-btn" id="open{{posts.id}}">Подробнее</button>
-                        </div>
-                    </div>
-                    <div class="overlay2" id="myOverlayopen{{posts.id}}">
-                        <div class="popup2">
-                            <div class="photo-post">
-                                <img src="{{ posts.img.url }}" alt="" width="100%" height="100%"
-                                     style=" object-fit: cover;	">
-                            </div>
-                            <a href="{% url 'profile' posts.user.id%}">
-                                <div class="header">
-                                    <div class="avatar3">
-                                        <img class="main-logo" src="{{ posts.user.img.url }}" alt="" width="70px">
-                                    </div>
-                                    <h1 class="title-post">{{ posts.user.name }}</h1>
-                                </div>
-                            </a>
-                            <div class="description" id="description{{posts.id}}">
-                                <p>{{ posts.description | linebreaksbr }}</p>
-                            </div>
-                            <form action="{% url 'like' %}" method="post" class="like-form form-like"
-                                  id="g{{posts.id}}">
-                                {% csrf_token %}
-                                <input type="hidden" name="post_id" value="{{posts.id}}">
-                                <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}"
-                                        type="submit"><p
-                                        {% if posts|color:user %}
-                                        style="color: red;"
-                                        {% endif %}
-                                        class="like-img"
-                                        id="like-img{{posts.id}}">
-                                    ❤ {{ posts.liked.all.count }}</p></button>
-                            </form>
-                        </div>
-                    </div>
-                    {% endfor %}
+                    </form>
 
                 </div>
-
-                <div class="sort-post" id="sort-post">
-                    {% for x in data %}
-                    <div class="photo">
-                        <img class="zoom" src="{{ x.img }}" alt="" width="300px" height="380px"
-                             style="border-radius: 30px;">
-                        <div class="button2 content fade">
-                            <p>Описание:</p>
-                            <div class="description-post" id="description-post-id">
-                                <p class="p-desc">{{ x.descriptions | linebreaksbr }}</p>
-                            </div>
-                            <button class="more-btn2" id="open{{ x.pk }}">Подробнее</button>
-                        </div>
-                    </div>
-                    <div class="overlay3" id="myOverlay2open{{ x.pk }}">
-                        <div class="popup3">
-                            <div class="photo-post">
-                                <img src="{{ x.img }}" alt="" width="100%" height="100%"
-                                     style=" object-fit: cover;">
-                            </div>
-                             <a href="{% url 'profile' x.user %}">
-                                <div class="header">
-                                    <div class="avatar3">
-                                        <img class="main-logo" src="{{ x.imgUrl }}" alt="" width="70px">
-                                    </div>
-                                    <h1 class="title-post">{{ x.name }}</h1>
+                <div class="scrollable-content">
+                    <div class="main-content2" id="mainId">
+                        {% for posts in pos %}
+                        <div class="photo">
+                            <img class="zoom" src="{{ posts.img.url }}" alt="" width="300px" height="380px"
+                                 style="border-radius: 30px;">
+                            <div class="button2 content fade">
+                                <p>Описание:</p>
+                                <div class="description-post" id="description-post-id">
+                                    <p class="p-desc">{{ posts.description|linebreaksbr }}</p>
                                 </div>
-                            </a>
-                            <div class="description" id="description{{ x.pk }}">
-                                <p>{{ x.descriptions | linebreaksbr }}</p>
+                                <button class="more-btn" id="open{{posts.id}}">Подробнее</button>
                             </div>
-                            <form action="{% url 'like' %}" method="post" class="like-form form-like" id="l{{ x.pk }}">
-                                {% csrf_token %}
-
-                                <input type="hidden" name="post_id" value="{{ x.pk }}">
-                                <button class="ui button positive like-btn{{ x.pk }}" id="btnlike{{ x.pk }}"
-                                        type="submit" style="color: red;">
-                                    <p class="like-img" id="like-img{{ x.pk }}"> ❤ {{ x.like }}</p>
-                                </button>
-                            </form>
                         </div>
-                    </div>
+                        <div class="overlay2" id="myOverlayopen{{posts.id}}">
+                            <div class="popup2">
+                                <div class="photo-post">
+                                    <img src="{{ posts.img.url }}" alt="" width="100%" height="100%"
+                                         style=" object-fit: cover;	">
+                                </div>
+                                <a href="{% url 'profile' posts.user.id%}">
+                                    <div class="header">
+                                        <div class="avatar3">
+                                            <img class="main-logo" src="{{ posts.user.img.url }}" alt="" width="70px">
+                                        </div>
+                                        <h1 class="title-post">{{ posts.user.name }}</h1>
+                                    </div>
+                                </a>
+                                <div class="description" id="description{{posts.id}}">
+                                    <p>{{ posts.description | linebreaksbr }}</p>
+                                </div>
+                                <form action="{% url 'like' %}" method="post" class="like-form form-like"
+                                      id="g{{posts.id}}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="post_id" value="{{posts.id}}">
+                                    <button class="ui button positive like-btn{{posts.id}}" id="btnlike{{posts.id}}"
+                                            type="submit"><p
+                                            {% if posts|color:user %}
+                                            style="color: red;"
+                                            {% endif %}
+                                            class="like-img"
+                                            id="like-img{{posts.id}}">
+                                        ❤ {{ posts.liked.all.count }}</p></button>
+                                </form>
+                            </div>
+                        </div>
                         {% endfor %}
+
+                    </div>
+                                    <div class="sort-post" id="sort-post">
+                                        {% for x in data %}
+                                        <div class="photo">
+                                            <img class="zoom" src="{{ x.img }}" alt="" width="300px" height="380px"
+                                                 style="border-radius: 30px;">
+                                            <div class="button2 content fade">
+                                                <p>Описание:</p>
+                                                <div class="description-post" id="description-post-id">
+                                                    <p class="p-desc">{{ x.descriptions | linebreaksbr }}</p>
+                                                </div>
+                                                <button class="more-btn2" id="open{{ x.pk }}">Подробнее</button>
+                                            </div>
+                                        </div>
+                                        <div class="overlay3" id="myOverlay2open{{ x.pk }}">
+                                            <div class="popup3">
+                                                <div class="photo-post">
+                                                    <img src="{{ x.img }}" alt="" width="100%" height="100%"
+                                                         style=" object-fit: cover;">
+                                                </div>
+                                                <a href="{% url 'profile' x.user %}">
+                                                    <div class="header">
+                                                        <div class="avatar3">
+                                                            <img class="main-logo" src="{{ x.imgUrl }}" alt="" width="70px">
+                                                        </div>
+                                                        <h1 class="title-post">{{ x.name }}</h1>
+                                                    </div>
+                                                </a>
+                                                <div class="description" id="description{{ x.pk }}">
+                                                    <p>{{ x.descriptions | linebreaksbr }}</p>
+                                                </div>
+                                                <form action="{% url 'like' %}" method="post" class="like-form form-like" id="l{{ x.pk }}">
+                                                    {% csrf_token %}
+
+                                                    <input type="hidden" name="post_id" value="{{ x.pk }}">
+                                                    <button class="ui button positive like-btn{{ x.pk }}" id="btnlike{{ x.pk }}"
+                                                            type="submit" style="color: red;">
+                                                        <p class="like-img" id="like-img{{ x.pk }}"> ❤ {{ x.like }}</p>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
                 </div>
             </div>
         </div>
     </div>
+
+</div>
 
 </div>
 </div>
