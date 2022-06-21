@@ -305,6 +305,25 @@ def follow_unfollow(request):
 
 def statistics(request):
     cUser = CustomUsers.objects.get(user=request.user)
+    postt = Posts.objects.filter(user=cUser)
+    n=0
+    best_photo=[]
+    for posts in postt:
+        # print(posts.liked.all().count())
+        if posts.liked.all().count() >= n:
+            items = {
+                'pk': posts.pk,
+                'descriptions': posts.description,
+                'img': posts.img.url,
+                'like': posts.liked.all().count(),
+                'user': posts.user.id,
+                'imgUrl': posts.user.img.url,
+                'name': posts.user.name,
+            }
+            n = posts.liked.all().count()
+            best_photo = items
+    best_photo2 = best_photo
+    print(best_photo2)
     followersUser = cUser.following.all()
     followers = CustomUsers.objects.filter(user__in=followersUser)
     count_male = 0
@@ -314,6 +333,4 @@ def statistics(request):
             count_male += 1
         else:
             count_female += 1
-    print(count_male)
-    print(count_female)
-    return render(request, 'donut/statistics.html', {'count_male': count_male, 'count_female':count_female})
+    return render(request, 'donut/statistics.html', {'count_male': count_male, 'count_female':count_female, 'best_photo2' : best_photo2})

@@ -347,7 +347,7 @@ input:focus:-ms-input-placeholder {
     display: none;
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width:1000px) {
     .logotip {
         width: 600px;
         z-index: 1;

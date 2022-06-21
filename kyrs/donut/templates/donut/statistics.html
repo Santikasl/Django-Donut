@@ -14,15 +14,59 @@
     <link rel="stylesheet" href="{% static 'css/titels.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/statistics.css' %}"/>
     <title>Статистика</title>
+    <script src="{% static 'js/sort.js' %}" defer></script>
+    <script src="{% static 'js/search.js' %}" defer></script>
+    <script src="{% static 'js/like.js' %}" defer></script>
 </head>
 {% endblock %}
 
 {% block name %}
-    <div class="section">
+
+<h1 class="male">Пол подписчиков</h1>
+<h1 class="best-photo-title">Лушее фото</h1>
+<div class="section">
     <div class="chart">
         <canvas id="myChart" width="100px"></canvas>
     </div>
+    <div class="sub-photo">
+        <div class="photo-s">
+            <div class="img-div">
+                <img class="zoom2" src="{{ best_photo2.img }}" alt="" height="390px"
+                     style=" border-radius: 30px 30px 0 0;">
+                <div class="button22 content2 fade2">
+                    <p>Описание:</p>
+                    <div class="description-post2" id="description-post-id">
+                        <p class="p-desc2">{{ best_photo2.descriptions|linebreaksbr }}</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="avatar2">
+                <img class="main-logo" src="{{ best_photo2.imgUrl }}" alt="" width="70px">
+            </div>
+            <a href="{% url 'profile' best_photo2.user%}">
+                <h3 class="name-follow">{{ best_photo2.name }}</h3>
+            </a>
+            <form action="{% url 'like' %}" method="post" class="like-form form2" id="f{{best_photo2.pk}}">
+                {% csrf_token %}
+                <input type="hidden" name="post_id" value="{{best_photo2.pk}}">
+                <button class="ui button positive like-btn{{best_photo2.pk}}" id="btnlike{{best_photo2.pk}}"
+                        type="submit"><p
+
+                        style="color: red;"
+
+                        class="like-img"
+                        id="like-img{{best_photo2.pk}}">
+                    ❤ {{ best_photo2.like }}</p></button>
+            </form>
+        </div>
+    </div>
+
+    <div class="chart">
+        <canvas id="myChart2" width="100px"></canvas>
+    </div>
 </div>
+
 <script>
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
@@ -44,7 +88,43 @@
         borderWidth
     :
     1
-    }]
+    }
+    ]
+    },
+    options: {
+        labels: {
+            pointStyle: 'dash'
+
+        }
+    }
+    })
+    ;
+
+
+</script>
+<script>
+    const ctx = document.getElementById('myChart2').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Мужчины', 'Женщины'],
+            datasets: [{
+                data: [{{count_male}}, {{count_female}}],
+    backgroundColor: [
+        'rgba(255, 99, 132,1)',
+        'rgba(54, 162, 235,1)'
+    ],
+        borderColor
+    :
+    [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+    ],
+        borderWidth
+    :
+    1
+    }
+    ]
     },
     options: {
         labels: {
