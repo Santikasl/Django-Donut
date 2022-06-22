@@ -16,7 +16,9 @@ body {
 
 
 }
-
+#myChart2{
+    z-index: 9;
+}
 
 .section {
     display: grid;
@@ -74,7 +76,7 @@ src: url("../fonts/BuyanRegular.ttf") format("truetype");
     grid-row-gap: 10px;
     position: absolute;
     width: 1300px;
-    margin-top: 4%;
+    margin-top: 6%;
     margin-left: 35%;
     height: 82%;
     overflow: scroll;
@@ -2016,12 +2018,19 @@ input[type='search']::-webkit-search-results-decoration {
     margin-top: 9%;
     margin-left: 12%;
 }
+.male2{
+    color: white;
+     font-family: Organetto-Variable;
+    font-weight: bold;
+    margin-top: 9%;
+    margin-left: 76%;
+}
 
 .best-photo-title{
         color: white;
      font-family: Organetto-Variable;
     font-weight: bold;
-    margin-top: 44%;
-    margin-left: 46%;
+    margin-top: 7%;
+    margin-left: 45%;
 }
 

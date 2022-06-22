@@ -23,6 +23,7 @@
 {% block name %}
 
 <h1 class="male">Пол подписчиков</h1>
+<h1 class="male2">Пол подписчиков</h1>
 <h1 class="best-photo-title">Лушее фото</h1>
 <div class="section">
     <div class="chart">
@@ -69,71 +70,50 @@
 
 <script>
     const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Мужчины', 'Женщины'],
-            datasets: [{
-                data: [{{count_male}}, {{count_female}}],
-    backgroundColor: [
-        'rgba(255, 99, 132,1)',
-        'rgba(54, 162, 235,1)'
-    ],
-        borderColor
-    :
-    [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-    ],
-        borderWidth
-    :
-    1
-    }
-    ]
-    },
-    options: {
-        labels: {
-            pointStyle: 'dash'
-
-        }
-    }
-    })
-    ;
+    const myChart = new Chart(ctx,
+        {
+            type: 'doughnut',
+            data: {
+                labels: ['Мужчины', 'Женщины'],
+                datasets: [{
+                    data: ["{{count_male}}", "{{count_female}}"],
+                    backgroundColor: [
+                        'rgba(54, 162, 235,1)',
+                        'rgb(255,99,132)',
+                    ],
+                    borderColor: ['rgba(54, 162, 235, 1)','rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                labels: {
+                    pointStyle: 'dash'
+                }
+            }
+        });
 
 
-</script>
-<script>
-    const ctx = document.getElementById('myChart2').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Мужчины', 'Женщины'],
-            datasets: [{
-                data: [{{count_male}}, {{count_female}}],
-    backgroundColor: [
-        'rgba(255, 99, 132,1)',
-        'rgba(54, 162, 235,1)'
-    ],
-        borderColor
-    :
-    [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-    ],
-        borderWidth
-    :
-    1
-    }
-    ]
-    },
-    options: {
-        labels: {
-            pointStyle: 'dash'
+    const ctx2 = document.getElementById('myChart2').getContext('2d');
+    const myChart2 = new Chart(ctx2,
+        {
+            type: 'doughnut',
+            data: {
+                labels: ['Мужчины', 'Женщины'],
+                datasets: [{
+                    data: [6, 20,14,35],
+                    backgroundColor: [
+                        'rgba(54, 162, 235,1)',
+                        'rgb(255,99,132)',
+                        'rgb(250,255,99)',
+                        'rgb(245,99,255)',
 
-        }
-    }
-    })
-    ;
+                    ],
+                    borderColor: ['rgba(54, 162, 235, 1)','rgba(255, 99, 132, 1)','rgb(250,255,99)','rgb(245,99,255)'],
+                    borderWidth: 1
+                }]
+            },
+
+        });
 
 
 </script>

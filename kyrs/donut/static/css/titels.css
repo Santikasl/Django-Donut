@@ -78,11 +78,12 @@ a {
 
 }
 
-.logo-container{
+.logo-container {
     display: flex;
     width: 350px;
 }
-.new-post-and-area{
+
+.new-post-and-area {
     display: flex;
     width: 370px;
     z-index: 100;
@@ -137,9 +138,9 @@ a {
     margin-top: -20px;
 }
 
-.not-found-extend{
-     width: 898px;
-        height: 400px;
+.not-found-extend {
+    width: 898px;
+    height: 400px;
 }
 
 .not-visible {
@@ -157,75 +158,76 @@ a {
     padding-bottom: 40px;
     border-radius: 3px 3px 20px 20px;
 }
+
 .preloader {
-      /*фиксированное позиционирование*/
-      position: fixed;
-      /* координаты положения */
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      /* фоновый цвет элемента */
-      background: #171717;
-      /* размещаем блок над всеми элементами на странице (это значение должно быть больше, чем у любого другого позиционированного элемента на странице) */
-      z-index: 1001;
-    }
+    /*фиксированное позиционирование*/
+    position: fixed;
+    /* координаты положения */
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    /* фоновый цвет элемента */
+    background: #171717;
+    /* размещаем блок над всеми элементами на странице (это значение должно быть больше, чем у любого другого позиционированного элемента на странице) */
+    z-index: 1001;
+}
 
-    .preloader__row {
-      position: relative;
-      top: 50%;
-      left: 50%;
-      width: 70px;
-      height: 70px;
-      margin-top: -35px;
-      margin-left: -35px;
-      text-align: center;
-      animation: preloader-rotate 2s infinite linear;
-    }
+.preloader__row {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    margin-top: -35px;
+    margin-left: -35px;
+    text-align: center;
+    animation: preloader-rotate 2s infinite linear;
+}
 
-    .preloader__item {
-      position: absolute;
-      display: inline-block;
-      top: 0;
-      background-color: #bd4dc2;
-      border-radius: 100%;
-      width: 35px;
-      height: 35px;
-      animation: preloader-bounce 2s infinite ease-in-out;
-    }
+.preloader__item {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    background-color: #bd4dc2;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    animation: preloader-bounce 2s infinite ease-in-out;
+}
 
-    .preloader__item:last-child {
-      top: auto;
-      bottom: 0;
-      animation-delay: -1s;
-    }
+.preloader__item:last-child {
+    top: auto;
+    bottom: 0;
+    animation-delay: -1s;
+}
 
-    @keyframes preloader-rotate {
-      100% {
+@keyframes preloader-rotate {
+    100% {
         transform: rotate(360deg);
-      }
     }
+}
 
-    @keyframes preloader-bounce {
+@keyframes preloader-bounce {
 
-      0%,
-      100% {
+    0%,
+    100% {
         transform: scale(0);
-      }
+    }
 
-      50% {
+    50% {
         transform: scale(1);
-      }
     }
+}
 
-    .loaded_hiding .preloader {
-      transition: 0.3s opacity;
-      opacity: 0;
-    }
+.loaded_hiding .preloader {
+    transition: 0.3s opacity;
+    opacity: 0;
+}
 
-    .loaded .preloader {
-      display: none;
-    }
+.loaded .preloader {
+    display: none;
+}
 
 
 .img-profile {
@@ -492,7 +494,6 @@ h2 {
 .button {
     z-index: 1000;
     cursor: pointer;
-
     margin-left: 80px;
 
 }
@@ -553,6 +554,64 @@ h2 {
     left: -4px;
 }
 
+.logot {
+    width: 30px;
+    height: 30px;
+    margin-left: 25px;
+    margin-top: 10px;
+
+}
+
+@media screen and (max-width: 415px) {
+    .logo-container {
+        display: none;
+    }
+
+    .search {
+        background-image: url(icon.png);
+        background-repeat: no-repeat;
+        background-position: 4px;
+        margin-top: 0px;
+        padding-top: 10px;
+        text-decoration: none;
+        width: 200px;
+        height: 45px;
+        border-radius: 25px;
+        outline: none;
+        border: none;
+    }
+
+    .logot {
+        width: 30px;
+        height: 30px;
+        margin-left: 25px;
+        margin-top: 10px;
+        display: none;
+    }
+
+    .new-post-and-area {
+        display: flex;
+        width: 100px;
+        z-index: 100;
+        margin-top: 1%;
+
+    }
+
+    .button {
+        z-index: 1000;
+        cursor: pointer;
+        margin-left: 10px;
+
+    }
+
+    .new-post-and-area {
+        display: flex;
+        width: 900px;
+        z-index: 100;
+        margin-top: 1%;
+
+    }
+}
 
 
 
