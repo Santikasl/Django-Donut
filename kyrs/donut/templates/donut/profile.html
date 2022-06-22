@@ -43,17 +43,15 @@
 
     </div>
 
-
+<div class="info">
     <div class="con">
-
         <div>
-            <p style="color:white; font-family: Organetto-Variable;font-size:50px;">
+            <p class="name-area" style="color:white;  font-family: Organetto-Variable;">
                 {{ obj.name }}
-                 {% if count_follow > 10 %}
+                {% if count_follow > 10 %}
                 <img src="{% static 'img/gaochka.png' %}" alt="" width="30px" style="margin-top: -5px">
                 {% endif %}
             </p>
-
         </div>
         <div class="follow-btn">
             {% if follow %}
@@ -74,18 +72,48 @@
             </form>
             {% endif %}
         </div>
+    </div>
+
+    <div class="follow-btn2">
+        {% if anonimus %}
+        <form action="{% url 'signIn' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="profile_pk" value={{obj.pk}}>
+            <button type="submit" class="follow">
+                Подписаться
+            </button>
+        </form>
+        {% elif follow %}
+        <form action="{% url 'follow-unfollow-view' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="profile_pk" value={{obj.pk}}>
+            <button type="submit" class="follow">
+                Отписаться
+            </button>
+        </form>
+        {% else %}
+        <form action="{% url 'follow-unfollow-view' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="profile_pk" value={{obj.pk}}>
+            <button type="submit" class="follow">
+                Подписаться
+            </button>
+        </form>
+
+        {% endif %}
 
     </div>
+
     <div class="post">
         <div>
 
         </div>
-        <p style="color: white; font-family: Organetto-Variable; font-size: 30px">{{ post_count }} posts</p>
-        <p class="follower" style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ count_follow }} follow</p>
-       <p  class="follow2" style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ follows.count }}
+        <p class="efwewfe" style="color: white; font-family: Organetto-Variable;">{{ post_count }} posts</p>
+        <p class="efwewfe follower" style="color: white; font-family: Organetto-Variable;">{{ count_follow }} follow</p>
+        <p class="efwewfe follow2" style="color: white; font-family: Organetto-Variable;">{{ follows.count }}
             follow</p>
     </div>
-
+  </div>
     <div class="main-content2">
         {% for posts in all_post_user %}
         <div class="photo">
@@ -158,7 +186,7 @@
             </div>
         </div>
 
-                  <div class="overlay4" id="myOverlay3">
+        <div class="overlay4" id="myOverlay3">
             <div class="popup3">
                 <h2 class="titel">Подписки {{obj.name}}</h2>
                 <div class="follower">
@@ -201,7 +229,7 @@
             }
         });
     </script>
-      <script>
+    <script>
         $(document).on('click', '.follow2', function (e) {
             let id = e.target.id;
             $('#myOverlay3').fadeIn();

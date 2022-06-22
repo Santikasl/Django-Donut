@@ -149,8 +149,10 @@ a {
 }
 
 .searchItems {
-    position: relative;
+    background-color: white;
+    width: 900px;
     overflow: scroll;
+    position: relative;
     margin-left: -15px;
     margin-top: -22px;
     padding-top: 40px;
@@ -562,7 +564,15 @@ h2 {
 
 }
 
+.user-photo {
+    width: 43px;
+    margin-top: 5px;
+    margin-left: 50px;
+    z-index: 10;
+}
+
 @media screen and (max-width: 415px) {
+
     .logo-container {
         display: none;
     }
@@ -575,6 +585,7 @@ h2 {
         padding-top: 10px;
         text-decoration: none;
         width: 200px;
+        margin-left: 20px;
         height: 45px;
         border-radius: 25px;
         outline: none;
@@ -610,6 +621,100 @@ h2 {
         z-index: 100;
         margin-top: 1%;
 
+    }
+
+    .user-photo {
+        width: 43px;
+        margin-top: 6px;
+        margin-left: 15px;
+        z-index: 10;
+    }
+
+    .searchItems {
+        background-color: white;
+        width: 168px;
+        overflow: scroll;
+        position: relative;
+        margin-left: -14px;
+        margin-top: -17px;
+        padding-top: 40px;
+        padding-left: 30px;
+        padding-bottom: 30px;
+        border-radius: 3px 3px 20px 20px;
+    }
+
+    .img-profile {
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 999px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nameSearch {
+        position: absolute;
+        margin-left: 65px;
+        font-size: 15px;
+        margin-top: -30px;
+        color: black;
+
+    }
+
+    .results-card {
+        width: 0;
+        height: 0;
+        position: absolute;
+        z-index: -999;
+        max-height: 800px;
+        margin-left: 20px;
+        background-color: #ffffff;
+        border-radius: 10px 10px 30px 30px;
+        margin-top: -31px;
+        padding: 15px 15px;
+        display: inline-block;
+    }
+
+    .not-found-extend {
+        width: 170px;
+        height: 200px;
+    }
+
+    .not-found-gif {
+        position: absolute;
+        z-index: 0;
+        width: 150px;
+        margin-left: 4%;
+        margin-top: -20px;
+    }
+
+    .not-found {
+        color: black;
+        font-family: Century Gothic;
+        text-align: center;
+        margin-top: 100px;
+        position: absolute;
+        z-index: 1000;
+        font-size: 20px;
+        margin-left: -15px;
+    }
+
+    .not-visible {
+        display: none;
+
+    }
+
+    header .title {
+        display: flex;
+        position: fixed;
+        background-color: #0c0c0c;
+        align-items: center;
+        padding-top: 10px;
+        justify-content: space-between;
+        width: 100%;
+        z-index: 5;
     }
 }
 

@@ -6,6 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+     <meta property="og:image" content="https://www.kaspersky.ru/content/ru-ru/images/repository/isc/2020/9910/a-guide-to-qr-codes-and-how-to-scan-qr-codes-2.png" />
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -30,6 +31,7 @@
     {% endblock scripts %}
     <script src="{% static 'js/edit.js' %}" defer></script>
     <script src="{% static 'js/like.js' %}" defer></script>
+    <script src="https://yastatic.net/share2/share.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 {% endblock %}
@@ -61,7 +63,7 @@
     <div class="con">
         {% if request.user.is_authenticated %}
         <div>
-            <p style="color:white; font-family: Organetto-Variable;font-size:50px;">
+            <p class="name-area" style="color:white; font-family: Organetto-Variable;">
                 {{ request.user.username }}
                 {% if count_follow > 10 %}
                 <img src="{% static 'img/gaochka.png' %}" alt="" width="30px" style="margin-top: -5px">
@@ -78,6 +80,8 @@
 
                 <li><a class="as" href="#">. . .<i class=""></i></a>
                     <ul class="submenu">
+                        <li><a class="as2 as4" href="#">QR CODE</a></li>
+
                         <li><a class="as2" href="{% url 'statistics' %}">Статистика</a></li>
 
                         <li><a class="as2 as3" href="{% url 'exit' %}#3">Выйти</a></li>
@@ -88,10 +92,10 @@
         </nav>
     </div>
     <div class="post">
-        <p style="color: white; font-family: Organetto-Variable; font-size: 30px">{{ count }} posts</p>
-        <p class="follower" style="color: white; font-family: Organetto-Variable; font-size: 30px;padding-left: 35px">{{ count_follow }}
+        <p class="efwewfe" style="color: white; font-family: Organetto-Variable; ">{{ count }} posts</p>
+        <p class="efwewfe follower" style="color: white; font-family: Organetto-Variable;">{{ count_follow }}
             follower</p>
-        <p class="follow2" style="color: white; font-family: Organetto-Variable; font-size:30px;padding-left: 35px">{{ follow.count }}
+        <p class="efwewfe follow2"  class="follow2" style="color: white; font-family: Organetto-Variable;">{{ follow.count }}
             follow</p>
     </div>
 
@@ -112,7 +116,7 @@
         <div class="overlay2" id="myOverlayopen{{posts.id}}">
             <div class="popup2">
                 <div class="photo-post">
-                    <img src="{{ posts.img.url }}" alt="" width="100%" height="100%" style=" object-fit: cover;	">
+                    <img src="{{ posts.img.url }}" alt="" class="post-img" >
                 </div>
                 <div>
                     <nav class="three2">
@@ -222,6 +226,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="overlay6" id="myOverlay6">
+            <div class="popup6">
+                <h2 class="titel">Поделитесь своим профилем</h2>
+                <div class="follower">
+                        <img src="{{ cUser.qr_code.url }}" alt="" class="qr">
+                    <div id="my-share" class="ya-share2" data-curtain data-size="l" data-shape="round" data-color-scheme="whiteblack" data-services="vkontakte,telegram,twitter"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-2.0.2.min.js"></script>
     <script>
@@ -232,6 +247,21 @@
         // Закрытие окна на крестикe
         $('.close-popup5').click(function () {
             $('.overlay5').fadeOut();
+        });
+
+    </script>
+
+    <script>
+        $(document).on('click', '.as4', function (e) {
+            let id = e.target.id;
+            $('#myOverlay6').fadeIn();
+        });
+        // Закрытие окна на крестикe
+         $(document).mouseup(function (e) {
+            var popup = $('.popup6');
+            if (e.target != popup[0] && popup.has(e.target).length === 0) {
+                $('.overlay6').fadeOut();
+            }
         });
 
     </script>
@@ -308,5 +338,15 @@
         })();
     </script>
 
+<script>
+    Ya.share2('my-share', {
+    content: {
+        url: 'http://127.0.0.1:8000{{ cUser.qr_code.url }}',
+        title: 'Мой профиль в DONUT',
+        description: 'Подпишись!',
+        image: 'http://127.0.0.1:8000{{ cUser.qr_code.url }}'
+    }
+});
+</script>
 
     {% endblock %}

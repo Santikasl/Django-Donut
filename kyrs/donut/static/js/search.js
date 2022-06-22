@@ -23,7 +23,7 @@ const sendSearchData = (dataName) => {
                 data.forEach(dataName => {
                     resultBlock.innerHTML += `
 
-                       <div class="searchItems" style="background-color: white; width: 900px; overflow: scroll">
+                       <div class="searchItems" style="">
                        <a href="/${dataName.pk}">
                        <div class="img-profile">
                        <img src="${dataName.img}" alt="" width="80px">

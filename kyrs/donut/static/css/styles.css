@@ -31,7 +31,6 @@ img {
 
 .btn {
     position: relative;
-
     z-index: 100000 !important;
     border-radius: 15px;
     width: 75px;
@@ -68,7 +67,6 @@ img {
     position: relative;
     width: 449px;
     height: 500px;
-
     border-radius: 50px;
     margin-top: -1px;
     margin-left: 197px;
@@ -241,7 +239,7 @@ input:focus:-ms-input-placeholder {
     border-radius: 25px;
     text-align: center;
     margin-left: 160px;
-    margin-top: -10px;
+    margin-top: 10px;
     -moz-transition: all 0.5s ease-out;
     -o-transition: all 0.5s ease-out;
     -webkit-transition: all 0.5s ease-out;
@@ -251,6 +249,7 @@ input:focus:-ms-input-placeholder {
     background-color: white;
     color: #0c0c0c;
     border: 3px solid black;
+
     transition: 0.6s;
 }
 
@@ -356,6 +355,19 @@ input:focus:-ms-input-placeholder {
     top: -230px
 }
 
+.male-select {
+    width: 325px;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: -80px;
+    margin-left: 63px;
+
+}
+#hider3{
+        display: none;
+    }
+
 @media screen and (max-width: 415px) {
     .logotip {
         width: 250px;
@@ -412,7 +424,7 @@ input:focus:-ms-input-placeholder {
         width: 250px;
         z-index: -4;
         position: absolute;
-        left: 50px;
+        left: 60px;
         top: 10px;
     }
 
@@ -423,7 +435,7 @@ input:focus:-ms-input-placeholder {
         font-size: 10px;
         padding: 20px;
         background-color: white;
-        border-radius: 50px;
+        border-radius: 20px;
         margin-top: -1px;
         margin-left: 35px;
 
@@ -432,10 +444,11 @@ input:focus:-ms-input-placeholder {
     .form {
         position: absolute;
         z-index: 100000 !important;
-        left: 10%;
-        top: 80%;
+        left: 8%;
+        top: 68%;
         margin-left: -75px;
         padding-left: 150px;
+
     }
 
     span {
@@ -477,6 +490,10 @@ input:focus:-ms-input-placeholder {
         font-size: 20px;
         margin-left: -35px;
         margin-bottom: 40px;
+        margin-top: -20px;
+    }
+    #hider3{
+        display: unset;
     }
 
     .btnS {
@@ -502,88 +519,88 @@ input:focus:-ms-input-placeholder {
         width: 200px;
         padding-left: 20px;
         height: 35px;
-        border: 2px solid black;
+        border: 1px solid black;
         margin-bottom: 35px;
         margin-left: 10px;
     }
 
 
     #id_password {
-        margin-top: -30px;
+           margin-top: -90px;
         border-radius: 20px;
         width: 200px;
         padding-left: 20px;
         height: 35px;
-        border: 2px solid black;
+        border: 1px solid black;
         margin-bottom: 35px;
         margin-left: 10px;
     }
 
     #id_password_check {
-        margin-top: -30px;
+           margin-top: -90px;
         border-radius: 20px;
-        width: 300px;
+        width: 200px;
         padding-left: 20px;
         height: 35px;
-        border: 2px solid black;
+        border: 1px solid black;
         margin-bottom: 35px;
-        margin-left: 65px;
+        margin-left: 10px;
     }
 
 
     #id_email {
-        margin-top: -30px;
+           margin-top: -90px;
         border-radius: 20px;
-        width: 300px;
+        width: 200px;
         padding-left: 20px;
         height: 35px;
-        border: 2px solid black;
+        border: 1px solid black;
         margin-bottom: 35px;
-        margin-left: 65px;
+        margin-left: 10px;
     }
 
     #id_isPassword {
-        margin-top: -30px;
+            margin-top: -90px;
         border-radius: 20px;
-        width: 300px;
+        width: 200px;
         padding-left: 20px;
         height: 35px;
-        border: 2px solid black;
+        border: 1px solid black;
         margin-bottom: 35px;
-        margin-left: 65px;
+        margin-left: 10px;
     }
 
     #id_username {
-        margin-top: -30px;
+            margin-top: -90px;
         border-radius: 20px;
-        width: 300px;
+        width: 200px;
         padding-left: 20px;
         height: 35px;
-        border: 2px solid black;
+        border: 1px solid black;
         margin-bottom: 35px;
-        margin-left: 65px;
+        margin-left: 10px;
     }
 
     #id_password1 {
-        margin-top: -30px;
+            margin-top: -90px;
         border-radius: 20px;
-        width: 300px;
+        width: 200px;
         padding-left: 20px;
         height: 35px;
-        border: 2px solid black;
+        border: 1px solid black;
         margin-bottom: 35px;
-        margin-left: 65px;
+        margin-left: 10px;
     }
 
     #id_password2 {
-        margin-top: -30px;
+           margin-top: -90px;
         border-radius: 20px;
-        width: 300px;
+        width: 200px;
         padding-left: 20px;
         height: 35px;
-        border: 2px solid black;
+        border: 1px solid black;
         margin-bottom: 35px;
-        margin-left: 65px;
+        margin-left: 10px;
     }
 
     .inp {
@@ -596,6 +613,78 @@ input:focus:-ms-input-placeholder {
         margin-bottom: 35px;
         margin-left: 65px;
     }
+
+    ::placeholder {
+        color: rgb(26, 26, 26);
+        font-size: 10px;
+        font-family: Century Gothic;
+    }
+
+    #hider{
+        display: none;
+    }
+    #hider2{
+        display: none;
+    }
+
+    .btn {
+        position: relative;
+        z-index: 100000 !important;
+        border-radius: 15px;
+        width: 300px;
+        font-size: 10px;
+        text-align: center;
+        color: rgb(23, 23, 23);
+        margin-left: 15px;
+        height: 30px;
+        font-family: Current;
+        outline: none;
+        padding: 9px;
+        background-color: #ffffff;
+        cursor: pointer;
+        text-decoration: none;
+        -moz-transition: all 0.5s ease-out;
+        -o-transition: all 0.5s ease-out;
+        -webkit-transition: all 0.5s ease-out;
+    }
+    .btn2 {
+        position: relative;
+        z-index: 100000 !important;
+        border-radius: 15px;
+        width: 300px;
+        font-size: 10px;
+        text-align: center;
+        top:140px;
+        color: rgb(23, 23, 23);
+        left: -2px;
+        margin-left: 15px;
+        height: 30px;
+        font-family: Current;
+        outline: none;
+        padding: 9px;
+        background-color: #ffffff;
+        cursor: pointer;
+        text-decoration: none;
+        -moz-transition: all 0.5s ease-out;
+        -o-transition: all 0.5s ease-out;
+        -webkit-transition: all 0.5s ease-out;
+    }
+.registr2{
+    height: 400px;
+    margin-top: 150px;
+}
+.male-select {
+         margin-top: -90px;
+        border-radius: 20px;
+        width: 220px;
+        padding-left: 20px;
+        height: 35px;
+        border: 1px solid black;
+        margin-bottom: 35px;
+        margin-left: 10px;
+        background-color: white;
+        font-size: 14px;
+}
 
 }
 

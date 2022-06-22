@@ -89,7 +89,7 @@ def mainl(request):
         if len(post_follow) > 0:
             qs = chain(*post_follow)
         else:
-            qs=[]
+            qs = []
 
         newPost = NewPosts(request.POST, request.FILES)
         if newPost.is_valid():
@@ -98,7 +98,8 @@ def mainl(request):
             postt.save()
             return HttpResponseRedirect(reverse('area'))
         return render(request, 'donut/main.html',
-                      {'post': NewPosts, 'pos': pos, 'cUser': cUser, 'follows': follows, 'qs': qs, 'data': res_post, 'a': a, 'randomFacts':randomFacts })
+                      {'post': NewPosts, 'pos': pos, 'cUser': cUser, 'follows': follows, 'qs': qs, 'data': res_post,
+                       'a': a, 'randomFacts': randomFacts})
 
 
 def signIn(request):
@@ -138,7 +139,6 @@ def signIn(request):
 
 def area(request):
     auth_form = AuthForm()
-
     if request.user.is_authenticated == False:
         return render(request, 'donut/index.html', {'form': auth_form})
     else:
@@ -176,30 +176,49 @@ def area(request):
 
 
 def search_profile(request, pk):
-    cUser = CustomUsers.objects.get(pk=pk)
-    search_user = CustomUsers.objects.filter(pk=pk).first()
-    followersUser = search_user.following.all()
-    followers = CustomUsers.objects.filter(user__in=followersUser)
-    follows = search_user.user.following.all()
-    my_profile = CustomUsers.objects.get(user=request.user)
-    if search_user == my_profile:
-        return HttpResponseRedirect(reverse('area'))
-    count_follow = search_user.following.all().count()
-    user = User.objects.get(pk=pk)
-    all_post_user = Posts.objects.filter(user=cUser)
-    post_count = all_post_user.count()
-    if my_profile.user in search_user.following.all():
-        follow = True
-    else:
+    if request.user.is_authenticated == False:
+        anonimus = True
+        cUser = CustomUsers.objects.get(pk=pk)
+        search_user = CustomUsers.objects.filter(pk=pk).first()
+        followersUser = search_user.following.all()
+        followers = CustomUsers.objects.filter(user__in=followersUser)
+        follows = search_user.user.following.all()
+        count_follow = search_user.following.all().count()
+        user = User.objects.get(pk=pk)
+        all_post_user = Posts.objects.filter(user=cUser)
+        post_count = all_post_user.count()
         follow = False
-    all_post_user = Posts.objects.filter(user=search_user)
-    obj = CustomUsers.objects.filter(pk=pk).first
-    if obj:
-
-        return render(request, 'donut/profile.html',
-                      {'obj': obj, 'pk': pk, 'post': NewPosts, 'all_post_user': all_post_user, 'follow': follow,
-                       'count_follow': count_follow, 'post_count': post_count, 'followers': followers,
-                       'follows': follows})
+        all_post_user = Posts.objects.filter(user=search_user)
+        obj = CustomUsers.objects.filter(pk=pk).first
+        if obj:
+            return render(request, 'donut/profile.html',
+                          {'obj': obj, 'pk': pk, 'post': NewPosts, 'all_post_user': all_post_user, 'follow': follow,
+                           'count_follow': count_follow, 'post_count': post_count, 'followers': followers,
+                           'follows': follows,'anonimus':anonimus})
+    else:
+        cUser = CustomUsers.objects.get(pk=pk)
+        search_user = CustomUsers.objects.filter(pk=pk).first()
+        followersUser = search_user.following.all()
+        followers = CustomUsers.objects.filter(user__in=followersUser)
+        follows = search_user.user.following.all()
+        my_profile = CustomUsers.objects.get(user=request.user)
+        if search_user == my_profile:
+            return HttpResponseRedirect(reverse('area'))
+        count_follow = search_user.following.all().count()
+        user = User.objects.get(pk=pk)
+        all_post_user = Posts.objects.filter(user=cUser)
+        post_count = all_post_user.count()
+        if my_profile.user in search_user.following.all():
+            follow = True
+        else:
+            follow = False
+        all_post_user = Posts.objects.filter(user=search_user)
+        obj = CustomUsers.objects.filter(pk=pk).first
+        if obj:
+            return render(request, 'donut/profile.html',
+                          {'obj': obj, 'pk': pk, 'post': NewPosts, 'all_post_user': all_post_user, 'follow': follow,
+                           'count_follow': count_follow, 'post_count': post_count, 'followers': followers,
+                           'follows': follows})
 
 
 def search_results(request):
@@ -272,15 +291,18 @@ def like(request):
 
 
 def follow_unfollow(request):
-    if request.method == 'POST':
-        my_profile = CustomUsers.objects.get(user=request.user)
-        pk = request.POST.get('profile_pk')
-        obj = CustomUsers.objects.get(pk=pk)
-        if my_profile.user in obj.following.all():
-            obj.following.remove(my_profile.user)
-        else:
-            obj.following.add(my_profile.user)
-        return redirect(request.META.get('HTTP_REFERER'))
+    if request.user.is_authenticated == False:
+        return HttpResponseRedirect(reverse('signIn'))
+    else:
+        if request.method == 'POST':
+            my_profile = CustomUsers.objects.get(user=request.user)
+            pk = request.POST.get('profile_pk')
+            obj = CustomUsers.objects.get(pk=pk)
+            if my_profile.user in obj.following.all():
+                obj.following.remove(my_profile.user)
+            else:
+                obj.following.add(my_profile.user)
+            return redirect(request.META.get('HTTP_REFERER'))
 
 
 def statistics(request):
@@ -316,6 +338,6 @@ def statistics(request):
             count_male += 1
         else:
             count_female += 1
-    return render(request, 'donut/statistics.html', {'count_male': count_male, 'count_female':count_female, 'best_photo2': best_photo2, 'postt':postt,'all_post_like':all_post_like})
-
-
+    return render(request, 'donut/statistics.html',
+                  {'count_male': count_male, 'count_female': count_female, 'best_photo2': best_photo2, 'postt': postt,
+                   'all_post_like': all_post_like})

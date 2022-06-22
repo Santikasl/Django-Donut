@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block name %}
-
+<div class="blur-search" id="overlay-blur">
 <h1 class="male">Пол подписчиков</h1>
 <h1 class="male2">Кол-во лайков</h1>
 <h1 class="best-photo-title">Лушее фото</h1>
@@ -67,7 +67,7 @@
         <canvas id="myChart2" width="100px"></canvas>
     </div>
 </div>
-
+</div>
 <script>
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx,
@@ -111,6 +111,10 @@
                         'rgb(255,99,132)',
                         'rgb(250,255,99)',
                         'rgb(245,99,255)',
+                        'rgb(224,31,37)',
+                        'rgb(31,224,57)',
+                        'rgb(239,144,36)',
+                        'rgb(86,105,217)',
 
                     ],
                     borderColor: ['rgba(54, 162, 235, 1)','rgba(255, 99, 132, 1)','rgb(250,255,99)','rgb(245,99,255)'],
