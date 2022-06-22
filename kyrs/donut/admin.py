@@ -6,3 +6,4 @@ admin.site.register(Posts)
 admin.site.register(LikesPost)
 admin.site.register(Facts)
 
+

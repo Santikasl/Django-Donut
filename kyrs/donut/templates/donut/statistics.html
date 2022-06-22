@@ -23,7 +23,7 @@
 {% block name %}
 
 <h1 class="male">Пол подписчиков</h1>
-<h1 class="male2">Пол подписчиков</h1>
+<h1 class="male2">Кол-во лайков</h1>
 <h1 class="best-photo-title">Лушее фото</h1>
 <div class="section">
     <div class="chart">
@@ -63,7 +63,7 @@
         </div>
     </div>
 
-    <div class="chart">
+    <div class="chart2">
         <canvas id="myChart2" width="100px"></canvas>
     </div>
 </div>
@@ -93,14 +93,19 @@
         });
 
 
+
+
+</script>
+
+<script>
     const ctx2 = document.getElementById('myChart2').getContext('2d');
     const myChart2 = new Chart(ctx2,
         {
             type: 'doughnut',
             data: {
-                labels: ['Мужчины', 'Женщины'],
+                labels: [{% for item in postt %}'{{item}}',{% endfor %}],
                 datasets: [{
-                    data: [6, 20,14,35],
+                    data: [{% for item in all_post_like %}'{{item}}',{% endfor %}],
                     backgroundColor: [
                         'rgba(54, 162, 235,1)',
                         'rgb(255,99,132)',
@@ -112,9 +117,13 @@
                     borderWidth: 1
                 }]
             },
+            options: {
+                        labels: {
+                            pointStyle: 'dash'
+                        }
+                    }
 
         });
-
 
 </script>
 {% endblock %}

@@ -11,6 +11,7 @@ from .forms import *
 from .forms import Imgform
 from django.contrib import messages
 from .models import CustomUsers, LikesPost, Facts
+from hitcount.views import HitCountDetailView
 
 
 def logout_user(request):
@@ -174,7 +175,7 @@ def area(request):
                        'count': count, 'count_follow': count_follow, 'followers': followers, 'follow': follow})
 
 
-def search_profile(request, pk, **kwargs):
+def search_profile(request, pk):
     cUser = CustomUsers.objects.get(pk=pk)
     search_user = CustomUsers.objects.filter(pk=pk).first()
     followersUser = search_user.following.all()
@@ -194,6 +195,7 @@ def search_profile(request, pk, **kwargs):
     all_post_user = Posts.objects.filter(user=search_user)
     obj = CustomUsers.objects.filter(pk=pk).first
     if obj:
+
         return render(request, 'donut/profile.html',
                       {'obj': obj, 'pk': pk, 'post': NewPosts, 'all_post_user': all_post_user, 'follow': follow,
                        'count_follow': count_follow, 'post_count': post_count, 'followers': followers,
@@ -228,28 +230,6 @@ def search_results(request):
 
 def sort(request):
     if request.is_ajax():
-        # all_post_no_ordering = Posts.objects.all()
-        # all_post = Posts.objects.order_by('-date')
-        # data = []
-        # for pos in all_post:
-        #     item = {
-        #         'pk': pos.pk,
-        #         'descriptions': pos.description,
-        #         'img': pos.img.url,
-        #         'like': pos.liked.all().count(),
-        #     }
-        #     data.append(item)
-        # res_post = data
-        # all = []
-        # for posts in all_post_no_ordering:
-        #     items = {
-        #         'pk': posts.pk,
-        #         'descriptions': posts.description,
-        #         'img': posts.img.url,
-        #         'like': posts.liked.all().count(),
-        #     }
-        #     all.append(items)
-        # a = all
         return JsonResponse()
     return JsonResponse({})
 
@@ -306,10 +286,13 @@ def follow_unfollow(request):
 def statistics(request):
     cUser = CustomUsers.objects.get(user=request.user)
     postt = Posts.objects.filter(user=cUser)
-    n=0
-    best_photo=[]
+
+    n = 0
+    likess = []
+    best_photo = []
     for posts in postt:
-        # print(posts.liked.all().count())
+        likes = posts.liked.all().count()
+        likess.append(likes)
         if posts.liked.all().count() >= n:
             items = {
                 'pk': posts.pk,
@@ -322,8 +305,8 @@ def statistics(request):
             }
             n = posts.liked.all().count()
             best_photo = items
+    all_post_like = likess
     best_photo2 = best_photo
-    print(best_photo2)
     followersUser = cUser.following.all()
     followers = CustomUsers.objects.filter(user__in=followersUser)
     count_male = 0
@@ -333,4 +316,6 @@ def statistics(request):
             count_male += 1
         else:
             count_female += 1
-    return render(request, 'donut/statistics.html', {'count_male': count_male, 'count_female':count_female, 'best_photo2' : best_photo2})
+    return render(request, 'donut/statistics.html', {'count_male': count_male, 'count_female':count_female, 'best_photo2': best_photo2, 'postt':postt,'all_post_like':all_post_like})
+
+
