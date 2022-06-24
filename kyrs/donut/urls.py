@@ -20,7 +20,7 @@ urlpatterns = [
     path('delite', views.delite, name='delite'),
     path('<int:pk>/', views.search_profile, name='profile'),
     path('exit/', views.logout_user, name='exit'),
-    path('exit/', views.logout_user, name='exit'),
+
 
 ]
 

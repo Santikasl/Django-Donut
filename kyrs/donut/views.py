@@ -11,7 +11,7 @@ from .forms import *
 from .forms import Imgform
 from django.contrib import messages
 from .models import CustomUsers, LikesPost, Facts
-from hitcount.views import HitCountDetailView
+
 
 
 def logout_user(request):
@@ -25,11 +25,9 @@ def reg(request):
     else:
         if request.method == 'POST':
             form = ExtendedRegisterForm(request.POST)
-
             if form.is_valid():
                 cUser = CustomUsers()
                 cUser.name = request.POST.get("username")
-                rgrg = request.POST.get("male")
                 cUser.male = request.POST.get("male")
                 cUser.email = request.POST.get("email")
                 cUser.password = request.POST.get("password1")
@@ -159,7 +157,6 @@ def area(request):
                 postt.save()
                 return HttpResponseRedirect(reverse('area'))
             if imgForm.is_valid():
-
                 if imgForm.cleaned_data['img'] is not None:
                     cUser.img = imgForm.cleaned_data['img']
                     cUser.save()

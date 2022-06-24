@@ -582,11 +582,12 @@ h2 {
         background-repeat: no-repeat;
         background-position: 4px;
         margin-top: 0px;
-        padding-top: 10px;
+        padding-top: 0px;
         text-decoration: none;
         width: 200px;
         margin-left: 20px;
-        height: 45px;
+        margin-top: -20px;
+        height: 35px;
         border-radius: 25px;
         outline: none;
         border: none;

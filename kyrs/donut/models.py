@@ -29,8 +29,9 @@ class CustomUsers(models.Model):
         return str(self.name)
 
     def save(self, *args, **kwargs):
-        qrcode_img = qrcode.make('http://192.168.43.238:8000/'+ str(self.id))
-        canvas = Image.new('RGB', (330, 330), 'white')
+        super().save(*args, **kwargs)
+        qrcode_img = qrcode.make('https://donuts.pythonanywhere.com/'+str(self.pk))
+        canvas = Image.new('RGB', (350, 350), 'white')
         draw = ImageDraw.Draw(canvas)
         canvas.paste(qrcode_img)
         fname = f'qr_code-{self.name}.png'

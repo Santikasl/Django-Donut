@@ -1387,6 +1387,7 @@ input[type='search']::-webkit-search-results-decoration {
 
     .qr {
         width: 200px;
+        margin-left: -30px;
     }
 
     .titel {
