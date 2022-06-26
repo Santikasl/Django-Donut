@@ -22,13 +22,15 @@
 
 {% block name %}
 <div class="blur-search" id="overlay-blur">
+        {% if best_photo2 or count_male or count_female or postt or all_post_like  %}
 <h1 class="male">Пол подписчиков</h1>
 <h1 class="male2">Кол-во лайков</h1>
-<h1 class="best-photo-title">Лушее фото</h1>
+<h1 class="best-photo-title">Лучшее фото</h1>
 <div class="section">
     <div class="chart">
         <canvas id="myChart" width="100px"></canvas>
     </div>
+
     <div class="sub-photo">
         <div class="photo-s">
             <div class="img-div">
@@ -67,6 +69,10 @@
         <canvas id="myChart2" width="100px"></canvas>
     </div>
 </div>
+    {% else %}
+    <img src="{% static 'img/statistic.gif' %}" alt="" style="margin-top: 10%; margin-left: 35%; border-radius: 30px">
+    <h1 style="margin-left: 28%;font-family: Organetto-Variable;">Статистики по вашему профилю пока отсутствует</h1>
+    {% endif %}
 </div>
 <script>
     const ctx = document.getElementById('myChart').getContext('2d');

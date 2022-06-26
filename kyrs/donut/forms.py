@@ -11,9 +11,8 @@ class AuthForm(forms.Form):
 
 
 class NewPosts(forms.ModelForm):
-    postImg = forms.ImageField(required=False, widget=forms.FileInput(attrs={'class': 'input-file', 'id': 'file','type':'file', 'name': 'file','accept':'image/jpeg, image/png'}))
+    postImg = forms.ImageField(required=True, widget=forms.FileInput(attrs={'class': 'input-file', 'id': 'file','type':'file', 'name': 'file','accept':'image/jpeg, image/png'}))
     description = forms.Textarea()
-
     class Meta:
         model = Posts
         fields = ['postImg', 'description']

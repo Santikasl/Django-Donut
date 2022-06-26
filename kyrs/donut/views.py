@@ -304,8 +304,9 @@ def follow_unfollow(request):
 
 def statistics(request):
     cUser = CustomUsers.objects.get(user=request.user)
-    postt = Posts.objects.filter(user=cUser)
+    postt = 0
 
+    postt = Posts.objects.filter(user=cUser)
     n = 0
     likess = []
     best_photo = []
@@ -324,6 +325,7 @@ def statistics(request):
             }
             n = posts.liked.all().count()
             best_photo = items
+    all_post_like = []
     all_post_like = likess
     best_photo2 = best_photo
     followersUser = cUser.following.all()
